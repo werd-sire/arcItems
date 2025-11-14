@@ -15,7 +15,13 @@
 
   function htmlesc(s=''){return s.replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#039;'}[c]));}
 
-  function normUrl(u){ if(!u) return ''; if(u.startsWith('//')) return 'https:'+u; return u; }
+  // Convert item name to local image filename
+  function getLocalImagePath(name) {
+    if (!name) return '';
+    // Convert to lowercase, replace spaces with hyphens, remove special chars
+    const filename = name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+    return `img/${filename}.png`;
+  }
 
   function cardTemplate(it){
     const url = `https://arc-raiders.fandom.com/wiki/${encodeURIComponent(it.name.replace(/ /g,'_'))}`;
@@ -43,9 +49,11 @@
     const cat = it.category ? `<span class="pill" title="Category">${htmlesc(it.category)}</span>` : '';
     const should = it.shouldRecycle ? `<span class="pill" title="Recommended to recycle">✅ should recycle</span>` : '';
 
+    const localImg = getLocalImagePath(it.name);
+
     return `
       <article class="card" data-name="${htmlesc(it.name.toLowerCase())}" data-rarity="${htmlesc((it.rarity||'').toLowerCase())}" data-category="${htmlesc((it.category||'').toLowerCase())}" data-keepquests="${!!it.keepQuests}" data-keepprojects="${!!it.keepProjects}" data-keepworkshop="${!!it.keepWorkshop}" data-recyclable="${!it.cantRecycle}" data-cantrecycle="${it.cantRecycle}" data-should="${it.shouldRecycle}">
-        <div class="thumb">${it.thumb ? `<img loading="lazy" src="${htmlesc(it.thumb)}" alt="${htmlesc(it.name)} thumbnail">` : '<div class="muted">no image</div>'}</div>
+        <div class="thumb">${localImg ? `<img loading="lazy" src="${htmlesc(localImg)}" alt="${htmlesc(it.name)} thumbnail" onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\\'muted\\'>no image</div>'">` : '<div class="muted">no image</div>'}</div>
         <div class="meta">
           <div class="row"><a href="${url}" target="_blank" rel="noopener"><b>${htmlesc(it.name)}</b></a></div>
           <div class="row">${rarity} ${cat} ${recycle} ${price} ${should}</div>
@@ -147,8 +155,12 @@
     grid.innerHTML = '<div class="notice">Fetching live data from Fandom…</div>';
     try{
       const url = `${API}?action=parse&format=json&page=${encodeURIComponent(ITEMS_PAGE)}&prop=text&origin=*`;
+      console.log('Fetching from:', url);
       const res = await fetch(url);
+      console.log('Response status:', res.status, res.statusText);
+      if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
       const data = await res.json();
+      console.log('Data received:', data);
       const html = data.parse?.text?.['*'] || '';
       const doc = new DOMParser().parseFromString(html, 'text/html');
       // Find the big items table (first one with Name + Sell Price headers)
@@ -221,7 +233,17 @@
       DATA = items;
       render();
     }catch(err){
-      console.warn('Live fetch failed, falling back:', err);
+      console.error('Live fetch failed:', err);
+      console.error('Error details:', {
+        message: err.message,
+        stack: err.stack,
+        hostname: window.location.hostname
+      });
+      grid.innerHTML = `<div class="notice" style="border-color:var(--warn);color:var(--warn)">
+        <b>Failed to fetch live data</b><br>
+        Error: ${err.message}<br>
+        Using fallback data instead. Check browser console for details.
+      </div>`;
       DATA = fallback();
       render();
     }
