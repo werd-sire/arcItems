@@ -3,18 +3,25 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ARC Raiders – Items (Live from Fandom)</title>
+  <title>ARC Raiders – Items & Crafting</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 <header>
   <div class="brand">
-    <div>🎯 ARC Raiders – Items Directory</div>
-    <span class="badge">live via Fandom API</span>
-    <span class="badge">images: wiki thumbnails</span>
+    <div>🎯 ARC Raiders – Items & Crafting</div>
+    <span class="badge">live via arcraiders.wiki API</span>
+    <span class="badge">images: local cache</span>
+  </div>
+  <div class="tabs">
+    <button class="tab active" data-tab="browse">📦 Browse Items</button>
+    <button class="tab" data-tab="craft">🔨 Craft Calculator</button>
   </div>
   <div class="searchbar">
-    <input id="q" type="text" placeholder="Search name, rarity, category, should recycle…" aria-label="Search items" />
+    <div class="search-wrapper">
+      <input id="q" type="text" placeholder="Search name, rarity, category, should recycle…" aria-label="Search items" />
+      <button class="search-clear" id="clear-search" aria-label="Clear search">×</button>
+    </div>
     <select id="sort" class="btn" aria-label="Sort items">
       <option value="name">Sort: Name (A-Z)</option>
       <option value="name-desc">Sort: Name (Z-A)</option>
@@ -27,28 +34,43 @@
 </header>
 
 <main>
-  <div class="notice">This page fetches <b>real-time data</b> from the <a href="https://arc-raiders.fandom.com/wiki/Items" target="_blank" rel="noopener">Fandom Items page</a> via the <a href="https://www.mediawiki.org/wiki/API:Categorymembers" target="_blank" rel="noopener">MediaWiki API</a> (with <code>origin=*</code> CORS). If a network call fails, a tiny fallback dataset is shown. You can still search that.</div>
+  <div class="notice">This page fetches <b>real-time data</b> from the <a href="https://arcraiders.wiki" target="_blank" rel="noopener">ARC Raiders Wiki</a> via the <a href="https://www.mediawiki.org/wiki/API:Categorymembers" target="_blank" rel="noopener">MediaWiki API</a> (with <code>origin=*</code> CORS). If a network call fails, a tiny fallback dataset is shown. You can still search that.</div>
 
-  <div class="stats-bar" id="stats">
-    <span class="stat">Loading...</span>
+  <!-- Browse Tab Content -->
+  <div id="browse-content" class="tab-content active">
+    <div class="stats-bar" id="stats">
+      <span class="stat">Loading...</span>
+    </div>
+
+    <div class="chips" id="filters">
+      <div class="chip" data-key="keepQuests">Keep for Quests</div>
+      <div class="chip" data-key="keepProjects">Keep for Projects</div>
+      <div class="chip" data-key="keepWorkshop">Keep for Workshop</div>
+      <div class="chip" data-key="recyclable">Recyclable</div>
+      <div class="chip" data-key="cantRecycle">Cannot Recycle</div>
+    </div>
+
+    <div class="grid" id="grid" aria-live="polite"></div>
   </div>
 
-  <div class="chips" id="filters">
-    <div class="chip" data-key="shouldRecycle">✅ Should Recycle</div>
-    <div class="chip" data-key="keepQuests">Keep for Quests</div>
-    <div class="chip" data-key="keepProjects">Keep for Projects</div>
-    <div class="chip" data-key="keepWorkshop">Keep for Workshop</div>
-    <div class="chip" data-key="recyclable">Recyclable</div>
-    <div class="chip" data-key="cantRecycle">Cannot Recycle</div>
-  </div>
+  <!-- Craft Tab Content -->
+  <div id="craft-content" class="tab-content">
+    <div class="craft-search">
+      <label for="craft-select">What do you want to craft?</label>
+      <select id="craft-select" aria-label="Select item to craft">
+        <option value="">-- Select an item --</option>
+      </select>
+    </div>
 
-  <div class="grid" id="grid" aria-live="polite"></div>
+    <div id="craft-result" class="craft-result"></div>
+  </div>
 
   <section class="footer">
     <h3>Sources</h3>
     <ul>
-      <li><a href="https://arc-raiders.fandom.com/wiki/Items" target="_blank" rel="noopener">Items | Arc Raiders Wiki – Fandom</a></li>
-      <li><a href="https://arc-raiders.fandom.com/wiki/Category:Item_Images" target="_blank" rel="noopener">Category: Item Images | Arc Raiders Wiki – Fandom</a></li>
+      <li><a href="https://arcraiders.wiki/wiki/Loot" target="_blank" rel="noopener">Loot | ARC Raiders Wiki</a></li>
+      <li><a href="https://arcraiders.wiki/wiki/Blueprints" target="_blank" rel="noopener">Blueprints | ARC Raiders Wiki</a></li>
+      <li><a href="https://arcraiders.wiki/wiki/Workshop" target="_blank" rel="noopener">Workshop | ARC Raiders Wiki</a></li>
       <li>API docs: <a href="https://www.mediawiki.org/wiki/API:Parse" target="_blank" rel="noopener">Parse</a>, <a href="https://www.mediawiki.org/wiki/Extension:PageImages" target="_blank" rel="noopener">PageImages</a></li>
     </ul>
   </section>
