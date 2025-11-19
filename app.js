@@ -358,6 +358,9 @@ document.addEventListener('alpine:init', () => {
 
         console.log(`Combined ${lootItems.length} items (with equipment data merged into loot items)`);
 
+        // Fetch additional details for equipment items (rarity, sell price, recycle)
+        await this.fetchEquipmentDetails();
+
         // Build workshop data
         this.buildWorkshopData();
 
@@ -539,9 +542,9 @@ document.addEventListener('alpine:init', () => {
             firingRate: parseFloat((tds[5]?.textContent || '0').trim()) || 0,
             relativeDPS: parseFloat((tds[6]?.textContent || '0').trim()) || 0,
             range: parseFloat((tds[7]?.textContent || '0').trim()) || 0,
-            rarity: 'Rare', // Default, weapons don't have explicit rarity
+            rarity: 'Rare', // Default, will be updated from individual pages
             sellPrice: null,
-            cantRecycle: true
+            cantRecycle: false // All weapons are recyclable
           });
         }
       }
@@ -573,7 +576,7 @@ document.addEventListener('alpine:init', () => {
           movementPenalty: (tds[4]?.textContent || '').trim(),
           rarity: name.includes('Heavy') ? 'Epic' : name.includes('Medium') ? 'Rare' : 'Uncommon',
           sellPrice: null,
-          cantRecycle: true
+          cantRecycle: false // All shields are recyclable
         });
       }
 
@@ -716,7 +719,7 @@ document.addEventListener('alpine:init', () => {
             description: (tds[hasShootColumn ? 3 : 2]?.textContent || '').trim(),
             rarity: name.includes('Heavy') ? 'Rare' : 'Uncommon',
             sellPrice: null,
-            cantRecycle: true
+            cantRecycle: false // All grenades are recyclable
           });
         }
       }
@@ -746,12 +749,85 @@ document.addEventListener('alpine:init', () => {
             description: (tds[2]?.textContent || '').trim(),
             rarity: name.includes('Mine') ? 'Rare' : 'Uncommon',
             sellPrice: null,
-            cantRecycle: true
+            cantRecycle: false // All traps are recyclable
           });
         }
       }
 
       return traps;
+    },
+
+    // Fetch additional details for equipment items from individual pages
+    async fetchEquipmentDetails() {
+      const API = 'https://arcraiders.wiki/w/api.php';
+
+      // Get equipment items that need additional details
+      const equipmentItems = this.items.filter(item =>
+        item.itemType !== 'loot' && !item.itemTypes?.includes('loot')
+      );
+
+      if (equipmentItems.length === 0) return;
+
+      console.log(`Fetching details for ${equipmentItems.length} equipment items...`);
+
+      // Batch items into groups of 20 for API efficiency
+      const batchSize = 20;
+      const batches = [];
+      for (let i = 0; i < equipmentItems.length; i += batchSize) {
+        batches.push(equipmentItems.slice(i, i + batchSize));
+      }
+
+      for (const batch of batches) {
+        const titles = batch.map(item => item.name.replace(/ /g, '_')).join('|');
+        const url = `${API}?action=query&format=json&prop=revisions&rvprop=content&titles=${encodeURIComponent(titles)}&origin=*`;
+
+        try {
+          const res = await fetch(url);
+          const data = await res.json();
+          const pages = data.query?.pages || {};
+
+          for (const pageId in pages) {
+            if (pageId === '-1') continue;
+
+            const page = pages[pageId];
+            const content = page.revisions?.[0]?.['*'] || '';
+            const title = page.title?.replace(/_/g, ' ');
+
+            // Find the item in our list
+            const item = this.items.find(i => i.name.toLowerCase() === title?.toLowerCase());
+            if (!item) continue;
+
+            // Parse rarity from infobox
+            const rarityMatch = content.match(/\|\s*rarity\s*=\s*(\w+)/i);
+            if (rarityMatch) {
+              item.rarity = rarityMatch[1].charAt(0).toUpperCase() + rarityMatch[1].slice(1).toLowerCase();
+            }
+
+            // Parse sell price
+            const sellMatch = content.match(/\|\s*sell\s*=\s*([\d,]+)/i);
+            if (sellMatch) {
+              item.sellPrice = parseInt(sellMatch[1].replace(/,/g, '')) || null;
+            }
+
+            // Parse recycle info - if there's recycle data, it can be recycled
+            const recycleMatch = content.match(/\|\s*recycle\s*=\s*(.+)/i);
+            if (recycleMatch && recycleMatch[1].trim()) {
+              item.cantRecycle = false;
+              item.recycles = recycleMatch[1].trim();
+            }
+
+            // Also check salvage
+            const salvageMatch = content.match(/\|\s*salvage\s*=\s*(.+)/i);
+            if (salvageMatch && salvageMatch[1].trim()) {
+              item.cantRecycle = false;
+            }
+          }
+        } catch (err) {
+          console.error('Error fetching equipment details:', err);
+        }
+      }
+
+      console.log('Equipment details fetched');
     },
 
     // Fallback data
