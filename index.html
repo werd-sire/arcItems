@@ -9,235 +9,8 @@
   <!-- Tailwind CSS + DaisyUI -->
   <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.19/dist/full.min.css" rel="stylesheet" type="text/css" />
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-
-  <!-- Alpine.js -->
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
-  <!-- localForage -->
-  <script src="https://cdn.jsdelivr.net/npm/localforage@1.10.0/dist/localforage.min.js"></script>
-
-  <style>
-    /* Rarity badges - border only style */
-    .rarity-common {
-      background: transparent;
-      border: 2px solid #6b7280;
-      color: #9ca3af;
-    }
-
-    .rarity-uncommon {
-      background: transparent;
-      border: 2px solid #22c55e;
-      color: #4ade80;
-    }
-
-    .rarity-rare {
-      background: transparent;
-      border: 2px solid #3b82f6;
-      color: #60a5fa;
-    }
-
-    .rarity-epic {
-      background: transparent;
-      border: 2px solid #ec4899;
-      color: #f472b6;
-    }
-
-    .rarity-legendary {
-      background: transparent;
-      border: 2px solid #f59e0b;
-      color: #fbbf24;
-    }
-
-    /* Recycle status pills */
-    .recycle-pill {
-      background: transparent;
-      border: 2px solid;
-      padding: 0rem 0.5rem 0.1rem;
-      border-radius: 0.75rem;
-      font-size: 0.75rem;
-      font-weight: 500;
-      display: inline-block;
-    }
-
-    .recycle-yes {
-      border-color: #22c55e;
-      color: #4ade80;
-    }
-
-    .recycle-no {
-      border-color: #4b5563;
-      color: #6b7280;
-      opacity: 0.6;
-      text-decoration: line-through;
-    }
-
-    /* Keep-for badges - border only style */
-    .keep-badge-workshop {
-      background: transparent !important;
-      border: 2px solid #fbbf24 !important;
-      color: #fbbf24 !important;
-    }
-
-    .keep-badge-quests {
-      background: transparent !important;
-      border: 2px solid #38bdf8 !important;
-      color: #38bdf8 !important;
-    }
-
-    .keep-badge-projects {
-      background: transparent !important;
-      border: 2px solid #a78bfa !important;
-      color: #a78bfa !important;
-    }
-
-    /* Card border colors by rarity */
-    .card-rarity-common {
-      border-left: 4px solid #6b7280;
-    }
-
-    .card-rarity-uncommon {
-      border-left: 4px solid #22c55e;
-    }
-
-    .card-rarity-rare {
-      border-left: 4px solid #3b82f6;
-    }
-
-    .card-rarity-epic {
-      border-left: 4px solid #ec4899;
-    }
-
-    .card-rarity-legendary {
-      border-left: 4px solid #f59e0b;
-    }
-
-    /* Improved badge styling */
-    .badge-sm {
-      font-size: 0.85rem;
-      padding: 0rem 0.75rem 0.1rem !important;
-      height: auto !important;
-    }
-
-    /* Keep-for badges - interactive styling */
-    .keep-badge {
-      cursor: pointer;
-      transition: all 0.15s ease;
-      padding: 0.25rem 0.75rem !important;
-    }
-
-    .keep-badge:hover {
-      filter: brightness(1.2);
-      transform: translateY(-1px);
-    }
-
-    .keep-badge.completed {
-      opacity: 0.5;
-      text-decoration: line-through;
-    }
-
-    /* Dropdown for keep-for details */
-    .keep-dropdown {
-      position: relative;
-      display: inline-block;
-    }
-
-    .keep-dropdown-content {
-      display: none;
-      position: absolute;
-      bottom: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-      background: oklch(var(--b1));
-      border: 1px solid oklch(var(--bc) / 0.2);
-      border-radius: 0.5rem;
-      padding: 0.75rem;
-      min-width: 200px;
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
-      z-index: 50;
-      margin-bottom: 0.5rem;
-      font-size: 0.8rem;
-    }
-
-    .keep-dropdown:hover .keep-dropdown-content {
-      display: block;
-    }
-
-    .keep-dropdown-content::after {
-      content: '';
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-      border: 6px solid transparent;
-      border-top-color: oklch(var(--b1));
-    }
-
-
-    /* List row colors by rarity */
-    .row-rarity-common {
-      border-left: 4px solid #6b7280;
-    }
-
-    .row-rarity-uncommon {
-      border-left: 4px solid #22c55e;
-    }
-
-    .row-rarity-rare {
-      border-left: 4px solid #3b82f6;
-    }
-
-    .row-rarity-epic {
-      border-left: 4px solid #ec4899;
-    }
-
-    .row-rarity-legendary {
-      border-left: 4px solid #f59e0b;
-    }
-
-    /* Smooth transitions */
-    .fade-enter {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-
-    .fade-enter-active {
-      transition: all 0.3s ease;
-    }
-
-    /* Grid view */
-    .items-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1rem;
-    }
-
-    /* List view */
-    .items-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .btn-ghost {
-      border: 1px solid rgba(220, 220, 220, 0.5);
-    }
-
-    .btn-ghost:hover {
-      color: #ec4899;
-    }
-
-    label.input input {
-      background-color: transparent;
-    }
-
-    /* Crafting tree indentation */
-    .craft-indent {
-      padding-left: calc(var(--depth, 0) * 1.5rem);
-    }
-  </style>
+  <script type="module" crossorigin src="/assets/index.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index.css">
 </head>
 
 <body class="bg-base-300 min-h-screen" x-data="arcApp" x-init="init()">
@@ -392,7 +165,7 @@
                     :class="'rarity-' + item.rarity?.toLowerCase()" x-text="item.rarity"></div>
 
                   <img :src="getImagePath(item.name)" :alt="item.name" class="rounded-xl h-28 object-contain"
-                    @error="$event.target.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2250%22>📦</text></svg>'">
+                    @error="$event.target.src=fallbackImage">
                 </figure>
 
                 <div class="card-body p-4 pt-3 flex flex-col">
@@ -506,7 +279,7 @@
               <div class="flex items-center gap-4 bg-base-100 rounded-lg p-3 shadow"
                 :class="'row-rarity-' + (item.rarity?.toLowerCase() || 'common')">
                 <img :src="getImagePath(item.name)" :alt="item.name" class="w-12 h-12 object-contain rounded"
-                  @error="$event.target.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2250%22>📦</text></svg>'">
+                  @error="$event.target.src=fallbackImage">
 
                 <div class="flex-1">
                   <a :href="'https://arcraiders.wiki/wiki/' + encodeURIComponent(item.name.replace(/ /g, '_'))"
@@ -852,7 +625,7 @@
       <div class="bg-base-100 rounded-box p-4 shadow mt-4">
         <h3 class="font-semibold mb-3">Import / Export Data</h3>
         <div class="flex gap-2">
-          <button class="btn btn-outline btn-sm" @click="exportData()">
+          <button class="btn btn-outline btn-sm" @click="exportUserData()">
             <i data-lucide="download" class="w-4 h-4"></i>
             Export
           </button>
@@ -860,7 +633,7 @@
             <i data-lucide="upload" class="w-4 h-4"></i>
             Import
           </button>
-          <input type="file" class="hidden" x-ref="importFile" accept=".json" @change="importData($event)">
+          <input type="file" class="hidden" x-ref="importFile" accept=".json" @change="importUserData($event)">
         </div>
       </div>
     </div>
@@ -924,7 +697,6 @@
     <span class="kbd kbd-xs ml-2">R</span> refresh
   </div>
 
-  <script src="app.js"></script>
 </body>
 
 </html>
