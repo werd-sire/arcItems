@@ -110,6 +110,10 @@ document.addEventListener('alpine:init', () => {
         this.$nextTick(() => lucide.createIcons());
       });
 
+      this.$watch('viewMode', () => {
+        this.$nextTick(() => lucide.createIcons());
+      });
+
       // Update storage info
       this.updateStorageInfo();
 

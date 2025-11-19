@@ -161,6 +161,10 @@
       color: #ec4899;
     }
 
+    label.input input {
+      background-color: transparent;
+    }
+
     /* Crafting tree indentation */
     .craft-indent { padding-left: calc(var(--depth, 0) * 1.5rem); }
   </style>
@@ -233,14 +237,14 @@
         <div class="flex flex-wrap gap-4 items-center">
           <!-- Search -->
           <div class="form-control flex-1 min-w-[250px]">
-            <div class="input-group">
-              <span><i data-lucide="search" class="w-4 h-4"></i></span>
-              <input type="text" placeholder="Search items..." class="input input-bordered w-full"
+            <label class="input input-bordered flex items-center gap-2">
+              <i data-lucide="search" class="w-4 h-4 text-base-content/50"></i>
+              <input type="text" placeholder="Search items..." class="grow"
                      x-model="searchTerm" @input="renderItems()">
-              <button class="btn btn-ghost" x-show="searchTerm" @click="searchTerm = ''; renderItems()">
+              <button class="btn btn-ghost btn-xs" x-show="searchTerm" @click="searchTerm = ''; renderItems()">
                 <i data-lucide="x" class="w-4 h-4"></i>
               </button>
-            </div>
+            </label>
           </div>
 
           <!-- Sort -->
@@ -296,9 +300,10 @@
       <!-- Items Grid/List -->
       <div :class="viewMode === 'grid' ? 'items-grid' : 'items-list'">
         <template x-for="item in filteredItems" :key="item.name + '-' + item.itemType">
-
+          <div>
           <!-- Grid Card -->
-          <div x-show="viewMode === 'grid'" class="card bg-base-100 shadow-xl"
+          <template x-if="viewMode === 'grid'">
+          <div class="card bg-base-100 shadow-xl"
                :class="'card-rarity-' + (item.rarity?.toLowerCase() || 'common')">
 
             <!-- Image area with integrated icons -->
@@ -418,9 +423,11 @@
               </div>
             </div>
           </div>
+          </template>
 
           <!-- List Row -->
-          <div x-show="viewMode === 'list'" class="flex items-center gap-4 bg-base-100 rounded-lg p-3 shadow"
+          <template x-if="viewMode === 'list'">
+          <div class="flex items-center gap-4 bg-base-100 rounded-lg p-3 shadow"
                :class="'row-rarity-' + (item.rarity?.toLowerCase() || 'common')">
             <img :src="getImagePath(item.name)" :alt="item.name" class="w-12 h-12 object-contain rounded"
                  @error="$event.target.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2250%22>📦</text></svg>'">
@@ -447,7 +454,9 @@
               </button>
             </div>
           </div>
+          </template>
 
+          </div>
         </template>
       </div>
 
