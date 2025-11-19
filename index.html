@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en" data-theme="dark">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,11 +21,35 @@
 
   <style>
     /* Rarity badges - border only style */
-    .rarity-common { background: transparent; border: 2px solid #6b7280; color: #9ca3af; }
-    .rarity-uncommon { background: transparent; border: 2px solid #22c55e; color: #4ade80; }
-    .rarity-rare { background: transparent; border: 2px solid #3b82f6; color: #60a5fa; }
-    .rarity-epic { background: transparent; border: 2px solid #ec4899; color: #f472b6; }
-    .rarity-legendary { background: transparent; border: 2px solid #f59e0b; color: #fbbf24; }
+    .rarity-common {
+      background: transparent;
+      border: 2px solid #6b7280;
+      color: #9ca3af;
+    }
+
+    .rarity-uncommon {
+      background: transparent;
+      border: 2px solid #22c55e;
+      color: #4ade80;
+    }
+
+    .rarity-rare {
+      background: transparent;
+      border: 2px solid #3b82f6;
+      color: #60a5fa;
+    }
+
+    .rarity-epic {
+      background: transparent;
+      border: 2px solid #ec4899;
+      color: #f472b6;
+    }
+
+    .rarity-legendary {
+      background: transparent;
+      border: 2px solid #f59e0b;
+      color: #fbbf24;
+    }
 
     /* Recycle status pills */
     .recycle-pill {
@@ -36,10 +61,12 @@
       font-weight: 500;
       display: inline-block;
     }
+
     .recycle-yes {
       border-color: #22c55e;
       color: #4ade80;
     }
+
     .recycle-no {
       border-color: #4b5563;
       color: #6b7280;
@@ -53,11 +80,13 @@
       border: 2px solid #fbbf24 !important;
       color: #fbbf24 !important;
     }
+
     .keep-badge-quests {
       background: transparent !important;
       border: 2px solid #38bdf8 !important;
       color: #38bdf8 !important;
     }
+
     .keep-badge-projects {
       background: transparent !important;
       border: 2px solid #a78bfa !important;
@@ -65,11 +94,25 @@
     }
 
     /* Card border colors by rarity */
-    .card-rarity-common { border-left: 4px solid #6b7280; }
-    .card-rarity-uncommon { border-left: 4px solid #22c55e; }
-    .card-rarity-rare { border-left: 4px solid #3b82f6; }
-    .card-rarity-epic { border-left: 4px solid #ec4899; }
-    .card-rarity-legendary { border-left: 4px solid #f59e0b; }
+    .card-rarity-common {
+      border-left: 4px solid #6b7280;
+    }
+
+    .card-rarity-uncommon {
+      border-left: 4px solid #22c55e;
+    }
+
+    .card-rarity-rare {
+      border-left: 4px solid #3b82f6;
+    }
+
+    .card-rarity-epic {
+      border-left: 4px solid #ec4899;
+    }
+
+    .card-rarity-legendary {
+      border-left: 4px solid #f59e0b;
+    }
 
     /* Improved badge styling */
     .badge-sm {
@@ -84,10 +127,12 @@
       transition: all 0.15s ease;
       padding: 0.25rem 0.75rem !important;
     }
+
     .keep-badge:hover {
       filter: brightness(1.2);
       transform: translateY(-1px);
     }
+
     .keep-badge.completed {
       opacity: 0.5;
       text-decoration: line-through;
@@ -98,6 +143,7 @@
       position: relative;
       display: inline-block;
     }
+
     .keep-dropdown-content {
       display: none;
       position: absolute;
@@ -109,14 +155,16 @@
       border-radius: 0.5rem;
       padding: 0.75rem;
       min-width: 200px;
-      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.3);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
       z-index: 50;
       margin-bottom: 0.5rem;
       font-size: 0.8rem;
     }
+
     .keep-dropdown:hover .keep-dropdown-content {
       display: block;
     }
+
     .keep-dropdown-content::after {
       content: '';
       position: absolute;
@@ -129,15 +177,35 @@
 
 
     /* List row colors by rarity */
-    .row-rarity-common { border-left: 4px solid #6b7280; }
-    .row-rarity-uncommon { border-left: 4px solid #22c55e; }
-    .row-rarity-rare { border-left: 4px solid #3b82f6; }
-    .row-rarity-epic { border-left: 4px solid #ec4899; }
-    .row-rarity-legendary { border-left: 4px solid #f59e0b; }
+    .row-rarity-common {
+      border-left: 4px solid #6b7280;
+    }
+
+    .row-rarity-uncommon {
+      border-left: 4px solid #22c55e;
+    }
+
+    .row-rarity-rare {
+      border-left: 4px solid #3b82f6;
+    }
+
+    .row-rarity-epic {
+      border-left: 4px solid #ec4899;
+    }
+
+    .row-rarity-legendary {
+      border-left: 4px solid #f59e0b;
+    }
 
     /* Smooth transitions */
-    .fade-enter { opacity: 0; transform: translateY(-10px); }
-    .fade-enter-active { transition: all 0.3s ease; }
+    .fade-enter {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+
+    .fade-enter-active {
+      transition: all 0.3s ease;
+    }
 
     /* Grid view */
     .items-grid {
@@ -154,7 +222,7 @@
     }
 
     .btn-ghost {
-      border: 1px solid rgba(220,220,220,0.5);
+      border: 1px solid rgba(220, 220, 220, 0.5);
     }
 
     .btn-ghost:hover {
@@ -166,9 +234,12 @@
     }
 
     /* Crafting tree indentation */
-    .craft-indent { padding-left: calc(var(--depth, 0) * 1.5rem); }
+    .craft-indent {
+      padding-left: calc(var(--depth, 0) * 1.5rem);
+    }
   </style>
 </head>
+
 <body class="bg-base-300 min-h-screen" x-data="arcApp" x-init="init()">
 
   <!-- Navbar -->
@@ -198,7 +269,8 @@
         <a class="tab" :class="{ 'tab-active': currentTab === 'inventory' }" @click="currentTab = 'inventory'">
           <i data-lucide="backpack" class="w-4 h-4 mr-2"></i>
           Inventory
-          <div class="badge badge-sm badge-primary ml-1" x-show="Object.keys(inventory).length > 0" x-text="Object.keys(inventory).length"></div>
+          <div class="badge badge-sm badge-primary ml-1" x-show="Object.keys(inventory).length > 0"
+            x-text="Object.keys(inventory).length"></div>
         </a>
       </div>
     </div>
@@ -239,8 +311,7 @@
           <div class="form-control flex-1 min-w-[250px]">
             <label class="input input-bordered flex items-center gap-2">
               <i data-lucide="search" class="w-4 h-4 text-base-content/50"></i>
-              <input type="text" placeholder="Search items..." class="grow"
-                     x-model="searchTerm" @input="renderItems()">
+              <input type="text" placeholder="Search items..." class="grow" x-model="searchTerm" @input="renderItems()">
               <button class="btn btn-ghost btn-xs" x-show="searchTerm" @click="searchTerm = ''; renderItems()">
                 <i data-lucide="x" class="w-4 h-4"></i>
               </button>
@@ -272,9 +343,8 @@
         <!-- Filter Chips -->
         <div class="flex flex-wrap gap-2 mt-3">
           <template x-for="filter in availableFilters" :key="filter.key">
-            <button class="btn btn-xs"
-                    :class="activeFilters.has(filter.key) ? 'btn-primary' : 'btn-outline'"
-                    @click="toggleFilter(filter.key)">
+            <button class="btn btn-xs" :class="activeFilters.has(filter.key) ? 'btn-primary' : 'btn-outline'"
+              @click="toggleFilter(filter.key)">
               <span x-text="filter.label"></span>
             </button>
           </template>
@@ -301,160 +371,167 @@
       <div :class="viewMode === 'grid' ? 'items-grid' : 'items-list'">
         <template x-for="item in filteredItems" :key="item.name + '-' + item.itemType">
           <div>
-          <!-- Grid Card -->
-          <template x-if="viewMode === 'grid'">
-          <div class="card bg-base-100 shadow-xl"
-               :class="'card-rarity-' + (item.rarity?.toLowerCase() || 'common')">
+            <!-- Grid Card -->
+            <template x-if="viewMode === 'grid'">
+              <div class="card bg-base-100 shadow-xl"
+                :class="'card-rarity-' + (item.rarity?.toLowerCase() || 'common')">
 
-            <!-- Image area with integrated icons -->
-            <figure class="relative px-4 pt-4">
-              <!-- Recycle icon - top left -->
-              <div class="absolute top-2 left-2 p-1.5 rounded-lg bg-base-100/80">
-                <i data-lucide="recycle" class="w-4 h-4"
-                   :class="item.cantRecycle ? 'text-base-content/30' : 'text-success'"></i>
-                <div class="absolute inset-0 flex items-center justify-center" x-show="item.cantRecycle">
-                  <div class="w-6 h-0.5 bg-error rotate-45"></div>
-                </div>
-              </div>
-
-              <!-- Rarity - top right -->
-              <div class="absolute top-2 right-2 px-2 py-0.5 rounded text-xs font-bold"
-                   :class="'rarity-' + item.rarity?.toLowerCase()" x-text="item.rarity"></div>
-
-              <img :src="getImagePath(item.name)" :alt="item.name"
-                   class="rounded-xl h-28 object-contain"
-                   @error="$event.target.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2250%22>📦</text></svg>'">
-            </figure>
-
-            <div class="card-body p-4 pt-3 flex flex-col">
-              <!-- Item Name -->
-              <h2 class="card-title text-sm justify-center text-center">
-                <a :href="'https://arcraiders.wiki/wiki/' + encodeURIComponent(item.name.replace(/ /g, '_'))"
-                   target="_blank" class="link link-hover" x-text="item.name"></a>
-              </h2>
-
-              <!-- Structured rows -->
-              <div class="text-xs space-y-1 mt-2">
-                <div class="flex justify-between">
-                  <span class="text-base-content/60">Category:</span>
-                  <span x-text="item.category || 'N/A'"></span>
-                </div>
-                <div class="flex justify-between">
-                  <span class="text-base-content/60">Value:</span>
-                  <span x-text="item.sellPrice ? '$' + item.sellPrice.toLocaleString() : 'N/A'"></span>
-                </div>
-              </div>
-
-              <!-- Keep For section -->
-              <div class="mt-3">
-                <div class="text-xs text-base-content/60 mb-1.5">Keep for...</div>
-                <div class="flex flex-wrap gap-1.5">
-                  <!-- Workshop -->
-                  <div class="keep-dropdown" x-show="item.keepWorkshop">
-                    <div class="badge badge-sm keep-badge keep-badge-workshop"
-                         :class="{ 'completed': isCompleted(item.name, 'workshop') }"
-                         @click="toggleCompleted(item.name, 'workshop')">
-                      Workshop
-                      <span x-show="isCompleted(item.name, 'workshop')">✓</span>
-                    </div>
-                    <div class="keep-dropdown-content">
-                      <div class="font-semibold mb-1">Keep for Workshop</div>
-                      <div class="text-base-content/70" x-text="item.keepWorkshopFor || 'Required for upgrades'"></div>
-                      <div class="text-xs text-base-content/50 mt-2 pt-2 border-t border-base-content/10">Click to mark done</div>
+                <!-- Image area with integrated icons -->
+                <figure class="relative px-4 pt-4">
+                  <!-- Recycle icon - top left -->
+                  <div class="absolute top-2 left-2 p-1.5 rounded-lg bg-base-100/80">
+                    <i data-lucide="recycle" class="w-4 h-4"
+                      :class="item.cantRecycle ? 'text-base-content/30' : 'text-success'"></i>
+                    <div class="absolute inset-0 flex items-center justify-center" x-show="item.cantRecycle">
+                      <div class="w-6 h-0.5 bg-error rotate-45"></div>
                     </div>
                   </div>
 
-                  <!-- Quests -->
-                  <div class="keep-dropdown" x-show="item.keepQuests">
-                    <div class="badge badge-sm keep-badge keep-badge-quests"
-                         :class="{ 'completed': isCompleted(item.name, 'quests') }"
-                         @click="toggleCompleted(item.name, 'quests')">
-                      Quests
-                      <span x-show="isCompleted(item.name, 'quests')">✓</span>
+                  <!-- Rarity - top right -->
+                  <div class="absolute top-2 right-2 px-2 py-0.5 rounded text-xs font-bold"
+                    :class="'rarity-' + item.rarity?.toLowerCase()" x-text="item.rarity"></div>
+
+                  <img :src="getImagePath(item.name)" :alt="item.name" class="rounded-xl h-28 object-contain"
+                    @error="$event.target.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2250%22>📦</text></svg>'">
+                </figure>
+
+                <div class="card-body p-4 pt-3 flex flex-col">
+                  <!-- Item Name -->
+                  <h2 class="card-title text-sm justify-center text-center">
+                    <a :href="'https://arcraiders.wiki/wiki/' + encodeURIComponent(item.name.replace(/ /g, '_'))"
+                      target="_blank" class="link link-hover" x-text="item.name"></a>
+                  </h2>
+
+                  <!-- Structured rows -->
+                  <div class="text-xs space-y-1 mt-2">
+                    <div class="flex justify-between">
+                      <span class="text-base-content/60">Category:</span>
+                      <span x-text="item.category || '(check wiki)'"></span>
                     </div>
-                    <div class="keep-dropdown-content">
-                      <div class="font-semibold mb-1">Keep for Quests</div>
-                      <div class="text-base-content/70" x-text="item.keepQuestsFor || 'Required for quests'"></div>
-                      <div class="text-xs text-base-content/50 mt-2 pt-2 border-t border-base-content/10">Click to mark done</div>
+                    <div class="flex justify-between">
+                      <span class="text-base-content/60">Value:</span>
+                      <span
+                        x-text="item.sellPrice ? '$' + item.sellPrice.toLocaleString() : '(check wiki)'"></span>
                     </div>
                   </div>
 
-                  <!-- Projects -->
-                  <div class="keep-dropdown" x-show="item.keepProjects">
-                    <div class="badge badge-sm keep-badge keep-badge-projects"
-                         :class="{ 'completed': isCompleted(item.name, 'projects') }"
-                         @click="toggleCompleted(item.name, 'projects')">
-                      Projects
-                      <span x-show="isCompleted(item.name, 'projects')">✓</span>
-                    </div>
-                    <div class="keep-dropdown-content">
-                      <div class="font-semibold mb-1">Keep for Projects</div>
-                      <div class="text-base-content/70" x-text="item.keepProjectsFor || 'Required for expeditions'"></div>
-                      <div class="text-xs text-base-content/50 mt-2 pt-2 border-t border-base-content/10">Click to mark done</div>
+                  <!-- Keep For section -->
+                  <div class="mt-3">
+                    <div class="text-xs text-base-content/60 mb-1.5">Keep for...</div>
+                    <div class="flex flex-wrap gap-1.5">
+                      <!-- Workshop -->
+                      <div class="keep-dropdown" x-show="item.keepWorkshop">
+                        <div class="badge badge-sm keep-badge keep-badge-workshop"
+                          :class="{ 'completed': isCompleted(item.name, 'workshop') }"
+                          @click="toggleCompleted(item.name, 'workshop')">
+                          Workshop
+                          <span x-show="isCompleted(item.name, 'workshop')">✓</span>
+                        </div>
+                        <div class="keep-dropdown-content">
+                          <div class="font-semibold mb-1">Keep for Workshop</div>
+                          <div class="text-base-content/70" x-text="item.keepWorkshopFor || 'Required for upgrades'">
+                          </div>
+                          <div class="text-xs text-base-content/50 mt-2 pt-2 border-t border-base-content/10">Click to
+                            mark done</div>
+                        </div>
+                      </div>
+
+                      <!-- Quests -->
+                      <div class="keep-dropdown" x-show="item.keepQuests">
+                        <div class="badge badge-sm keep-badge keep-badge-quests"
+                          :class="{ 'completed': isCompleted(item.name, 'quests') }"
+                          @click="toggleCompleted(item.name, 'quests')">
+                          Quests
+                          <span x-show="isCompleted(item.name, 'quests')">✓</span>
+                        </div>
+                        <div class="keep-dropdown-content">
+                          <div class="font-semibold mb-1">Keep for Quests</div>
+                          <div class="text-base-content/70" x-text="item.keepQuestsFor || 'Required for quests'"></div>
+                          <div class="text-xs text-base-content/50 mt-2 pt-2 border-t border-base-content/10">Click to
+                            mark done</div>
+                        </div>
+                      </div>
+
+                      <!-- Projects -->
+                      <div class="keep-dropdown" x-show="item.keepProjects">
+                        <div class="badge badge-sm keep-badge keep-badge-projects"
+                          :class="{ 'completed': isCompleted(item.name, 'projects') }"
+                          @click="toggleCompleted(item.name, 'projects')">
+                          Projects
+                          <span x-show="isCompleted(item.name, 'projects')">✓</span>
+                        </div>
+                        <div class="keep-dropdown-content">
+                          <div class="font-semibold mb-1">Keep for Projects</div>
+                          <div class="text-base-content/70" x-text="item.keepProjectsFor || 'Required for expeditions'">
+                          </div>
+                          <div class="text-xs text-base-content/50 mt-2 pt-2 border-t border-base-content/10">Click to
+                            mark done</div>
+                        </div>
+                      </div>
+
+                      <!-- N/A if none -->
+                      <span class="text-base-content/40 text-xs"
+                        x-show="!item.keepWorkshop && !item.keepQuests && !item.keepProjects">(check wiki)</span>
                     </div>
                   </div>
 
-                  <!-- N/A if none -->
-                  <span class="text-base-content/40 text-xs"
-                        x-show="!item.keepWorkshop && !item.keepQuests && !item.keepProjects">N/A</span>
+                  <!-- Actions with inventory counter -->
+                  <div class="flex items-center justify-between mt-auto pt-3 border-t border-base-content/10">
+                    <div class="flex items-center gap-2 text-xs">
+                      <span class="text-base-content/50" x-show="getInventoryQuantity(item.name) > 0">
+                        <i data-lucide="backpack" class="w-3 h-3 inline"></i>
+                        <span x-text="getInventoryQuantity(item.name)"></span>
+                      </span>
+                      <span class="text-base-content/50" x-show="shoppingList[item.name] > 0">
+                        <i data-lucide="shopping-cart" class="w-3 h-3 inline"></i>
+                        <span x-text="shoppingList[item.name]"></span>
+                      </span>
+                    </div>
+                    <div class="flex gap-1">
+                      <button class="btn btn-xs btn-ghost" @click="addToInventory(item.name)" title="Add to inventory">
+                        <i data-lucide="plus" class="w-3 h-3"></i>
+                      </button>
+                      <button class="btn btn-xs btn-ghost" @click="addToShoppingList(item.name)"
+                        title="Add to shopping list">
+                        <i data-lucide="shopping-cart" class="w-3 h-3"></i>
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
+            </template>
 
-              <!-- Actions with inventory counter -->
-              <div class="flex items-center justify-between mt-auto pt-3 border-t border-base-content/10">
-                <div class="flex items-center gap-2 text-xs">
-                  <span class="text-base-content/50" x-show="getInventoryQuantity(item.name) > 0">
-                    <i data-lucide="backpack" class="w-3 h-3 inline"></i>
-                    <span x-text="getInventoryQuantity(item.name)"></span>
-                  </span>
-                  <span class="text-base-content/50" x-show="shoppingList[item.name] > 0">
-                    <i data-lucide="shopping-cart" class="w-3 h-3 inline"></i>
-                    <span x-text="shoppingList[item.name]"></span>
-                  </span>
+            <!-- List Row -->
+            <template x-if="viewMode === 'list'">
+              <div class="flex items-center gap-4 bg-base-100 rounded-lg p-3 shadow"
+                :class="'row-rarity-' + (item.rarity?.toLowerCase() || 'common')">
+                <img :src="getImagePath(item.name)" :alt="item.name" class="w-12 h-12 object-contain rounded"
+                  @error="$event.target.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2250%22>📦</text></svg>'">
+
+                <div class="flex-1">
+                  <a :href="'https://arcraiders.wiki/wiki/' + encodeURIComponent(item.name.replace(/ /g, '_'))"
+                    target="_blank" class="font-semibold link link-hover" x-text="item.name"></a>
+                  <div class="flex gap-1 mt-1">
+                    <div class="badge badge-xs" :class="'rarity-' + item.rarity?.toLowerCase()" x-text="item.rarity">
+                    </div>
+                    <div class="badge badge-outline badge-xs" x-text="item.category"></div>
+                  </div>
                 </div>
+
+                <div class="text-right">
+                  <div class="font-mono" x-show="item.sellPrice">$<span x-text="item.sellPrice"></span></div>
+                </div>
+
                 <div class="flex gap-1">
-                  <button class="btn btn-xs btn-ghost" @click="addToInventory(item.name)" title="Add to inventory">
+                  <button class="btn btn-xs btn-ghost" @click="addToInventory(item.name)">
                     <i data-lucide="plus" class="w-3 h-3"></i>
                   </button>
-                  <button class="btn btn-xs btn-ghost" @click="addToShoppingList(item.name)" title="Add to shopping list">
+                  <button class="btn btn-xs btn-ghost" @click="addToShoppingList(item.name)">
                     <i data-lucide="shopping-cart" class="w-3 h-3"></i>
                   </button>
                 </div>
               </div>
-            </div>
-          </div>
-          </template>
-
-          <!-- List Row -->
-          <template x-if="viewMode === 'list'">
-          <div class="flex items-center gap-4 bg-base-100 rounded-lg p-3 shadow"
-               :class="'row-rarity-' + (item.rarity?.toLowerCase() || 'common')">
-            <img :src="getImagePath(item.name)" :alt="item.name" class="w-12 h-12 object-contain rounded"
-                 @error="$event.target.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2250%22>📦</text></svg>'">
-
-            <div class="flex-1">
-              <a :href="'https://arcraiders.wiki/wiki/' + encodeURIComponent(item.name.replace(/ /g, '_'))"
-                 target="_blank" class="font-semibold link link-hover" x-text="item.name"></a>
-              <div class="flex gap-1 mt-1">
-                <div class="badge badge-xs" :class="'rarity-' + item.rarity?.toLowerCase()" x-text="item.rarity"></div>
-                <div class="badge badge-outline badge-xs" x-text="item.category"></div>
-              </div>
-            </div>
-
-            <div class="text-right">
-              <div class="font-mono" x-show="item.sellPrice">$<span x-text="item.sellPrice"></span></div>
-            </div>
-
-            <div class="flex gap-1">
-              <button class="btn btn-xs btn-ghost" @click="addToInventory(item.name)">
-                <i data-lucide="plus" class="w-3 h-3"></i>
-              </button>
-              <button class="btn btn-xs btn-ghost" @click="addToShoppingList(item.name)">
-                <i data-lucide="shopping-cart" class="w-3 h-3"></i>
-              </button>
-            </div>
-          </div>
-          </template>
+            </template>
 
           </div>
         </template>
@@ -493,8 +570,8 @@
         <div class="flex flex-wrap gap-2">
           <template x-for="recipe in pinnedRecipes" :key="recipe">
             <div class="badge badge-lg gap-2 cursor-pointer"
-                 :class="selectedRecipe === recipe ? 'badge-primary' : 'badge-outline'"
-                 @click="selectedRecipe = recipe; calculateCraft()">
+              :class="selectedRecipe === recipe ? 'badge-primary' : 'badge-outline'"
+              @click="selectedRecipe = recipe; calculateCraft()">
               <span x-text="recipe"></span>
               <button @click.stop="unpinRecipe(recipe)">
                 <i data-lucide="x" class="w-3 h-3"></i>
@@ -516,9 +593,8 @@
                 Workshop: <span class="font-semibold" x-text="craftResult?.workshop"></span>
               </p>
             </div>
-            <button class="btn btn-sm"
-                    :class="isPinned(selectedRecipe) ? 'btn-primary' : 'btn-outline'"
-                    @click="togglePin(selectedRecipe)">
+            <button class="btn btn-sm" :class="isPinned(selectedRecipe) ? 'btn-primary' : 'btn-outline'"
+              @click="togglePin(selectedRecipe)">
               <i data-lucide="pin" class="w-4 h-4"></i>
               <span x-text="isPinned(selectedRecipe) ? 'Pinned' : 'Pin'"></span>
             </button>
@@ -542,7 +618,8 @@
                 <i data-lucide="trophy" class="w-3 h-3 mr-1"></i>
                 Trials: <span x-text="craftResult?.sources?.trials" class="ml-1"></span>
               </div>
-              <div class="badge badge-ghost" x-show="craftResult?.sources && !craftResult?.sources?.loot && !craftResult?.sources?.harvester && !craftResult?.sources?.quest && !craftResult?.sources?.trials">
+              <div class="badge badge-ghost"
+                x-show="craftResult?.sources && !craftResult?.sources?.loot && !craftResult?.sources?.harvester && !craftResult?.sources?.quest && !craftResult?.sources?.trials">
                 Unknown source
               </div>
             </div>
@@ -584,12 +661,11 @@
           </h3>
           <div class="space-y-1">
             <template x-for="node in (craftResult?.tree || [])" :key="node.name + node.depth">
-              <div class="craft-indent flex items-center gap-2 py-1 px-2 rounded"
-                   :style="'--depth: ' + node.depth"
-                   :class="node.isBase ? 'bg-success/10 border-l-2 border-success' : 'bg-info/10 border-l-2 border-info'">
+              <div class="craft-indent flex items-center gap-2 py-1 px-2 rounded" :style="'--depth: ' + node.depth"
+                :class="node.isBase ? 'bg-success/10 border-l-2 border-success' : 'bg-info/10 border-l-2 border-info'">
                 <span class="badge badge-sm badge-primary" x-text="node.qty + 'x'"></span>
                 <a :href="'https://arcraiders.wiki/wiki/' + encodeURIComponent(node.name.replace(/ /g, '_'))"
-                   target="_blank" class="link link-hover" x-text="node.name"></a>
+                  target="_blank" class="link link-hover" x-text="node.name"></a>
                 <span class="badge badge-xs" x-text="node.isBase ? 'Base' : node.workshop"></span>
               </div>
             </template>
@@ -635,7 +711,8 @@
                             </span>
                           </template>
                         </div>
-                        <button class="btn btn-xs btn-outline mt-2" @click="addWorkshopReqsToShoppingList(level.requirements)">
+                        <button class="btn btn-xs btn-outline mt-2"
+                          @click="addWorkshopReqsToShoppingList(level.requirements)">
                           <i data-lucide="shopping-cart" class="w-3 h-3"></i>
                           Add to list
                         </button>
@@ -650,8 +727,8 @@
                         <div class="flex flex-wrap gap-1">
                           <template x-for="craft in level.crafts" :key="craft">
                             <span class="badge badge-sm badge-primary cursor-pointer"
-                                  @click="currentTab = 'craft'; selectedRecipe = craft; calculateCraft()"
-                                  x-text="craft"></span>
+                              @click="currentTab = 'craft'; selectedRecipe = craft; calculateCraft()"
+                              x-text="craft"></span>
                           </template>
                         </div>
                       </div>
@@ -701,8 +778,8 @@
               <div class="flex items-center gap-2 bg-base-200 rounded-lg p-2">
                 <span class="flex-1" x-text="name"></span>
                 <button class="btn btn-xs btn-ghost" @click="updateInventory(name, -1)">-</button>
-                <input type="number" class="input input-bordered input-xs w-16 text-center"
-                       :value="qty" @change="setInventory(name, parseInt($event.target.value))">
+                <input type="number" class="input input-bordered input-xs w-16 text-center" :value="qty"
+                  @change="setInventory(name, parseInt($event.target.value))">
                 <button class="btn btn-xs btn-ghost" @click="updateInventory(name, 1)">+</button>
                 <button class="btn btn-xs btn-ghost text-error" @click="removeFromInventory(name)">
                   <i data-lucide="trash-2" class="w-3 h-3"></i>
@@ -719,7 +796,8 @@
               <i data-lucide="shopping-cart" class="w-4 h-4"></i>
               Shopping List
             </h3>
-            <button class="btn btn-xs btn-ghost" @click="clearShoppingList()" x-show="Object.keys(shoppingList).length > 0">
+            <button class="btn btn-xs btn-ghost" @click="clearShoppingList()"
+              x-show="Object.keys(shoppingList).length > 0">
               Clear all
             </button>
           </div>
@@ -735,8 +813,9 @@
                 <span class="flex-1" x-text="name"></span>
                 <div class="flex items-center gap-1">
                   <span class="text-xs text-base-content/60">Have:</span>
-                  <span class="badge badge-sm" :class="getInventoryQuantity(name) >= qty ? 'badge-success' : 'badge-warning'"
-                        x-text="getInventoryQuantity(name) + '/' + qty"></span>
+                  <span class="badge badge-sm"
+                    :class="getInventoryQuantity(name) >= qty ? 'badge-success' : 'badge-warning'"
+                    x-text="getInventoryQuantity(name) + '/' + qty"></span>
                 </div>
                 <button class="btn btn-xs btn-ghost" @click="updateShoppingList(name, -1)">-</button>
                 <button class="btn btn-xs btn-ghost" @click="updateShoppingList(name, 1)">+</button>
@@ -791,7 +870,8 @@
   <!-- Footer -->
   <footer class="footer footer-center p-4 bg-base-100 text-base-content mt-8">
     <div>
-      <p>Data from <a href="https://arcraiders.wiki" target="_blank" class="link">ARC Raiders Wiki</a> via MediaWiki API</p>
+      <p>Data from <a href="https://arcraiders.wiki" target="_blank" class="link">ARC Raiders Wiki</a> via MediaWiki API
+      </p>
     </div>
   </footer>
 
@@ -846,4 +926,5 @@
 
   <script src="app.js"></script>
 </body>
+
 </html>
