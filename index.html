@@ -1,81 +1,844 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ARC Raiders – Items & Crafting</title>
-  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Tailwind CSS + DaisyUI -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.19/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+  <!-- Alpine.js -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <!-- localForage -->
+  <script src="https://cdn.jsdelivr.net/npm/localforage@1.10.0/dist/localforage.min.js"></script>
+
+  <style>
+    /* Rarity badges - border only style */
+    .rarity-common { background: transparent; border: 2px solid #6b7280; color: #9ca3af; }
+    .rarity-uncommon { background: transparent; border: 2px solid #22c55e; color: #4ade80; }
+    .rarity-rare { background: transparent; border: 2px solid #3b82f6; color: #60a5fa; }
+    .rarity-epic { background: transparent; border: 2px solid #ec4899; color: #f472b6; }
+    .rarity-legendary { background: transparent; border: 2px solid #f59e0b; color: #fbbf24; }
+
+    /* Recycle status pills */
+    .recycle-pill {
+      background: transparent;
+      border: 2px solid;
+      padding: 0rem 0.5rem 0.1rem;
+      border-radius: 0.75rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      display: inline-block;
+    }
+    .recycle-yes {
+      border-color: #22c55e;
+      color: #4ade80;
+    }
+    .recycle-no {
+      border-color: #4b5563;
+      color: #6b7280;
+      opacity: 0.6;
+      text-decoration: line-through;
+    }
+
+    /* Keep-for badges - border only style */
+    .keep-badge-workshop {
+      background: transparent !important;
+      border: 2px solid #fbbf24 !important;
+      color: #fbbf24 !important;
+    }
+    .keep-badge-quests {
+      background: transparent !important;
+      border: 2px solid #38bdf8 !important;
+      color: #38bdf8 !important;
+    }
+    .keep-badge-projects {
+      background: transparent !important;
+      border: 2px solid #a78bfa !important;
+      color: #a78bfa !important;
+    }
+
+    /* Card border colors by rarity */
+    .card-rarity-common { border-left: 4px solid #6b7280; }
+    .card-rarity-uncommon { border-left: 4px solid #22c55e; }
+    .card-rarity-rare { border-left: 4px solid #3b82f6; }
+    .card-rarity-epic { border-left: 4px solid #ec4899; }
+    .card-rarity-legendary { border-left: 4px solid #f59e0b; }
+
+    /* Improved badge styling */
+    .badge-sm {
+      font-size: 0.85rem;
+      padding: 0rem 0.75rem 0.1rem !important;
+      height: auto !important;
+    }
+
+    /* Keep-for badges - interactive styling */
+    .keep-badge {
+      cursor: pointer;
+      transition: all 0.15s ease;
+      padding: 0.25rem 0.75rem !important;
+    }
+    .keep-badge:hover {
+      filter: brightness(1.2);
+      transform: translateY(-1px);
+    }
+    .keep-badge.completed {
+      opacity: 0.5;
+      text-decoration: line-through;
+    }
+
+    /* Dropdown for keep-for details */
+    .keep-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .keep-dropdown-content {
+      display: none;
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: oklch(var(--b1));
+      border: 1px solid oklch(var(--bc) / 0.2);
+      border-radius: 0.5rem;
+      padding: 0.75rem;
+      min-width: 200px;
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.3);
+      z-index: 50;
+      margin-bottom: 0.5rem;
+      font-size: 0.8rem;
+    }
+    .keep-dropdown:hover .keep-dropdown-content {
+      display: block;
+    }
+    .keep-dropdown-content::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 6px solid transparent;
+      border-top-color: oklch(var(--b1));
+    }
+
+
+    /* List row colors by rarity */
+    .row-rarity-common { border-left: 4px solid #6b7280; }
+    .row-rarity-uncommon { border-left: 4px solid #22c55e; }
+    .row-rarity-rare { border-left: 4px solid #3b82f6; }
+    .row-rarity-epic { border-left: 4px solid #ec4899; }
+    .row-rarity-legendary { border-left: 4px solid #f59e0b; }
+
+    /* Smooth transitions */
+    .fade-enter { opacity: 0; transform: translateY(-10px); }
+    .fade-enter-active { transition: all 0.3s ease; }
+
+    /* Grid view */
+    .items-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+
+    /* List view */
+    .items-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    /* Crafting tree indentation */
+    .craft-indent { padding-left: calc(var(--depth, 0) * 1.5rem); }
+  </style>
 </head>
-<body>
-<header>
-  <div class="brand">
-    <div>🎯 ARC Raiders – Items & Crafting</div>
-    <span class="badge">live via arcraiders.wiki API</span>
-    <span class="badge">images: local cache</span>
-  </div>
-  <div class="tabs">
-    <button class="tab active" data-tab="browse">📦 Browse Items</button>
-    <button class="tab" data-tab="craft">🔨 Craft Calculator</button>
-  </div>
-  <div class="searchbar">
-    <div class="search-wrapper">
-      <input id="q" type="text" placeholder="Search name, rarity, category, should recycle…" aria-label="Search items" />
-      <button class="search-clear" id="clear-search" aria-label="Clear search">×</button>
-    </div>
-    <select id="sort" class="btn" aria-label="Sort items">
-      <option value="name">Sort: Name (A-Z)</option>
-      <option value="name-desc">Sort: Name (Z-A)</option>
-      <option value="price-high">Sort: Price (High)</option>
-      <option value="price-low">Sort: Price (Low)</option>
-      <option value="rarity">Sort: Rarity</option>
-    </select>
-    <button id="refresh" class="btn" title="Re-fetch live data">↻ Refresh</button>
-  </div>
-</header>
+<body class="bg-base-300 min-h-screen" x-data="arcApp" x-init="init()">
 
-<main>
-  <div class="notice">This page fetches <b>real-time data</b> from the <a href="https://arcraiders.wiki" target="_blank" rel="noopener">ARC Raiders Wiki</a> via the <a href="https://www.mediawiki.org/wiki/API:Categorymembers" target="_blank" rel="noopener">MediaWiki API</a> (with <code>origin=*</code> CORS). If a network call fails, a tiny fallback dataset is shown. You can still search that.</div>
-
-  <!-- Browse Tab Content -->
-  <div id="browse-content" class="tab-content active">
-    <div class="stats-bar" id="stats">
-      <span class="stat">Loading...</span>
+  <!-- Navbar -->
+  <div class="navbar bg-base-100 shadow-lg sticky top-0 z-50">
+    <div class="navbar-start">
+      <div class="flex items-center gap-2">
+        <i data-lucide="target" class="w-6 h-6 text-primary"></i>
+        <span class="text-xl font-bold">ARC Raiders</span>
+        <div class="badge badge-sm badge-outline">Live Data</div>
+      </div>
     </div>
 
-    <div class="chips" id="filters">
-      <div class="chip" data-key="keepQuests">Keep for Quests</div>
-      <div class="chip" data-key="keepProjects">Keep for Projects</div>
-      <div class="chip" data-key="keepWorkshop">Keep for Workshop</div>
-      <div class="chip" data-key="recyclable">Recyclable</div>
-      <div class="chip" data-key="cantRecycle">Cannot Recycle</div>
+    <div class="navbar-center">
+      <div class="tabs tabs-boxed">
+        <a class="tab" :class="{ 'tab-active': currentTab === 'browse' }" @click="currentTab = 'browse'">
+          <i data-lucide="package" class="w-4 h-4 mr-2"></i>
+          Browse
+        </a>
+        <a class="tab" :class="{ 'tab-active': currentTab === 'craft' }" @click="currentTab = 'craft'">
+          <i data-lucide="hammer" class="w-4 h-4 mr-2"></i>
+          Craft
+        </a>
+        <a class="tab" :class="{ 'tab-active': currentTab === 'workshop' }" @click="currentTab = 'workshop'">
+          <i data-lucide="factory" class="w-4 h-4 mr-2"></i>
+          Workshop
+        </a>
+        <a class="tab" :class="{ 'tab-active': currentTab === 'inventory' }" @click="currentTab = 'inventory'">
+          <i data-lucide="backpack" class="w-4 h-4 mr-2"></i>
+          Inventory
+          <div class="badge badge-sm badge-primary ml-1" x-show="Object.keys(inventory).length > 0" x-text="Object.keys(inventory).length"></div>
+        </a>
+      </div>
     </div>
 
-    <div class="grid" id="grid" aria-live="polite"></div>
+    <div class="navbar-end gap-2">
+      <button class="btn btn-ghost btn-sm" @click="refreshData()" :disabled="isLoading">
+        <i data-lucide="refresh-cw" class="w-4 h-4" :class="{ 'animate-spin': isLoading }"></i>
+      </button>
+      <button class="btn btn-ghost btn-sm" @click="showSettings = true">
+        <i data-lucide="settings" class="w-4 h-4"></i>
+      </button>
+    </div>
   </div>
 
-  <!-- Craft Tab Content -->
-  <div id="craft-content" class="tab-content">
-    <div class="craft-search">
-      <label for="craft-select">What do you want to craft?</label>
-      <select id="craft-select" aria-label="Select item to craft">
-        <option value="">-- Select an item --</option>
-      </select>
+  <!-- Main Content -->
+  <main class="container mx-auto p-4 max-w-7xl">
+
+    <!-- Loading State -->
+    <div x-show="isLoading" class="alert alert-info mb-4">
+      <i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i>
+      <span>Fetching live data from ARC Raiders Wiki...</span>
     </div>
 
-    <div id="craft-result" class="craft-result"></div>
+    <!-- Error State -->
+    <div x-show="error" class="alert alert-error mb-4">
+      <i data-lucide="alert-circle" class="w-5 h-5"></i>
+      <span x-text="error"></span>
+      <button class="btn btn-sm" @click="error = null">Dismiss</button>
+    </div>
+
+    <!-- Browse Tab -->
+    <div x-show="currentTab === 'browse'" x-cloak>
+
+      <!-- Search & Filters Bar -->
+      <div class="bg-base-100 rounded-box p-4 mb-4 shadow">
+        <div class="flex flex-wrap gap-4 items-center">
+          <!-- Search -->
+          <div class="form-control flex-1 min-w-[250px]">
+            <div class="input-group">
+              <span><i data-lucide="search" class="w-4 h-4"></i></span>
+              <input type="text" placeholder="Search items..." class="input input-bordered w-full"
+                     x-model="searchTerm" @input="renderItems()">
+              <button class="btn btn-ghost" x-show="searchTerm" @click="searchTerm = ''; renderItems()">
+                <i data-lucide="x" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Sort -->
+          <select class="select select-bordered" x-model="currentSort" @change="renderItems()">
+            <option value="name">Name (A-Z)</option>
+            <option value="name-desc">Name (Z-A)</option>
+            <option value="price-high">Price (High)</option>
+            <option value="price-low">Price (Low)</option>
+            <option value="rarity">Rarity</option>
+            <option value="damage">Damage (High)</option>
+            <option value="dps">DPS (High)</option>
+          </select>
+
+          <!-- View Mode -->
+          <div class="btn-group">
+            <button class="btn btn-sm" :class="{ 'btn-active': viewMode === 'grid' }" @click="viewMode = 'grid'">
+              <i data-lucide="grid-3x3" class="w-4 h-4"></i>
+            </button>
+            <button class="btn btn-sm" :class="{ 'btn-active': viewMode === 'list' }" @click="viewMode = 'list'">
+              <i data-lucide="list" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Filter Chips -->
+        <div class="flex flex-wrap gap-2 mt-3">
+          <template x-for="filter in availableFilters" :key="filter.key">
+            <button class="btn btn-xs"
+                    :class="activeFilters.has(filter.key) ? 'btn-primary' : 'btn-outline'"
+                    @click="toggleFilter(filter.key)">
+              <span x-text="filter.label"></span>
+            </button>
+          </template>
+        </div>
+      </div>
+
+      <!-- Stats Bar -->
+      <div class="stats shadow mb-4 w-full">
+        <div class="stat">
+          <div class="stat-title">Showing</div>
+          <div class="stat-value text-lg" x-text="filteredItems.length + ' / ' + items.length"></div>
+        </div>
+        <div class="stat">
+          <div class="stat-title">Total Value</div>
+          <div class="stat-value text-lg">$<span x-text="totalValue.toLocaleString()"></span></div>
+        </div>
+        <div class="stat">
+          <div class="stat-title">Avg Value</div>
+          <div class="stat-value text-lg">$<span x-text="avgValue.toLocaleString()"></span></div>
+        </div>
+      </div>
+
+      <!-- Items Grid/List -->
+      <div :class="viewMode === 'grid' ? 'items-grid' : 'items-list'">
+        <template x-for="item in filteredItems" :key="item.name + '-' + item.itemType">
+
+          <!-- Grid Card -->
+          <div x-show="viewMode === 'grid'" class="card bg-base-100 shadow-xl"
+               :class="'card-rarity-' + (item.rarity?.toLowerCase() || 'common')">
+            <figure class="px-4 pt-4">
+              <img :src="getImagePath(item.name)" :alt="item.name"
+                   class="rounded-xl h-32 object-contain"
+                   @error="$event.target.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2250%22>📦</text></svg>'">
+            </figure>
+            <div class="card-body p-4">
+              <h2 class="card-title text-sm">
+                <a :href="'https://arcraiders.wiki/wiki/' + encodeURIComponent(item.name.replace(/ /g, '_'))"
+                   target="_blank" class="link link-hover" x-text="item.name"></a>
+                <div class="badge badge-sm" :class="'rarity-' + item.rarity?.toLowerCase()" x-text="item.rarity"></div>
+              </h2>
+
+              <div class="flex flex-wrap gap-1.5 text-xs">
+                <div class="badge badge-outline badge-sm" x-show="item.sellPrice">
+                  $<span x-text="item.sellPrice?.toLocaleString()"></span>
+                </div>
+                <div class="badge badge-outline badge-sm" x-text="item.category"></div>
+                <div class="recycle-pill recycle-yes" x-show="item.itemType === 'loot' && !item.cantRecycle">
+                  Recyclable
+                </div>
+                <div class="recycle-pill recycle-no" x-show="item.itemType === 'loot' && item.cantRecycle">
+                  Recyclable
+                </div>
+              </div>
+
+              <!-- Weapon Stats -->
+              <div class="text-xs space-y-1 mt-1" x-show="item.itemType === 'weapon'">
+                <div class="flex justify-between">
+                  <span class="text-base-content/60">Damage:</span>
+                  <span class="font-mono" x-text="item.damage"></span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-base-content/60">DPS:</span>
+                  <span class="font-mono" x-text="item.relativeDPS"></span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-base-content/60">Range:</span>
+                  <span class="font-mono" x-text="item.range"></span>
+                </div>
+                <div class="badge badge-outline badge-xs" x-text="item.ammoType + ' Ammo'"></div>
+              </div>
+
+              <!-- Shield Stats -->
+              <div class="text-xs space-y-1 mt-1" x-show="item.itemType === 'shield'">
+                <div class="flex justify-between">
+                  <span class="text-base-content/60">Charge:</span>
+                  <span class="font-mono" x-text="item.shieldCharge"></span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-base-content/60">Mitigation:</span>
+                  <span class="font-mono" x-text="item.damageMitigation"></span>
+                </div>
+              </div>
+
+              <!-- Augment Stats -->
+              <div class="text-xs space-y-1 mt-1" x-show="item.itemType === 'augment'">
+                <div class="flex justify-between">
+                  <span class="text-base-content/60">Weight:</span>
+                  <span class="font-mono" x-text="item.weightLimit"></span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-base-content/60">Backpack:</span>
+                  <span class="font-mono" x-text="item.backpackSlots + ' slots'"></span>
+                </div>
+              </div>
+
+              <!-- Healing Stats -->
+              <div class="text-xs mt-1" x-show="item.itemType === 'healing'">
+                <div class="badge badge-outline badge-xs" x-text="item.effectValue + (item.duration !== '-' ? ' / ' + item.duration : '')"></div>
+              </div>
+
+              <!-- Keep For Tags -->
+              <div class="flex flex-wrap gap-1.5 mt-2" x-show="item.keepWorkshop || item.keepQuests || item.keepProjects">
+                <!-- Workshop -->
+                <div class="keep-dropdown" x-show="item.keepWorkshop">
+                  <div class="badge badge-sm keep-badge keep-badge-workshop"
+                       :class="{ 'completed': isCompleted(item.name, 'workshop') }"
+                       @click="toggleCompleted(item.name, 'workshop')">
+                    Workshop
+                    <span x-show="isCompleted(item.name, 'workshop')">✓</span>
+                  </div>
+                  <div class="keep-dropdown-content">
+                    <div class="font-semibold mb-1">Keep for Workshop</div>
+                    <div class="text-base-content/70" x-text="item.keepWorkshopFor || 'Required for upgrades'"></div>
+                    <div class="text-xs text-base-content/50 mt-2 pt-2 border-t border-base-content/10">Click to mark done</div>
+                  </div>
+                </div>
+
+                <!-- Quests -->
+                <div class="keep-dropdown" x-show="item.keepQuests">
+                  <div class="badge badge-sm keep-badge keep-badge-quests"
+                       :class="{ 'completed': isCompleted(item.name, 'quests') }"
+                       @click="toggleCompleted(item.name, 'quests')">
+                    Quests
+                    <span x-show="isCompleted(item.name, 'quests')">✓</span>
+                  </div>
+                  <div class="keep-dropdown-content">
+                    <div class="font-semibold mb-1">Keep for Quests</div>
+                    <div class="text-base-content/70" x-text="item.keepQuestsFor || 'Required for quests'"></div>
+                    <div class="text-xs text-base-content/50 mt-2 pt-2 border-t border-base-content/10">Click to mark done</div>
+                  </div>
+                </div>
+
+                <!-- Projects -->
+                <div class="keep-dropdown" x-show="item.keepProjects">
+                  <div class="badge badge-sm keep-badge keep-badge-projects"
+                       :class="{ 'completed': isCompleted(item.name, 'projects') }"
+                       @click="toggleCompleted(item.name, 'projects')">
+                    Projects
+                    <span x-show="isCompleted(item.name, 'projects')">✓</span>
+                  </div>
+                  <div class="keep-dropdown-content">
+                    <div class="font-semibold mb-1">Keep for Projects</div>
+                    <div class="text-base-content/70" x-text="item.keepProjectsFor || 'Required for expeditions'"></div>
+                    <div class="text-xs text-base-content/50 mt-2 pt-2 border-t border-base-content/10">Click to mark done</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Actions -->
+              <div class="card-actions justify-end mt-2">
+                <button class="btn btn-xs btn-ghost" @click="addToInventory(item.name)" title="Add to inventory">
+                  <i data-lucide="plus" class="w-3 h-3"></i>
+                </button>
+                <button class="btn btn-xs btn-ghost" @click="addToShoppingList(item.name)" title="Add to shopping list">
+                  <i data-lucide="shopping-cart" class="w-3 h-3"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- List Row -->
+          <div x-show="viewMode === 'list'" class="flex items-center gap-4 bg-base-100 rounded-lg p-3 shadow"
+               :class="'row-rarity-' + (item.rarity?.toLowerCase() || 'common')">
+            <img :src="getImagePath(item.name)" :alt="item.name" class="w-12 h-12 object-contain rounded"
+                 @error="$event.target.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2250%22>📦</text></svg>'">
+
+            <div class="flex-1">
+              <a :href="'https://arcraiders.wiki/wiki/' + encodeURIComponent(item.name.replace(/ /g, '_'))"
+                 target="_blank" class="font-semibold link link-hover" x-text="item.name"></a>
+              <div class="flex gap-1 mt-1">
+                <div class="badge badge-xs" :class="'rarity-' + item.rarity?.toLowerCase()" x-text="item.rarity"></div>
+                <div class="badge badge-outline badge-xs" x-text="item.category"></div>
+              </div>
+            </div>
+
+            <div class="text-right">
+              <div class="font-mono" x-show="item.sellPrice">$<span x-text="item.sellPrice"></span></div>
+            </div>
+
+            <div class="flex gap-1">
+              <button class="btn btn-xs btn-ghost" @click="addToInventory(item.name)">
+                <i data-lucide="plus" class="w-3 h-3"></i>
+              </button>
+              <button class="btn btn-xs btn-ghost" @click="addToShoppingList(item.name)">
+                <i data-lucide="shopping-cart" class="w-3 h-3"></i>
+              </button>
+            </div>
+          </div>
+
+        </template>
+      </div>
+
+      <!-- Empty State -->
+      <div x-show="filteredItems.length === 0 && !isLoading" class="text-center py-12">
+        <i data-lucide="search-x" class="w-16 h-16 mx-auto mb-4 text-base-content/30"></i>
+        <p class="text-lg">No items found</p>
+        <p class="text-sm text-base-content/60">Try adjusting your search or filters</p>
+      </div>
+    </div>
+
+    <!-- Craft Tab -->
+    <div x-show="currentTab === 'craft'" x-cloak>
+
+      <!-- Recipe Selector -->
+      <div class="bg-base-100 rounded-box p-4 mb-4 shadow">
+        <label class="label">
+          <span class="label-text font-semibold">What do you want to craft?</span>
+        </label>
+        <select class="select select-bordered w-full max-w-md" x-model="selectedRecipe" @change="calculateCraft()">
+          <option value="">-- Select an item --</option>
+          <template x-for="name in recipeNames" :key="name">
+            <option :value="name" x-text="name"></option>
+          </template>
+        </select>
+      </div>
+
+      <!-- Pinned Recipes -->
+      <div x-show="pinnedRecipes.length > 0" class="bg-base-100 rounded-box p-4 mb-4 shadow">
+        <h3 class="font-semibold mb-3 flex items-center gap-2">
+          <i data-lucide="pin" class="w-4 h-4"></i>
+          Pinned Recipes
+        </h3>
+        <div class="flex flex-wrap gap-2">
+          <template x-for="recipe in pinnedRecipes" :key="recipe">
+            <div class="badge badge-lg gap-2 cursor-pointer"
+                 :class="selectedRecipe === recipe ? 'badge-primary' : 'badge-outline'"
+                 @click="selectedRecipe = recipe; calculateCraft()">
+              <span x-text="recipe"></span>
+              <button @click.stop="unpinRecipe(recipe)">
+                <i data-lucide="x" class="w-3 h-3"></i>
+              </button>
+            </div>
+          </template>
+        </div>
+      </div>
+
+      <!-- Crafting Result -->
+      <div x-show="selectedRecipe && craftResult" class="space-y-4">
+
+        <!-- Header -->
+        <div class="bg-base-100 rounded-box p-4 shadow" x-show="craftResult">
+          <div class="flex justify-between items-start">
+            <div>
+              <h2 class="text-2xl font-bold text-primary" x-text="selectedRecipe"></h2>
+              <p class="text-base-content/60">
+                Workshop: <span class="font-semibold" x-text="craftResult?.workshop"></span>
+              </p>
+            </div>
+            <button class="btn btn-sm"
+                    :class="isPinned(selectedRecipe) ? 'btn-primary' : 'btn-outline'"
+                    @click="togglePin(selectedRecipe)">
+              <i data-lucide="pin" class="w-4 h-4"></i>
+              <span x-text="isPinned(selectedRecipe) ? 'Pinned' : 'Pin'"></span>
+            </button>
+          </div>
+
+          <!-- Blueprint Sources -->
+          <div class="mt-3 pt-3 border-t border-base-300" x-show="craftResult?.sources">
+            <p class="text-sm font-semibold mb-2">Where to find this blueprint:</p>
+            <div class="flex flex-wrap gap-2">
+              <div class="badge badge-outline" x-show="craftResult?.sources?.loot">
+                <i data-lucide="box" class="w-3 h-3 mr-1"></i> Loot
+              </div>
+              <div class="badge badge-outline" x-show="craftResult?.sources?.harvester">
+                <i data-lucide="zap" class="w-3 h-3 mr-1"></i> Harvester Event
+              </div>
+              <div class="badge badge-info" x-show="craftResult?.sources?.quest">
+                <i data-lucide="scroll" class="w-3 h-3 mr-1"></i>
+                Quest: <span x-text="craftResult?.sources?.quest" class="ml-1"></span>
+              </div>
+              <div class="badge badge-secondary" x-show="craftResult?.sources?.trials">
+                <i data-lucide="trophy" class="w-3 h-3 mr-1"></i>
+                Trials: <span x-text="craftResult?.sources?.trials" class="ml-1"></span>
+              </div>
+              <div class="badge badge-ghost" x-show="craftResult?.sources && !craftResult?.sources?.loot && !craftResult?.sources?.harvester && !craftResult?.sources?.quest && !craftResult?.sources?.trials">
+                Unknown source
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Materials Summary -->
+        <div class="bg-base-100 rounded-box p-4 shadow" x-show="craftResult">
+          <h3 class="font-semibold mb-3 flex items-center gap-2">
+            <i data-lucide="clipboard-list" class="w-4 h-4"></i>
+            Base Materials Needed
+          </h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+            <template x-for="[name, qty] in Object.entries(craftResult?.baseMaterials || {}).sort()" :key="name">
+              <div class="flex items-center justify-between bg-base-200 rounded-lg p-2">
+                <span x-text="name"></span>
+                <div class="flex items-center gap-2">
+                  <span class="badge badge-primary" x-text="qty + 'x'"></span>
+                  <span class="text-xs" :class="getInventoryQuantity(name) >= qty ? 'text-success' : 'text-error'">
+                    (<span x-text="getInventoryQuantity(name)"></span>)
+                  </span>
+                </div>
+              </div>
+            </template>
+          </div>
+
+          <!-- Add all to shopping list -->
+          <button class="btn btn-sm btn-outline mt-3" @click="addCraftToShoppingList()">
+            <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+            Add missing to shopping list
+          </button>
+        </div>
+
+        <!-- Crafting Tree -->
+        <div class="bg-base-100 rounded-box p-4 shadow" x-show="craftResult">
+          <h3 class="font-semibold mb-3 flex items-center gap-2">
+            <i data-lucide="git-branch" class="w-4 h-4"></i>
+            Crafting Tree
+          </h3>
+          <div class="space-y-1">
+            <template x-for="node in (craftResult?.tree || [])" :key="node.name + node.depth">
+              <div class="craft-indent flex items-center gap-2 py-1 px-2 rounded"
+                   :style="'--depth: ' + node.depth"
+                   :class="node.isBase ? 'bg-success/10 border-l-2 border-success' : 'bg-info/10 border-l-2 border-info'">
+                <span class="badge badge-sm badge-primary" x-text="node.qty + 'x'"></span>
+                <a :href="'https://arcraiders.wiki/wiki/' + encodeURIComponent(node.name.replace(/ /g, '_'))"
+                   target="_blank" class="link link-hover" x-text="node.name"></a>
+                <span class="badge badge-xs" x-text="node.isBase ? 'Base' : node.workshop"></span>
+              </div>
+            </template>
+          </div>
+        </div>
+      </div>
+
+      <!-- Empty State -->
+      <div x-show="!selectedRecipe" class="text-center py-12">
+        <i data-lucide="hammer" class="w-16 h-16 mx-auto mb-4 text-base-content/30"></i>
+        <p class="text-lg">Select an item to see crafting requirements</p>
+      </div>
+    </div>
+
+    <!-- Workshop Tab -->
+    <div x-show="currentTab === 'workshop'" x-cloak>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <template x-for="station in workshopStations" :key="station.name">
+          <div class="card bg-base-100 shadow-xl">
+            <div class="card-body">
+              <h2 class="card-title">
+                <i data-lucide="wrench" class="w-5 h-5"></i>
+                <span x-text="station.name"></span>
+              </h2>
+
+              <!-- Station Levels -->
+              <div class="space-y-3">
+                <template x-for="level in station.levels" :key="level.level">
+                  <div class="collapse collapse-arrow bg-base-200">
+                    <input type="checkbox" :checked="level.level === 1">
+                    <div class="collapse-title font-medium">
+                      Level <span x-text="level.level"></span>
+                    </div>
+                    <div class="collapse-content">
+                      <!-- Requirements -->
+                      <div x-show="level.requirements.length > 0" class="mb-3">
+                        <p class="text-xs font-semibold mb-1">Requirements:</p>
+                        <div class="flex flex-wrap gap-1">
+                          <template x-for="req in level.requirements" :key="req.name">
+                            <span class="badge badge-sm badge-outline">
+                              <span x-text="req.qty + 'x'"></span>
+                              <span x-text="req.name" class="ml-1"></span>
+                            </span>
+                          </template>
+                        </div>
+                        <button class="btn btn-xs btn-outline mt-2" @click="addWorkshopReqsToShoppingList(level.requirements)">
+                          <i data-lucide="shopping-cart" class="w-3 h-3"></i>
+                          Add to list
+                        </button>
+                      </div>
+                      <div x-show="level.requirements.length === 0" class="text-xs text-base-content/60 mb-3">
+                        Free / Starting level
+                      </div>
+
+                      <!-- Unlocks -->
+                      <div x-show="level.crafts.length > 0">
+                        <p class="text-xs font-semibold mb-1">Unlocks:</p>
+                        <div class="flex flex-wrap gap-1">
+                          <template x-for="craft in level.crafts" :key="craft">
+                            <span class="badge badge-sm badge-primary cursor-pointer"
+                                  @click="currentTab = 'craft'; selectedRecipe = craft; calculateCraft()"
+                                  x-text="craft"></span>
+                          </template>
+                        </div>
+                      </div>
+                      <div x-show="level.crafts.length === 0" class="text-xs text-base-content/60">
+                        No exclusive crafts
+                      </div>
+                    </div>
+                  </div>
+                </template>
+              </div>
+            </div>
+          </div>
+        </template>
+      </div>
+
+      <!-- Empty State -->
+      <div x-show="workshopStations.length === 0" class="text-center py-12">
+        <i data-lucide="factory" class="w-16 h-16 mx-auto mb-4 text-base-content/30"></i>
+        <p class="text-lg">Workshop data loading...</p>
+      </div>
+    </div>
+
+    <!-- Inventory Tab -->
+    <div x-show="currentTab === 'inventory'" x-cloak>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+
+        <!-- Current Inventory -->
+        <div class="bg-base-100 rounded-box p-4 shadow">
+          <div class="flex justify-between items-center mb-3">
+            <h3 class="font-semibold flex items-center gap-2">
+              <i data-lucide="backpack" class="w-4 h-4"></i>
+              My Inventory
+            </h3>
+            <button class="btn btn-xs btn-ghost" @click="clearInventory()" x-show="Object.keys(inventory).length > 0">
+              Clear all
+            </button>
+          </div>
+
+          <div x-show="Object.keys(inventory).length === 0" class="text-center py-8 text-base-content/60">
+            <p>No items tracked yet</p>
+            <p class="text-sm">Click + on items to add them</p>
+          </div>
+
+          <div class="space-y-2">
+            <template x-for="[name, qty] in Object.entries(inventory).sort()" :key="name">
+              <div class="flex items-center gap-2 bg-base-200 rounded-lg p-2">
+                <span class="flex-1" x-text="name"></span>
+                <button class="btn btn-xs btn-ghost" @click="updateInventory(name, -1)">-</button>
+                <input type="number" class="input input-bordered input-xs w-16 text-center"
+                       :value="qty" @change="setInventory(name, parseInt($event.target.value))">
+                <button class="btn btn-xs btn-ghost" @click="updateInventory(name, 1)">+</button>
+                <button class="btn btn-xs btn-ghost text-error" @click="removeFromInventory(name)">
+                  <i data-lucide="trash-2" class="w-3 h-3"></i>
+                </button>
+              </div>
+            </template>
+          </div>
+        </div>
+
+        <!-- Shopping List -->
+        <div class="bg-base-100 rounded-box p-4 shadow">
+          <div class="flex justify-between items-center mb-3">
+            <h3 class="font-semibold flex items-center gap-2">
+              <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+              Shopping List
+            </h3>
+            <button class="btn btn-xs btn-ghost" @click="clearShoppingList()" x-show="Object.keys(shoppingList).length > 0">
+              Clear all
+            </button>
+          </div>
+
+          <div x-show="Object.keys(shoppingList).length === 0" class="text-center py-8 text-base-content/60">
+            <p>Shopping list empty</p>
+            <p class="text-sm">Add items you need to find</p>
+          </div>
+
+          <div class="space-y-2">
+            <template x-for="[name, qty] in Object.entries(shoppingList).sort()" :key="name">
+              <div class="flex items-center gap-2 bg-base-200 rounded-lg p-2">
+                <span class="flex-1" x-text="name"></span>
+                <div class="flex items-center gap-1">
+                  <span class="text-xs text-base-content/60">Have:</span>
+                  <span class="badge badge-sm" :class="getInventoryQuantity(name) >= qty ? 'badge-success' : 'badge-warning'"
+                        x-text="getInventoryQuantity(name) + '/' + qty"></span>
+                </div>
+                <button class="btn btn-xs btn-ghost" @click="updateShoppingList(name, -1)">-</button>
+                <button class="btn btn-xs btn-ghost" @click="updateShoppingList(name, 1)">+</button>
+                <button class="btn btn-xs btn-ghost text-error" @click="removeFromShoppingList(name)">
+                  <i data-lucide="trash-2" class="w-3 h-3"></i>
+                </button>
+              </div>
+            </template>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Add -->
+      <div class="bg-base-100 rounded-box p-4 shadow mt-4">
+        <h3 class="font-semibold mb-3">Quick Add Item</h3>
+        <div class="flex gap-2">
+          <select class="select select-bordered flex-1" x-model="quickAddItem">
+            <option value="">-- Select item --</option>
+            <template x-for="item in items" :key="item.name">
+              <option :value="item.name" x-text="item.name"></option>
+            </template>
+          </select>
+          <input type="number" class="input input-bordered w-20" x-model.number="quickAddQty" min="1" value="1">
+          <button class="btn btn-primary" @click="quickAdd('inventory')" :disabled="!quickAddItem">
+            <i data-lucide="backpack" class="w-4 h-4"></i>
+          </button>
+          <button class="btn btn-secondary" @click="quickAdd('shopping')" :disabled="!quickAddItem">
+            <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Import/Export -->
+      <div class="bg-base-100 rounded-box p-4 shadow mt-4">
+        <h3 class="font-semibold mb-3">Import / Export Data</h3>
+        <div class="flex gap-2">
+          <button class="btn btn-outline btn-sm" @click="exportData()">
+            <i data-lucide="download" class="w-4 h-4"></i>
+            Export
+          </button>
+          <button class="btn btn-outline btn-sm" @click="$refs.importFile.click()">
+            <i data-lucide="upload" class="w-4 h-4"></i>
+            Import
+          </button>
+          <input type="file" class="hidden" x-ref="importFile" accept=".json" @change="importData($event)">
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer footer-center p-4 bg-base-100 text-base-content mt-8">
+    <div>
+      <p>Data from <a href="https://arcraiders.wiki" target="_blank" class="link">ARC Raiders Wiki</a> via MediaWiki API</p>
+    </div>
+  </footer>
+
+  <!-- Settings Modal -->
+  <dialog class="modal" :class="{ 'modal-open': showSettings }">
+    <div class="modal-box">
+      <h3 class="font-bold text-lg">Settings</h3>
+      <div class="py-4 space-y-4">
+        <div class="form-control">
+          <label class="label cursor-pointer">
+            <span class="label-text">Dark Theme</span>
+            <input type="checkbox" class="toggle" checked disabled>
+          </label>
+        </div>
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Storage Used</span>
+            <span class="label-text-alt" x-text="storageInfo"></span>
+          </label>
+        </div>
+      </div>
+      <div class="modal-action">
+        <button class="btn btn-error btn-outline" @click="clearAllData()">Clear All Data</button>
+        <button class="btn" @click="showSettings = false">Close</button>
+      </div>
+    </div>
+    <form method="dialog" class="modal-backdrop">
+      <button @click="showSettings = false">close</button>
+    </form>
+  </dialog>
+
+  <!-- Toast Container -->
+  <div class="toast toast-end toast-bottom z-50">
+    <template x-for="toast in toasts" :key="toast.id">
+      <div class="alert" :class="{
+        'alert-success': toast.type === 'success',
+        'alert-info': toast.type === 'info',
+        'alert-warning': toast.type === 'warning',
+        'alert-error': toast.type === 'error'
+      }">
+        <span x-text="toast.message"></span>
+      </div>
+    </template>
   </div>
 
-  <section class="footer">
-    <h3>Sources</h3>
-    <ul>
-      <li><a href="https://arcraiders.wiki/wiki/Loot" target="_blank" rel="noopener">Loot | ARC Raiders Wiki</a></li>
-      <li><a href="https://arcraiders.wiki/wiki/Blueprints" target="_blank" rel="noopener">Blueprints | ARC Raiders Wiki</a></li>
-      <li><a href="https://arcraiders.wiki/wiki/Workshop" target="_blank" rel="noopener">Workshop | ARC Raiders Wiki</a></li>
-      <li>API docs: <a href="https://www.mediawiki.org/wiki/API:Parse" target="_blank" rel="noopener">Parse</a>, <a href="https://www.mediawiki.org/wiki/Extension:PageImages" target="_blank" rel="noopener">PageImages</a></li>
-    </ul>
-  </section>
-</main>
+  <!-- Keyboard Shortcuts Help -->
+  <div class="fixed bottom-4 left-4 text-xs text-base-content/40 hidden lg:block">
+    <span class="kbd kbd-xs">1-4</span> tabs
+    <span class="kbd kbd-xs ml-2">Ctrl+K</span> search
+    <span class="kbd kbd-xs ml-2">R</span> refresh
+  </div>
 
-<script src="script.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
