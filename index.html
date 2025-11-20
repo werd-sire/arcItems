@@ -9,8 +9,8 @@
   <!-- Tailwind CSS + DaisyUI -->
   <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.19/dist/full.min.css" rel="stylesheet" type="text/css" />
   <script src="https://cdn.tailwindcss.com"></script>
-  <script type="module" crossorigin src="assets/index.js"></script>
-  <link rel="stylesheet" crossorigin href="assets/index.css">
+  <script type="module" crossorigin src="./assets/index.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index.css">
 </head>
 
 <body class="bg-base-300 min-h-screen" x-data="arcApp" x-init="init()">
@@ -186,6 +186,10 @@
                       <span
                         x-text="item.sellPrice ? '$' + item.sellPrice.toLocaleString() : '(check wiki)'"></span>
                     </div>
+                    <div class="flex justify-between" x-show="item.location">
+                      <span class="text-base-content/60">Found in:</span>
+                      <span x-text="item.location"></span>
+                    </div>
                   </div>
 
                   <!-- Keep For section -->
@@ -242,9 +246,14 @@
                         </div>
                       </div>
 
+                      <!-- Crafting - shown if item is used in any recipe -->
+                      <div class="tooltip" x-show="item.usedInCrafting" data-tip="Used in crafting recipes">
+                        <div class="badge badge-sm badge-accent badge-outline">Crafting</div>
+                      </div>
+
                       <!-- N/A if none -->
                       <span class="text-base-content/40 text-xs"
-                        x-show="!item.keepWorkshop && !item.keepQuests && !item.keepProjects">(check wiki)</span>
+                        x-show="!item.keepWorkshop && !item.keepQuests && !item.keepProjects && !item.usedInCrafting">N/A</span>
                     </div>
                   </div>
 
@@ -467,10 +476,21 @@
               <!-- Station Levels -->
               <div class="space-y-3">
                 <template x-for="level in station.levels" :key="level.level">
-                  <div class="collapse collapse-arrow bg-base-200">
+                  <div class="collapse collapse-arrow bg-base-200"
+                    :class="{ 'opacity-50': isUpgradeCompleted(station.name, level.level) }">
                     <input type="checkbox" :checked="level.level === 1">
-                    <div class="collapse-title font-medium">
-                      Level <span x-text="level.level"></span>
+                    <div class="collapse-title font-medium flex items-center justify-between pr-8">
+                      <span>
+                        Level <span x-text="level.level"></span>
+                        <span x-show="isUpgradeCompleted(station.name, level.level)" class="text-success ml-1">✓</span>
+                      </span>
+                      <label class="swap swap-flip relative z-10 cursor-pointer" @click.stop>
+                        <input type="checkbox"
+                          :checked="isUpgradeCompleted(station.name, level.level)"
+                          @change="toggleUpgradeCompleted(station.name, level.level)">
+                        <span class="swap-on text-xs text-success">Done</span>
+                        <span class="swap-off text-xs text-base-content/50">Mark done</span>
+                      </label>
                     </div>
                     <div class="collapse-content">
                       <!-- Requirements -->
