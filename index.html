@@ -418,13 +418,52 @@
           <tbody>
             <template x-if="compareItems.some(i => i.item_type === 'Weapon')">
               <tr>
-                <td class="font-medium">DPS</td>
+                <td class="font-medium">Burst DPS</td>
                 <template x-for="item in compareItems" :key="item.id">
                   <td>
                     <div class="font-mono" :class="getStatHighlight('DPS', getDPS(item))" x-text="getDPS(item) || '-'"></div>
                     <div class="stat-bar" x-show="getDPS(item)">
                       <div class="stat-bar-fill" :style="'width: ' + getStatBarWidth('DPS', getDPS(item)) + '%'"></div>
                     </div>
+                  </td>
+                </template>
+              </tr>
+            </template>
+
+            <template x-if="compareItems.some(i => i.item_type === 'Weapon')">
+              <tr>
+                <td class="font-medium">Effective DPS</td>
+                <template x-for="item in compareItems" :key="item.id">
+                  <td>
+                    <div class="font-mono text-sm text-secondary" :class="getStatHighlight('EffectiveDPS', getEffectiveDPS(item))" x-text="getEffectiveDPS(item) || '-'"></div>
+                    <div class="stat-bar" x-show="getEffectiveDPS(item)">
+                      <div class="stat-bar-fill" :style="'width: ' + getStatBarWidth('EffectiveDPS', getEffectiveDPS(item)) + '%'"></div>
+                    </div>
+                  </td>
+                </template>
+              </tr>
+            </template>
+
+            <template x-if="compareItems.some(i => i.item_type === 'Weapon')">
+              <tr>
+                <td class="font-medium">Magazine Damage</td>
+                <template x-for="item in compareItems" :key="item.id">
+                  <td>
+                    <div class="font-mono text-sm" :class="getStatHighlight('MagDamage', getMagazineDamage(item))" x-text="getMagazineDamage(item) || '-'"></div>
+                    <div class="stat-bar" x-show="getMagazineDamage(item)">
+                      <div class="stat-bar-fill" :style="'width: ' + getStatBarWidth('MagDamage', getMagazineDamage(item)) + '%'"></div>
+                    </div>
+                  </td>
+                </template>
+              </tr>
+            </template>
+
+            <template x-if="compareItems.some(i => i.item_type === 'Weapon')">
+              <tr>
+                <td class="font-medium">Time to Empty</td>
+                <template x-for="item in compareItems" :key="item.id">
+                  <td>
+                    <div class="font-mono text-sm text-secondary" x-text="getTimeToEmpty(item)"></div>
                   </td>
                 </template>
               </tr>
