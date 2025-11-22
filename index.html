@@ -38,7 +38,7 @@
           <button class="nav-tab" :class="{ 'active': currentTab === 'gather' }" @click="currentTab = 'gather'">
             <i data-lucide="shopping-cart" class="w-4 h-4"></i>
             <span>Gather</span>
-            <span class="badge badge-primary badge-sm" x-show="shoppingList.length > 0" x-text="shoppingList.length"></span>
+            <span class="badge badge-primary badge-sm" x-show="(projects.length + shoppingList.length) > 0" x-text="projects.length + shoppingList.length"></span>
           </button>
           <button class="nav-tab" :class="{ 'active': currentTab === 'compare' }" @click="currentTab = 'compare'">
             <i data-lucide="git-compare" class="w-4 h-4"></i>
@@ -198,9 +198,14 @@
               </div>
 
               <div class="flex items-center gap-2 pt-2 border-t border-gray-800">
-                <button class="btn btn-primary btn-sm flex-1" @click="addToShoppingList(item.name)">
+                <button class="btn btn-primary btn-sm flex-1" @click="addToShoppingListWithPrompt(item.name)">
                   <i data-lucide="shopping-cart" class="w-3 h-3"></i>
                   Add
+                </button>
+                <button class="btn btn-info btn-sm" @click="addItemMaterialsToShoppingList(item.name)"
+                        title="Add materials to shopping list"
+                        x-show="recipes[item.name]">
+                  <i data-lucide="wrench" class="w-3 h-3"></i>
                 </button>
                 <button class="btn btn-secondary btn-sm" @click="addToCompare(item)" title="Compare"
                         x-show="item.item_type === 'Weapon'">
@@ -306,10 +311,49 @@
     <!-- GATHER TAB -->
     <div x-show="currentTab === 'gather' && !isLoading" x-cloak>
 
+      <!-- PROJECTS SECTION -->
+      <div class="section" x-show="projects.length > 0">
+        <div class="flex items-center justify-between mb-6">
+          <div>
+            <h2 class="text-xl font-semibold">Projects</h2>
+            <p class="text-sm text-muted">Items you're working towards</p>
+          </div>
+          <button class="btn btn-ghost btn-sm" @click="clearProjects()">
+            Clear All
+          </button>
+        </div>
+
+        <div class="space-y-3">
+          <template x-for="project in projects" :key="project.name">
+            <div class="card bg-base-300 border border-primary/30">
+              <div class="card-body p-3 flex-row items-center gap-3">
+                <i data-lucide="target" class="w-5 h-5 text-primary"></i>
+                <div class="flex-1">
+                  <div class="font-medium text-sm" x-text="project.name"></div>
+                  <div class="text-xs text-muted">Target: <span x-text="project.quantity"></span></div>
+                </div>
+                <div class="badge badge-primary badge-lg" x-text="project.quantity + 'x'"></div>
+                <button class="btn btn-ghost btn-sm" @click="removeFromProjects(project)">
+                  <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+
+      <!-- SHOPPING LIST SECTION -->
       <div class="section">
         <div class="flex items-center justify-between mb-6">
-          <h2 class="text-xl font-semibold">Shopping List</h2>
+          <div>
+            <h2 class="text-xl font-semibold">Shopping List</h2>
+            <p class="text-sm text-muted">Materials and items to gather</p>
+          </div>
           <div class="flex gap-2">
+            <button class="btn btn-success btn-sm" @click="optimizeShoppingList()" x-show="shoppingList.length > 0">
+              <i data-lucide="sparkles" class="w-3 h-3"></i>
+              Optimize
+            </button>
             <button class="btn btn-ghost btn-sm" @click="clearCompleted()" x-show="shoppingList.length > 0">
               Clear Completed
             </button>
@@ -325,20 +369,56 @@
 
               <div class="flex-1">
                 <div class="shopping-item-name font-medium text-sm mb-1" x-text="item.name"></div>
-                <div class="text-xs text-secondary">
-                  Need <span x-text="item.needed"></span> • Found <span x-text="item.found"></span>
+
+                <!-- Recycle Info (what this item provides) -->
+                <div x-show="item.recycleInfo" class="text-xs text-info mb-2">
+                  <span class="text-muted">Recycles to: </span>
+                  <template x-for="[matName, matQty] in Object.entries(item.recycleInfo || {})" :key="matName">
+                    <span class="inline-block mr-2">
+                      <span x-text="matName"></span> x<span x-text="matQty"></span>
+                    </span>
+                  </template>
+                </div>
+
+                <!-- Need/Found Controls -->
+                <div class="flex items-center gap-4 text-xs">
+                  <!-- Needed Controls -->
+                  <div class="flex items-center gap-2">
+                    <span class="text-muted">Need:</span>
+                    <button class="btn btn-ghost btn-xs" @click="decrementNeeded(item)">
+                      <i data-lucide="minus" class="w-3 h-3"></i>
+                    </button>
+                    <span class="font-mono font-medium w-8 text-center" x-text="item.needed"></span>
+                    <button class="btn btn-ghost btn-xs" @click="incrementNeeded(item)">
+                      <i data-lucide="plus" class="w-3 h-3"></i>
+                    </button>
+                  </div>
+
+                  <!-- Found Controls -->
+                  <div class="flex items-center gap-2">
+                    <span class="text-muted">Found:</span>
+                    <button class="btn btn-ghost btn-xs" @click="decrementFound(item)">
+                      <i data-lucide="minus" class="w-3 h-3"></i>
+                    </button>
+                    <span class="font-mono font-medium w-8 text-center" x-text="item.found"></span>
+                    <button class="btn btn-ghost btn-xs" @click="incrementFound(item)">
+                      <i data-lucide="plus" class="w-3 h-3"></i>
+                    </button>
+                  </div>
                 </div>
               </div>
 
-              <div class="flex items-center gap-3">
-                <button class="btn btn-ghost btn-sm" @click="decrementFound(item)">
-                  <i data-lucide="minus" class="w-4 h-4"></i>
-                </button>
+              <div class="flex items-center gap-2">
+                <!-- Progress Badge -->
                 <div class="badge badge-lg" :class="item.found >= item.needed ? 'badge-success' : 'badge-warning'">
                   <span x-text="item.found"></span> / <span x-text="item.needed"></span>
                 </div>
-                <button class="btn btn-ghost btn-sm" @click="incrementFound(item)">
-                  <i data-lucide="plus" class="w-4 h-4"></i>
+
+                <!-- Action Buttons -->
+                <button class="btn btn-info btn-sm" @click="convertToMaterials(item)"
+                        title="Convert to base materials"
+                        x-show="recipes[item.name]">
+                  <i data-lucide="package-open" class="w-4 h-4"></i>
                 </button>
                 <button class="btn btn-ghost btn-sm" @click="removeFromShoppingList(item)">
                   <i data-lucide="x" class="w-4 h-4"></i>
@@ -348,7 +428,7 @@
           </template>
         </div>
 
-        <div x-show="shoppingList.length === 0" class="empty-state">
+        <div x-show="shoppingList.length === 0 && projects.length === 0" class="empty-state">
           <i data-lucide="shopping-cart" class="w-16 h-16"></i>
           <p class="text-lg mb-1">Shopping list is empty</p>
           <p class="text-sm">Add items from Browse or Craft tabs</p>
@@ -501,6 +581,178 @@
       Data from <a href="https://metaforge.app/arc-raiders" target="_blank" class="text-blue-500 hover:text-blue-400">Metaforge</a>
     </div>
   </footer>
+
+  <!-- Modal Component -->
+  <div x-show="modal.isOpen"
+       x-cloak
+       class="fixed inset-0 z-50 flex items-center justify-center p-4"
+       @click.self="closeModal()">
+    <!-- Backdrop -->
+    <div class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
+
+    <!-- Modal Content -->
+    <div class="relative bg-base-200 rounded-lg shadow-2xl border border-gray-700 max-w-2xl w-full max-h-[80vh] overflow-hidden flex flex-col"
+         @click.stop>
+
+      <!-- Header -->
+      <div class="flex items-center justify-between p-4 border-b border-gray-700">
+        <h3 class="text-lg font-semibold" x-text="modal.title"></h3>
+        <button @click="closeModal()" class="btn btn-ghost btn-sm btn-circle">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Body -->
+      <div class="p-4 overflow-y-auto flex-1">
+
+        <!-- Info/Confirm Modal -->
+        <template x-if="modal.type === 'info' || modal.type === 'confirm'">
+          <div class="text-secondary" x-text="modal.message"></div>
+        </template>
+
+        <!-- Input Modal -->
+        <template x-if="modal.type === 'input'">
+          <div class="space-y-4">
+            <div class="text-secondary" x-text="modal.message"></div>
+            <input type="number"
+                   x-model="modal.inputValue"
+                   :placeholder="modal.inputPlaceholder"
+                   class="input input-bordered w-full"
+                   min="1"
+                   @keydown.enter="confirmModal()">
+          </div>
+        </template>
+
+        <!-- Optimization Modal -->
+        <template x-if="modal.type === 'optimize' && modal.optimizationData">
+          <div class="space-y-4">
+            <p class="text-secondary mb-4">
+              These items recycle into materials you need. Select items to add to your shopping list:
+            </p>
+
+            <!-- Select All Controls -->
+            <div class="flex gap-2 mb-4">
+              <button class="btn btn-sm btn-primary" @click="autoOptimize()">
+                <i data-lucide="zap" class="w-3 h-3"></i>
+                Auto-Optimize
+              </button>
+              <button class="btn btn-sm btn-outline" @click="toggleAllOptimized(true)">
+                Select All
+              </button>
+              <button class="btn btn-sm btn-outline" @click="toggleAllOptimized(false)">
+                Deselect All
+              </button>
+            </div>
+
+            <!-- Optimization Items List -->
+            <div class="space-y-3 max-h-96 overflow-y-auto">
+              <template x-for="(candidate, idx) in modal.optimizationData.candidates" :key="idx">
+                <div class="card bg-base-300 border"
+                     :class="candidate.selected ? 'border-success' : 'border-gray-700'">
+                  <div class="card-body p-3">
+                    <div class="flex items-start gap-3">
+                      <!-- Checkbox -->
+                      <input type="checkbox"
+                             x-model="candidate.selected"
+                             class="checkbox checkbox-success mt-1">
+
+                      <!-- Item Info -->
+                      <div class="flex-1 min-w-0">
+                        <div class="flex items-center gap-2 mb-2">
+                          <span class="font-medium" x-text="candidate.name"></span>
+                          <span class="badge badge-sm"
+                                :class="'badge-rarity-' + (candidate.rarity?.toLowerCase() || 'common')"
+                                x-text="candidate.rarity"></span>
+                          <span class="badge badge-info badge-sm"
+                                x-text="'Score: ' + candidate.totalValue"></span>
+                        </div>
+
+                        <!-- Materials Provided -->
+                        <div class="text-xs text-secondary space-y-1">
+                          <div class="text-muted">Recycles into:</div>
+                          <template x-for="[matName, matQty] in Object.entries(candidate.providedMaterials)" :key="matName">
+                            <div class="flex items-center gap-2">
+                              <span class="badge badge-success badge-sm"
+                                    x-text="matQty + 'x ' + matName"></span>
+                              <span class="text-muted"
+                                    x-text="'(need ' + modal.optimizationData.materialsNeeded[matName] + ')'"></span>
+                            </div>
+                          </template>
+                        </div>
+                      </div>
+
+                      <!-- Quantity Input -->
+                      <div class="flex items-center gap-2" x-show="candidate.selected">
+                        <label class="text-xs text-muted">Qty:</label>
+                        <input type="number"
+                               x-model.number="candidate.quantity"
+                               min="1"
+                               class="input input-sm w-16 text-center">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </template>
+            </div>
+          </div>
+        </template>
+
+      </div>
+
+      <!-- Footer -->
+      <div class="flex items-center justify-end gap-2 p-4 border-t border-gray-700">
+
+        <!-- Info Modal Footer -->
+        <template x-if="modal.type === 'info'">
+          <button @click="closeModal()" class="btn btn-primary">
+            OK
+          </button>
+        </template>
+
+        <!-- Confirm Modal Footer -->
+        <template x-if="modal.type === 'confirm'">
+          <div class="flex gap-2">
+            <button @click="closeModal()" class="btn btn-ghost">
+              Cancel
+            </button>
+            <button @click="confirmModal()" class="btn btn-primary">
+              Confirm
+            </button>
+          </div>
+        </template>
+
+        <!-- Input Modal Footer -->
+        <template x-if="modal.type === 'input'">
+          <div class="flex gap-2">
+            <button @click="closeModal()" class="btn btn-ghost">
+              Cancel
+            </button>
+            <button @click="confirmModal()" class="btn btn-primary">
+              OK
+            </button>
+          </div>
+        </template>
+
+        <!-- Optimize Modal Footer -->
+        <template x-if="modal.type === 'optimize'">
+          <div class="flex gap-2">
+            <button @click="closeModal()" class="btn btn-ghost">
+              Cancel
+            </button>
+            <button @click="addOptimizedItems()" class="btn btn-outline btn-success">
+              <i data-lucide="plus" class="w-4 h-4"></i>
+              Add Only
+            </button>
+            <button @click="addOptimizedItemsAndReplace()" class="btn btn-success">
+              <i data-lucide="arrow-left-right" class="w-4 h-4"></i>
+              Add and Replace
+            </button>
+          </div>
+        </template>
+
+      </div>
+    </div>
+  </div>
 
 </body>
 </html>
