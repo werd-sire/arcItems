@@ -380,6 +380,14 @@
                   </template>
                 </div>
 
+                <!-- Location Info (where to find) -->
+                <div class="text-xs mb-2" x-data="{ fullItem: items.find(i => i.name === item.name) }">
+                  <span class="text-muted">Found: </span>
+                  <template x-for="(source, idx) in getItemSources(fullItem).slice(0, 3)" :key="idx">
+                    <span class="badge badge-outline badge-xs mr-1" x-text="source"></span>
+                  </template>
+                </div>
+
                 <!-- Need/Found Controls -->
                 <div class="flex items-center gap-4 text-xs">
                   <!-- Needed Controls -->
