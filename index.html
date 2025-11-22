@@ -203,7 +203,7 @@
                   Add
                 </button>
                 <button class="btn btn-secondary btn-sm" @click="addToCompare(item)" title="Compare"
-                        x-show="item.item_type === 'Weapon' || item.item_type === 'Shield' || item.item_type === 'Augment'">
+                        x-show="item.item_type === 'Weapon'">
                   <i data-lucide="git-compare" class="w-3 h-3"></i>
                 </button>
                 <button class="btn btn-ghost btn-sm" @click="toggleItemDetails(item.id)">
@@ -367,15 +367,15 @@
           </button>
         </div>
 
-        <!-- Dropdown Selector -->
+        <!-- Weapon Selector -->
         <div class="mb-4">
-          <label class="block text-sm font-medium mb-2">Add Item to Compare</label>
+          <label class="block text-sm font-medium mb-2">Add Weapon to Compare</label>
           <div class="relative max-w-lg">
             <i data-lucide="plus-circle" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted pointer-events-none"></i>
             <select class="input w-full" style="padding-left: 35px" x-model="compareDropdownItems" @change="addFromDropdown(compareDropdownItems); compareDropdownItems = ''">
-              <option value="">Choose an item...</option>
+              <option value="">Choose a weapon...</option>
               <template x-for="item in comparableItems" :key="item.id">
-                <option :value="item.name" x-text="item.name + ' (' + item.item_type + ')'"></option>
+                <option :value="item.name" x-text="item.name"></option>
               </template>
             </select>
           </div>
@@ -386,15 +386,15 @@
             <div class="badge badge-lg flex items-center gap-2">
               <img :src="getItemImage(item)" :alt="item.name" class="w-4 h-4 object-contain" />
               <span x-text="item.name"></span>
-              <button @click="removeFromCompare(item)" class="hover:text-red-400">
-                <i data-lucide="x" class="w-3 h-3"></i>
+              <button @click="removeFromCompare(item)" class="inline-flex items-center justify-center text-secondary hover:text-red-400 transition-colors" title="Remove this weapon" style="width: 20px; height: 20px;">
+                <i data-lucide="trash-2" class="w-4 h-4"></i>
               </button>
             </div>
           </template>
         </div>
 
         <div class="text-sm text-secondary" x-show="compareItems.length === 0">
-          Select up to 4 items from dropdown or Browse tab to compare
+          Select up to 4 weapons from dropdown or Browse tab to compare
         </div>
       </div>
 
@@ -420,7 +420,12 @@
               <tr>
                 <td class="font-medium">DPS</td>
                 <template x-for="item in compareItems" :key="item.id">
-                  <td class="font-mono" x-text="getDPS(item) || '-'"></td>
+                  <td>
+                    <div class="font-mono" :class="getStatHighlight('DPS', getDPS(item))" x-text="getDPS(item) || '-'"></div>
+                    <div class="stat-bar" x-show="getDPS(item)">
+                      <div class="stat-bar-fill" :style="'width: ' + getStatBarWidth('DPS', getDPS(item)) + '%'"></div>
+                    </div>
+                  </td>
                 </template>
               </tr>
             </template>
@@ -429,7 +434,12 @@
               <tr>
                 <td class="font-medium" x-text="stat"></td>
                 <template x-for="item in compareItems" :key="item.id">
-                  <td class="font-mono" x-text="formatStat(stat, getStatValue(item, stat))"></td>
+                  <td>
+                    <div class="font-mono" :class="getStatHighlight(stat, getStatValue(item, stat))" x-text="formatStat(stat, getStatValue(item, stat))"></div>
+                    <div class="stat-bar" x-show="getStatValue(item, stat) && getStatValue(item, stat) !== '-'">
+                      <div class="stat-bar-fill" :style="'width: ' + getStatBarWidth(stat, getStatValue(item, stat)) + '%'"></div>
+                    </div>
+                  </td>
                 </template>
               </tr>
             </template>
@@ -439,8 +449,8 @@
 
       <div x-show="compareItems.length === 0" class="empty-state">
         <i data-lucide="git-compare" class="w-16 h-16"></i>
-        <p class="text-lg mb-1">No items to compare</p>
-        <p class="text-sm">Add weapons, shields, or augments from Browse tab</p>
+        <p class="text-lg mb-1">No weapons to compare</p>
+        <p class="text-sm">Add weapons from the dropdown or Browse tab</p>
       </div>
     </div>
 
