@@ -1,722 +1,457 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
-
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ARC Raiders – Items & Crafting</title>
-
-  <!-- Tailwind CSS + DaisyUI -->
-  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.19/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <title>ARC Raiders - Crafting & Gathering Tool</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script type="module" crossorigin src="./assets/index.js"></script>
   <link rel="stylesheet" crossorigin href="./assets/index.css">
 </head>
 
-<body class="bg-base-300 min-h-screen" x-data="arcApp" x-init="init()">
+<body x-data="app" x-init="init()">
 
-  <!-- Navbar -->
-  <div class="navbar bg-base-100 shadow-lg sticky top-0 z-50">
-    <div class="navbar-start">
-      <div class="flex items-center gap-2">
-        <i data-lucide="target" class="w-6 h-6 text-primary"></i>
-        <span class="text-xl font-bold">ARC Raiders</span>
-        <div class="badge badge-sm badge-outline">Live Data</div>
+  <!-- Navigation -->
+  <nav class="nav sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex items-center justify-between h-16">
+
+        <!-- Logo -->
+        <div class="flex items-center gap-3">
+          <i data-lucide="hammer" class="w-6 h-6 text-blue-500"></i>
+          <div>
+            <div class="font-semibold text-base">ARC Raiders</div>
+            <div class="text-xs text-muted">Crafting Tool</div>
+          </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="flex items-center">
+          <button class="nav-tab" :class="{ 'active': currentTab === 'browse' }" @click="currentTab = 'browse'">
+            <i data-lucide="search" class="w-4 h-4"></i>
+            <span>Browse</span>
+          </button>
+          <button class="nav-tab" :class="{ 'active': currentTab === 'craft' }" @click="currentTab = 'craft'">
+            <i data-lucide="package" class="w-4 h-4"></i>
+            <span>Craft</span>
+          </button>
+          <button class="nav-tab" :class="{ 'active': currentTab === 'gather' }" @click="currentTab = 'gather'">
+            <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+            <span>Gather</span>
+            <span class="badge badge-primary badge-sm" x-show="shoppingList.length > 0" x-text="shoppingList.length"></span>
+          </button>
+          <button class="nav-tab" :class="{ 'active': currentTab === 'compare' }" @click="currentTab = 'compare'">
+            <i data-lucide="git-compare" class="w-4 h-4"></i>
+            <span>Compare</span>
+            <span class="badge badge-warning badge-sm" x-show="compareItems.length > 0" x-text="compareItems.length"></span>
+          </button>
+        </div>
+
+        <!-- Data Date -->
+        <div class="text-xs text-muted" x-show="dataUpdatedDate">
+          Updated <span x-text="dataUpdatedDate"></span>
+        </div>
       </div>
     </div>
-
-    <div class="navbar-center">
-      <div class="tabs tabs-boxed">
-        <a class="tab" :class="{ 'tab-active': currentTab === 'browse' }" @click="currentTab = 'browse'">
-          <i data-lucide="package" class="w-4 h-4 mr-2"></i>
-          Browse
-        </a>
-        <a class="tab" :class="{ 'tab-active': currentTab === 'craft' }" @click="currentTab = 'craft'">
-          <i data-lucide="hammer" class="w-4 h-4 mr-2"></i>
-          Craft
-        </a>
-        <a class="tab" :class="{ 'tab-active': currentTab === 'workshop' }" @click="currentTab = 'workshop'">
-          <i data-lucide="factory" class="w-4 h-4 mr-2"></i>
-          Workshop
-        </a>
-        <a class="tab" :class="{ 'tab-active': currentTab === 'inventory' }" @click="currentTab = 'inventory'">
-          <i data-lucide="backpack" class="w-4 h-4 mr-2"></i>
-          Inventory
-          <div class="badge badge-sm badge-primary ml-1" x-show="Object.keys(inventory).length > 0"
-            x-text="Object.keys(inventory).length"></div>
-        </a>
-      </div>
-    </div>
-
-    <div class="navbar-end gap-2">
-      <button class="btn btn-ghost btn-sm" @click="refreshData()" :disabled="isLoading">
-        <i data-lucide="refresh-cw" class="w-4 h-4" :class="{ 'animate-spin': isLoading }"></i>
-      </button>
-      <button class="btn btn-ghost btn-sm" @click="showSettings = true">
-        <i data-lucide="settings" class="w-4 h-4"></i>
-      </button>
-    </div>
-  </div>
+  </nav>
 
   <!-- Main Content -->
-  <main class="container mx-auto p-4 max-w-7xl">
+  <main class="max-w-7xl mx-auto px-4 py-6">
 
-    <!-- Loading State -->
-    <div x-show="isLoading" class="alert alert-info mb-4">
-      <i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i>
-      <span>Fetching live data from ARC Raiders Wiki...</span>
+    <!-- Loading -->
+    <div x-show="isLoading" class="alert alert-info">
+      <i data-lucide="loader-2" class="w-5 h-5 spinner"></i>
+      <span>Loading game data...</span>
     </div>
 
-    <!-- Error State -->
-    <div x-show="error" class="alert alert-error mb-4">
+    <!-- Error -->
+    <div x-show="error" class="alert alert-error">
       <i data-lucide="alert-circle" class="w-5 h-5"></i>
       <span x-text="error"></span>
-      <button class="btn btn-sm" @click="error = null">Dismiss</button>
     </div>
 
-    <!-- Browse Tab -->
-    <div x-show="currentTab === 'browse'" x-cloak>
+    <!-- BROWSE TAB -->
+    <div x-show="currentTab === 'browse' && !isLoading" x-cloak>
 
-      <!-- Search & Filters Bar -->
-      <div class="bg-base-100 rounded-box p-4 mb-4 shadow">
-        <div class="flex flex-wrap gap-4 items-center">
-          <!-- Search -->
-          <div class="form-control flex-1 min-w-[250px]">
-            <label class="input input-bordered flex items-center gap-2">
-              <i data-lucide="search" class="w-4 h-4 text-base-content/50"></i>
-              <input type="text" placeholder="Search items..." class="grow" x-model="searchTerm" @input="renderItems()">
-              <button class="btn btn-ghost btn-xs" x-show="searchTerm" @click="searchTerm = ''; renderItems()">
-                <i data-lucide="x" class="w-4 h-4"></i>
-              </button>
-            </label>
+      <!-- Filters -->
+      <div class="section mb-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+          <div class="relative">
+            <i data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted pointer-events-none"></i>
+            <input type="text" placeholder="Search items..." class="input w-full" style="padding-left: 35px" x-model="searchTerm">
           </div>
-
-          <!-- Sort -->
-          <select class="select select-bordered" x-model="currentSort" @change="renderItems()">
-            <option value="name">Name (A-Z)</option>
-            <option value="name-desc">Name (Z-A)</option>
-            <option value="price-high">Price (High)</option>
-            <option value="price-low">Price (Low)</option>
-            <option value="rarity">Rarity</option>
-            <option value="damage">Damage (High)</option>
-            <option value="dps">DPS (High)</option>
+          <select class="input" x-model="selectedType">
+            <option value="all">All Types</option>
+            <template x-for="type in availableTypes" :key="type">
+              <option :value="type" x-text="type"></option>
+            </template>
           </select>
-
-          <!-- View Mode -->
-          <div class="btn-group">
-            <button class="btn btn-sm" :class="{ 'btn-active': viewMode === 'grid' }" @click="viewMode = 'grid'">
-              <i data-lucide="grid-3x3" class="w-4 h-4"></i>
-            </button>
-            <button class="btn btn-sm" :class="{ 'btn-active': viewMode === 'list' }" @click="viewMode = 'list'">
-              <i data-lucide="list" class="w-4 h-4"></i>
-            </button>
-          </div>
+          <select class="input" x-model="selectedRarity">
+            <option value="all">All Rarities</option>
+            <option value="common">Common</option>
+            <option value="uncommon">Uncommon</option>
+            <option value="rare">Rare</option>
+            <option value="epic">Epic</option>
+            <option value="legendary">Legendary</option>
+          </select>
         </div>
-
-        <!-- Filter Chips -->
-        <div class="flex flex-wrap gap-2 mt-3">
-          <template x-for="filter in availableFilters" :key="filter.key">
-            <button class="btn btn-xs" :class="activeFilters.has(filter.key) ? 'btn-primary' : 'btn-outline'"
-              @click="toggleFilter(filter.key)">
-              <span x-text="filter.label"></span>
-            </button>
-          </template>
+        <div class="text-sm text-secondary">
+          Showing <span class="text-primary font-medium" x-text="filteredItems.length"></span> of <span x-text="items.length"></span> items
         </div>
       </div>
 
-      <!-- Stats Bar -->
-      <div class="stats shadow mb-4 w-full">
-        <div class="stat">
-          <div class="stat-title">Showing</div>
-          <div class="stat-value text-lg" x-text="filteredItems.length + ' / ' + items.length"></div>
-        </div>
-        <div class="stat">
-          <div class="stat-title">Total Value</div>
-          <div class="stat-value text-lg">$<span x-text="totalValue.toLocaleString()"></span></div>
-        </div>
-        <div class="stat">
-          <div class="stat-title">Avg Value</div>
-          <div class="stat-value text-lg">$<span x-text="avgValue.toLocaleString()"></span></div>
-        </div>
-      </div>
+      <!-- Items Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <template x-for="item in filteredItems" :key="item.id">
+          <div class="card">
+            <div class="h-32 flex items-center justify-center bg-black/20 p-4">
+              <img :src="getItemImage(item)" :alt="item.name" class="h-full object-contain" />
+            </div>
+            <div class="card-body space-y-3">
+              <div class="flex items-start justify-between gap-2">
+                <h3 class="font-medium text-sm flex-1" x-text="item.name"></h3>
+                <span class="badge badge-sm" :class="'badge-rarity-' + (item.rarity?.toLowerCase() || 'common')" x-text="item.rarity"></span>
+              </div>
 
-      <!-- Items Grid/List -->
-      <div :class="viewMode === 'grid' ? 'items-grid' : 'items-list'">
-        <template x-for="item in filteredItems" :key="item.name + '-' + item.itemType">
-          <div>
-            <!-- Grid Card -->
-            <template x-if="viewMode === 'grid'">
-              <div class="card bg-base-100 shadow-xl"
-                :class="'card-rarity-' + (item.rarity?.toLowerCase() || 'common')">
+              <div class="text-xs text-secondary" x-text="item.item_type"></div>
 
-                <!-- Image area with integrated icons -->
-                <figure class="relative px-4 pt-4">
-                  <!-- Recycle icon - top left -->
-                  <div class="absolute top-2 left-2 p-1.5 rounded-lg bg-base-100/80">
-                    <i data-lucide="recycle" class="w-4 h-4"
-                      :class="item.cantRecycle ? 'text-base-content/30' : 'text-success'"></i>
-                    <div class="absolute inset-0 flex items-center justify-center" x-show="item.cantRecycle">
-                      <div class="w-6 h-0.5 bg-error rotate-45"></div>
-                    </div>
-                  </div>
-
-                  <!-- Rarity - top right -->
-                  <div class="absolute top-2 right-2 px-2 py-0.5 rounded text-xs font-bold"
-                    :class="'rarity-' + item.rarity?.toLowerCase()" x-text="item.rarity"></div>
-
-                  <img :src="getImagePath(item.name)" :alt="item.name" class="rounded-xl h-28 object-contain"
-                    @error="$event.target.src=fallbackImage">
-                </figure>
-
-                <div class="card-body p-4 pt-3 flex flex-col">
-                  <!-- Item Name -->
-                  <h2 class="card-title text-sm justify-center text-center">
-                    <a :href="'https://arcraiders.wiki/wiki/' + encodeURIComponent(item.name.replace(/ /g, '_'))"
-                      target="_blank" class="link link-hover" x-text="item.name"></a>
-                  </h2>
-
-                  <!-- Structured rows -->
-                  <div class="text-xs space-y-1 mt-2">
-                    <div class="flex justify-between">
-                      <span class="text-base-content/60">Category:</span>
-                      <span x-text="item.category || '(check wiki)'"></span>
-                    </div>
-                    <div class="flex justify-between">
-                      <span class="text-base-content/60">Value:</span>
-                      <span
-                        x-text="item.sellPrice ? '$' + item.sellPrice.toLocaleString() : '(check wiki)'"></span>
-                    </div>
-                    <div class="flex justify-between" x-show="item.location">
-                      <span class="text-base-content/60">Found in:</span>
-                      <span x-text="item.location"></span>
-                    </div>
-                  </div>
-
-                  <!-- Keep For section -->
-                  <div class="mt-3">
-                    <div class="text-xs text-base-content/60 mb-1.5">Keep for...</div>
-                    <div class="flex flex-wrap gap-1.5">
-                      <!-- Workshop -->
-                      <div class="keep-dropdown" x-show="item.keepWorkshop">
-                        <div class="badge badge-sm keep-badge keep-badge-workshop"
-                          :class="{ 'completed': isCompleted(item.name, 'workshop') }"
-                          @click="toggleCompleted(item.name, 'workshop')">
-                          Workshop
-                          <span x-show="isCompleted(item.name, 'workshop')">✓</span>
-                        </div>
-                        <div class="keep-dropdown-content">
-                          <div class="font-semibold mb-1">Keep for Workshop</div>
-                          <div class="text-base-content/70" x-text="item.keepWorkshopFor || 'Required for upgrades'">
-                          </div>
-                          <div class="text-xs text-base-content/50 mt-2 pt-2 border-t border-base-content/10">Click to
-                            mark done</div>
-                        </div>
-                      </div>
-
-                      <!-- Quests -->
-                      <div class="keep-dropdown" x-show="item.keepQuests">
-                        <div class="badge badge-sm keep-badge keep-badge-quests"
-                          :class="{ 'completed': isCompleted(item.name, 'quests') }"
-                          @click="toggleCompleted(item.name, 'quests')">
-                          Quests
-                          <span x-show="isCompleted(item.name, 'quests')">✓</span>
-                        </div>
-                        <div class="keep-dropdown-content">
-                          <div class="font-semibold mb-1">Keep for Quests</div>
-                          <div class="text-base-content/70" x-text="item.keepQuestsFor || 'Required for quests'"></div>
-                          <div class="text-xs text-base-content/50 mt-2 pt-2 border-t border-base-content/10">Click to
-                            mark done</div>
-                        </div>
-                      </div>
-
-                      <!-- Projects -->
-                      <div class="keep-dropdown" x-show="item.keepProjects">
-                        <div class="badge badge-sm keep-badge keep-badge-projects"
-                          :class="{ 'completed': isCompleted(item.name, 'projects') }"
-                          @click="toggleCompleted(item.name, 'projects')">
-                          Projects
-                          <span x-show="isCompleted(item.name, 'projects')">✓</span>
-                        </div>
-                        <div class="keep-dropdown-content">
-                          <div class="font-semibold mb-1">Keep for Projects</div>
-                          <div class="text-base-content/70" x-text="item.keepProjectsFor || 'Required for expeditions'">
-                          </div>
-                          <div class="text-xs text-base-content/50 mt-2 pt-2 border-t border-base-content/10">Click to
-                            mark done</div>
-                        </div>
-                      </div>
-
-                      <!-- Crafting - shown if item is used in any recipe -->
-                      <div class="tooltip" x-show="item.usedInCrafting" data-tip="Used in crafting recipes">
-                        <div class="badge badge-sm badge-accent badge-outline">Crafting</div>
-                      </div>
-
-                      <!-- N/A if none -->
-                      <span class="text-base-content/40 text-xs"
-                        x-show="!item.keepWorkshop && !item.keepQuests && !item.keepProjects && !item.usedInCrafting">N/A</span>
-                    </div>
-                  </div>
-
-                  <!-- Actions with inventory counter -->
-                  <div class="flex items-center justify-between mt-auto pt-3 border-t border-base-content/10">
-                    <div class="flex items-center gap-2 text-xs">
-                      <span class="text-base-content/50" x-show="getInventoryQuantity(item.name) > 0">
-                        <i data-lucide="backpack" class="w-3 h-3 inline"></i>
-                        <span x-text="getInventoryQuantity(item.name)"></span>
-                      </span>
-                      <span class="text-base-content/50" x-show="shoppingList[item.name] > 0">
-                        <i data-lucide="shopping-cart" class="w-3 h-3 inline"></i>
-                        <span x-text="shoppingList[item.name]"></span>
-                      </span>
-                    </div>
-                    <div class="flex gap-1">
-                      <button class="btn btn-xs btn-ghost" @click="addToInventory(item.name)" title="Add to inventory">
-                        <i data-lucide="plus" class="w-3 h-3"></i>
-                      </button>
-                      <button class="btn btn-xs btn-ghost" @click="addToShoppingList(item.name)"
-                        title="Add to shopping list">
-                        <i data-lucide="shopping-cart" class="w-3 h-3"></i>
-                      </button>
-                    </div>
-                  </div>
+              <div class="text-xs">
+                <div class="text-muted mb-1">Found:</div>
+                <div class="flex flex-wrap gap-1">
+                  <template x-for="source in getItemSources(item).slice(0, 3)" :key="source">
+                    <span class="badge badge-outline badge-sm" x-text="source"></span>
+                  </template>
                 </div>
               </div>
-            </template>
 
-            <!-- List Row -->
-            <template x-if="viewMode === 'list'">
-              <div class="flex items-center gap-4 bg-base-100 rounded-lg p-3 shadow"
-                :class="'row-rarity-' + (item.rarity?.toLowerCase() || 'common')">
-                <img :src="getImagePath(item.name)" :alt="item.name" class="w-12 h-12 object-contain rounded"
-                  @error="$event.target.src=fallbackImage">
+              <!-- Expandable Details -->
+              <div x-show="isItemExpanded(item.id)" x-collapse class="pt-3 border-t border-gray-800 space-y-3 text-xs">
 
-                <div class="flex-1">
-                  <a :href="'https://arcraiders.wiki/wiki/' + encodeURIComponent(item.name.replace(/ /g, '_'))"
-                    target="_blank" class="font-semibold link link-hover" x-text="item.name"></a>
-                  <div class="flex gap-1 mt-1">
-                    <div class="badge badge-xs" :class="'rarity-' + item.rarity?.toLowerCase()" x-text="item.rarity">
-                    </div>
-                    <div class="badge badge-outline badge-xs" x-text="item.category"></div>
+                <!-- Description -->
+                <div x-show="item.description">
+                  <div class="text-muted mb-1">Description:</div>
+                  <div class="text-secondary" x-text="item.description"></div>
+                </div>
+
+                <!-- Stats -->
+                <div x-show="Object.keys(getMeaningfulStats(item)).length > 0">
+                  <div class="text-muted mb-1">Stats:</div>
+                  <div class="grid grid-cols-2 gap-1">
+                    <template x-for="[stat, value] in Object.entries(getMeaningfulStats(item))" :key="stat">
+                      <div class="flex justify-between">
+                        <span class="text-secondary capitalize" x-text="stat"></span>
+                        <span class="font-mono" x-text="value"></span>
+                      </div>
+                    </template>
                   </div>
                 </div>
 
-                <div class="text-right">
-                  <div class="font-mono" x-show="item.sellPrice">$<span x-text="item.sellPrice"></span></div>
+                <!-- Recycle Info -->
+                <div x-show="item.recycle_components && item.recycle_components.length > 0">
+                  <div class="text-muted mb-1">Recycles Into:</div>
+                  <div class="flex flex-wrap gap-1">
+                    <template x-for="(comp, idx) in item.recycle_components" :key="'recycle-' + item.id + '-' + idx">
+                      <span class="badge badge-success badge-sm" x-text="comp.quantity + 'x ' + comp.component?.name"></span>
+                    </template>
+                  </div>
+                </div>
+                <div x-show="!item.recycle_components || item.recycle_components.length === 0">
+                  <div class="text-muted mb-1">Recycles Into:</div>
+                  <span class="text-secondary">Cannot be recycled</span>
                 </div>
 
-                <div class="flex gap-1">
-                  <button class="btn btn-xs btn-ghost" @click="addToInventory(item.name)">
-                    <i data-lucide="plus" class="w-3 h-3"></i>
-                  </button>
-                  <button class="btn btn-xs btn-ghost" @click="addToShoppingList(item.name)">
-                    <i data-lucide="shopping-cart" class="w-3 h-3"></i>
-                  </button>
+                <!-- Quest Usage -->
+                <div x-show="getItemQuests(item).length > 0">
+                  <div class="text-muted mb-1">Required for Quests:</div>
+                  <div class="flex flex-wrap gap-1">
+                    <template x-for="(quest, idx) in getItemQuests(item)" :key="'quest-' + item.id + '-' + idx">
+                      <span class="badge badge-warning badge-sm" x-text="quest.name"></span>
+                    </template>
+                  </div>
+                </div>
+
+                <!-- Crafting Usage -->
+                <div x-show="getItemCraftingUses(item).length > 0">
+                  <div class="text-muted mb-1">Used to Craft:</div>
+                  <div class="flex flex-wrap gap-1">
+                    <template x-for="(use, idx) in getItemCraftingUses(item)" :key="'craft-' + item.id + '-' + idx">
+                      <span class="badge badge-primary badge-sm" x-text="use.quantity + 'x ' + use.name"></span>
+                    </template>
+                  </div>
+                </div>
+
+                <!-- All Sources -->
+                <div>
+                  <div class="text-muted mb-1">All Sources:</div>
+                  <div class="flex flex-wrap gap-1">
+                    <template x-for="(source, idx) in getItemSources(item)" :key="'source-' + item.id + '-' + idx">
+                      <span class="badge badge-outline badge-sm" x-text="source"></span>
+                    </template>
+                  </div>
+                </div>
+
+                <!-- Value -->
+                <div x-show="item.value">
+                  <div class="text-muted mb-1">Sell Value:</div>
+                  <div class="text-secondary font-mono">$<span x-text="item.value?.toLocaleString()"></span></div>
                 </div>
               </div>
-            </template>
 
+              <div class="flex items-center gap-2 pt-2 border-t border-gray-800">
+                <button class="btn btn-primary btn-sm flex-1" @click="addToShoppingList(item.name)">
+                  <i data-lucide="shopping-cart" class="w-3 h-3"></i>
+                  Add
+                </button>
+                <button class="btn btn-secondary btn-sm" @click="addToCompare(item)" title="Compare"
+                        x-show="item.item_type === 'Weapon' || item.item_type === 'Shield' || item.item_type === 'Augment'">
+                  <i data-lucide="git-compare" class="w-3 h-3"></i>
+                </button>
+                <button class="btn btn-ghost btn-sm" @click="toggleItemDetails(item.id)">
+                  <i :data-lucide="isItemExpanded(item.id) ? 'chevron-up' : 'chevron-down'" class="w-4 h-4"></i>
+                </button>
+              </div>
+            </div>
           </div>
         </template>
       </div>
 
       <!-- Empty State -->
-      <div x-show="filteredItems.length === 0 && !isLoading" class="text-center py-12">
-        <i data-lucide="search-x" class="w-16 h-16 mx-auto mb-4 text-base-content/30"></i>
-        <p class="text-lg">No items found</p>
-        <p class="text-sm text-base-content/60">Try adjusting your search or filters</p>
+      <div x-show="filteredItems.length === 0" class="empty-state">
+        <i data-lucide="search-x" class="w-16 h-16"></i>
+        <p class="text-lg mb-1">No items found</p>
+        <p class="text-sm">Try adjusting your filters</p>
       </div>
     </div>
 
-    <!-- Craft Tab -->
-    <div x-show="currentTab === 'craft'" x-cloak>
+    <!-- CRAFT TAB -->
+    <div x-show="currentTab === 'craft' && !isLoading" x-cloak>
 
       <!-- Recipe Selector -->
-      <div class="bg-base-100 rounded-box p-4 mb-4 shadow">
-        <label class="label">
-          <span class="label-text font-semibold">What do you want to craft?</span>
-        </label>
-        <select class="select select-bordered w-full max-w-md" x-model="selectedRecipe" @change="calculateCraft()">
-          <option value="">-- Select an item --</option>
-          <template x-for="name in recipeNames" :key="name">
-            <option :value="name" x-text="name"></option>
-          </template>
-        </select>
+      <div class="section mb-6">
+        <label class="block text-sm font-medium mb-2">Select Item to Craft</label>
+        <div class="relative">
+          <i data-lucide="package" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted pointer-events-none"></i>
+          <select class="input w-full max-w-lg" style="padding-left: 35px" x-model="selectedRecipe" @change="selectRecipe(selectedRecipe)">
+            <option value="">Choose a craftable item...</option>
+            <template x-for="name in recipeNames" :key="name">
+              <option :value="name" x-text="name"></option>
+            </template>
+          </select>
+        </div>
       </div>
 
-      <!-- Pinned Recipes -->
-      <div x-show="pinnedRecipes.length > 0" class="bg-base-100 rounded-box p-4 mb-4 shadow">
-        <h3 class="font-semibold mb-3 flex items-center gap-2">
-          <i data-lucide="pin" class="w-4 h-4"></i>
-          Pinned Recipes
-        </h3>
-        <div class="flex flex-wrap gap-2">
-          <template x-for="recipe in pinnedRecipes" :key="recipe">
-            <div class="badge badge-lg gap-2 cursor-pointer"
-              :class="selectedRecipe === recipe ? 'badge-primary' : 'badge-outline'"
-              @click="selectedRecipe = recipe; calculateCraft()">
-              <span x-text="recipe"></span>
-              <button @click.stop="unpinRecipe(recipe)">
+      <!-- Crafting Result -->
+      <div x-show="craftingTree" class="space-y-6">
+
+        <!-- Header Info -->
+        <div class="section">
+          <div class="flex items-start justify-between">
+            <div>
+              <h2 class="text-xl font-semibold mb-1" x-text="selectedRecipe"></h2>
+              <div class="flex items-center gap-2 text-sm text-secondary">
+                <i data-lucide="wrench" class="w-4 h-4"></i>
+                <span x-text="craftingTree?.workbench"></span>
+              </div>
+            </div>
+            <button class="btn btn-primary" @click="addMaterialsToShoppingList()">
+              <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+              Add All to List
+            </button>
+          </div>
+        </div>
+
+        <!-- Materials Needed -->
+        <div class="section">
+          <h3 class="section-header">
+            <i data-lucide="clipboard-list" class="w-5 h-5"></i>
+            Materials Needed
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+            <template x-for="[name, qty] in Object.entries(craftingTree?.materials || {})" :key="name">
+              <div class="material-card">
+                <span class="text-sm" x-text="name"></span>
+                <span class="badge badge-primary" x-text="qty + 'x'"></span>
+              </div>
+            </template>
+          </div>
+        </div>
+
+        <!-- Crafting Tree -->
+        <div class="section">
+          <h3 class="section-header">
+            <i data-lucide="git-branch" class="w-5 h-5"></i>
+            Crafting Tree
+          </h3>
+          <div class="space-y-2">
+            <template x-for="(node, index) in (craftingTree?.tree || [])" :key="index">
+              <div class="craft-tree-node" :class="node.isBase ? 'base' : 'craftable'" :style="'--depth: ' + node.depth">
+                <span class="badge badge-primary badge-sm" x-text="node.quantity + 'x'"></span>
+                <span class="flex-1 text-sm font-medium" x-text="node.name"></span>
+                <span class="badge badge-sm" :class="node.isBase ? 'badge-success' : 'badge-outline'"
+                      x-text="node.isBase ? 'Base Material' : node.workbench"></span>
+              </div>
+            </template>
+          </div>
+        </div>
+      </div>
+
+      <!-- Empty State -->
+      <div x-show="!selectedRecipe" class="empty-state">
+        <i data-lucide="package" class="w-16 h-16"></i>
+        <p class="text-lg mb-1">Select an item to craft</p>
+        <p class="text-sm">Choose from the dropdown to see materials and crafting tree</p>
+      </div>
+    </div>
+
+    <!-- GATHER TAB -->
+    <div x-show="currentTab === 'gather' && !isLoading" x-cloak>
+
+      <div class="section">
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-xl font-semibold">Shopping List</h2>
+          <div class="flex gap-2">
+            <button class="btn btn-ghost btn-sm" @click="clearCompleted()" x-show="shoppingList.length > 0">
+              Clear Completed
+            </button>
+            <button class="btn btn-ghost btn-sm" @click="clearShoppingList()" x-show="shoppingList.length > 0">
+              Clear All
+            </button>
+          </div>
+        </div>
+
+        <div class="space-y-3">
+          <template x-for="item in shoppingList" :key="item.name">
+            <div class="shopping-item" :class="{ 'completed': item.found >= item.needed }">
+
+              <div class="flex-1">
+                <div class="shopping-item-name font-medium text-sm mb-1" x-text="item.name"></div>
+                <div class="text-xs text-secondary">
+                  Need <span x-text="item.needed"></span> • Found <span x-text="item.found"></span>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-3">
+                <button class="btn btn-ghost btn-sm" @click="decrementFound(item)">
+                  <i data-lucide="minus" class="w-4 h-4"></i>
+                </button>
+                <div class="badge badge-lg" :class="item.found >= item.needed ? 'badge-success' : 'badge-warning'">
+                  <span x-text="item.found"></span> / <span x-text="item.needed"></span>
+                </div>
+                <button class="btn btn-ghost btn-sm" @click="incrementFound(item)">
+                  <i data-lucide="plus" class="w-4 h-4"></i>
+                </button>
+                <button class="btn btn-ghost btn-sm" @click="removeFromShoppingList(item)">
+                  <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+              </div>
+            </div>
+          </template>
+        </div>
+
+        <div x-show="shoppingList.length === 0" class="empty-state">
+          <i data-lucide="shopping-cart" class="w-16 h-16"></i>
+          <p class="text-lg mb-1">Shopping list is empty</p>
+          <p class="text-sm">Add items from Browse or Craft tabs</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMPARE TAB -->
+    <div x-show="currentTab === 'compare' && !isLoading" x-cloak>
+
+      <div class="section mb-6">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-xl font-semibold">Compare Items</h2>
+          <button class="btn btn-ghost btn-sm" @click="clearComparison()" x-show="compareItems.length > 0">
+            Clear All
+          </button>
+        </div>
+
+        <!-- Dropdown Selector -->
+        <div class="mb-4">
+          <label class="block text-sm font-medium mb-2">Add Item to Compare</label>
+          <div class="relative max-w-lg">
+            <i data-lucide="plus-circle" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted pointer-events-none"></i>
+            <select class="input w-full" style="padding-left: 35px" x-model="compareDropdownItems" @change="addFromDropdown(compareDropdownItems); compareDropdownItems = ''">
+              <option value="">Choose an item...</option>
+              <template x-for="item in comparableItems" :key="item.id">
+                <option :value="item.name" x-text="item.name + ' (' + item.item_type + ')'"></option>
+              </template>
+            </select>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-2 mb-4" x-show="compareItems.length > 0">
+          <template x-for="item in compareItems" :key="item.id">
+            <div class="badge badge-lg flex items-center gap-2">
+              <img :src="getItemImage(item)" :alt="item.name" class="w-4 h-4 object-contain" />
+              <span x-text="item.name"></span>
+              <button @click="removeFromCompare(item)" class="hover:text-red-400">
                 <i data-lucide="x" class="w-3 h-3"></i>
               </button>
             </div>
           </template>
         </div>
-      </div>
 
-      <!-- Crafting Result -->
-      <div x-show="selectedRecipe && craftResult" class="space-y-4">
-
-        <!-- Header -->
-        <div class="bg-base-100 rounded-box p-4 shadow" x-show="craftResult">
-          <div class="flex justify-between items-start">
-            <div>
-              <h2 class="text-2xl font-bold text-primary" x-text="selectedRecipe"></h2>
-              <p class="text-base-content/60">
-                Workshop: <span class="font-semibold" x-text="craftResult?.workshop"></span>
-              </p>
-            </div>
-            <button class="btn btn-sm" :class="isPinned(selectedRecipe) ? 'btn-primary' : 'btn-outline'"
-              @click="togglePin(selectedRecipe)">
-              <i data-lucide="pin" class="w-4 h-4"></i>
-              <span x-text="isPinned(selectedRecipe) ? 'Pinned' : 'Pin'"></span>
-            </button>
-          </div>
-
-          <!-- Blueprint Sources -->
-          <div class="mt-3 pt-3 border-t border-base-300" x-show="craftResult?.sources">
-            <p class="text-sm font-semibold mb-2">Where to find this blueprint:</p>
-            <div class="flex flex-wrap gap-2">
-              <div class="badge badge-outline" x-show="craftResult?.sources?.loot">
-                <i data-lucide="box" class="w-3 h-3 mr-1"></i> Loot
-              </div>
-              <div class="badge badge-outline" x-show="craftResult?.sources?.harvester">
-                <i data-lucide="zap" class="w-3 h-3 mr-1"></i> Harvester Event
-              </div>
-              <div class="badge badge-info" x-show="craftResult?.sources?.quest">
-                <i data-lucide="scroll" class="w-3 h-3 mr-1"></i>
-                Quest: <span x-text="craftResult?.sources?.quest" class="ml-1"></span>
-              </div>
-              <div class="badge badge-secondary" x-show="craftResult?.sources?.trials">
-                <i data-lucide="trophy" class="w-3 h-3 mr-1"></i>
-                Trials: <span x-text="craftResult?.sources?.trials" class="ml-1"></span>
-              </div>
-              <div class="badge badge-ghost"
-                x-show="craftResult?.sources && !craftResult?.sources?.loot && !craftResult?.sources?.harvester && !craftResult?.sources?.quest && !craftResult?.sources?.trials">
-                Unknown source
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Materials Summary -->
-        <div class="bg-base-100 rounded-box p-4 shadow" x-show="craftResult">
-          <h3 class="font-semibold mb-3 flex items-center gap-2">
-            <i data-lucide="clipboard-list" class="w-4 h-4"></i>
-            Base Materials Needed
-          </h3>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-            <template x-for="[name, qty] in Object.entries(craftResult?.baseMaterials || {}).sort()" :key="name">
-              <div class="flex items-center justify-between bg-base-200 rounded-lg p-2">
-                <span x-text="name"></span>
-                <div class="flex items-center gap-2">
-                  <span class="badge badge-primary" x-text="qty + 'x'"></span>
-                  <span class="text-xs" :class="getInventoryQuantity(name) >= qty ? 'text-success' : 'text-error'">
-                    (<span x-text="getInventoryQuantity(name)"></span>)
-                  </span>
-                </div>
-              </div>
-            </template>
-          </div>
-
-          <!-- Add all to shopping list -->
-          <button class="btn btn-sm btn-outline mt-3" @click="addCraftToShoppingList()">
-            <i data-lucide="shopping-cart" class="w-4 h-4"></i>
-            Add missing to shopping list
-          </button>
-        </div>
-
-        <!-- Crafting Tree -->
-        <div class="bg-base-100 rounded-box p-4 shadow" x-show="craftResult">
-          <h3 class="font-semibold mb-3 flex items-center gap-2">
-            <i data-lucide="git-branch" class="w-4 h-4"></i>
-            Crafting Tree
-          </h3>
-          <div class="space-y-1">
-            <template x-for="node in (craftResult?.tree || [])" :key="node.name + node.depth">
-              <div class="craft-indent flex items-center gap-2 py-1 px-2 rounded" :style="'--depth: ' + node.depth"
-                :class="node.isBase ? 'bg-success/10 border-l-2 border-success' : 'bg-info/10 border-l-2 border-info'">
-                <span class="badge badge-sm badge-primary" x-text="node.qty + 'x'"></span>
-                <a :href="'https://arcraiders.wiki/wiki/' + encodeURIComponent(node.name.replace(/ /g, '_'))"
-                  target="_blank" class="link link-hover" x-text="node.name"></a>
-                <span class="badge badge-xs" x-text="node.isBase ? 'Base' : node.workshop"></span>
-              </div>
-            </template>
-          </div>
+        <div class="text-sm text-secondary" x-show="compareItems.length === 0">
+          Select up to 4 items from dropdown or Browse tab to compare
         </div>
       </div>
 
-      <!-- Empty State -->
-      <div x-show="!selectedRecipe" class="text-center py-12">
-        <i data-lucide="hammer" class="w-16 h-16 mx-auto mb-4 text-base-content/30"></i>
-        <p class="text-lg">Select an item to see crafting requirements</p>
-      </div>
-    </div>
-
-    <!-- Workshop Tab -->
-    <div x-show="currentTab === 'workshop'" x-cloak>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <template x-for="station in workshopStations" :key="station.name">
-          <div class="card bg-base-100 shadow-xl">
-            <div class="card-body">
-              <h2 class="card-title">
-                <i data-lucide="wrench" class="w-5 h-5"></i>
-                <span x-text="station.name"></span>
-              </h2>
-
-              <!-- Station Levels -->
-              <div class="space-y-3">
-                <template x-for="level in station.levels" :key="level.level">
-                  <div class="collapse collapse-arrow bg-base-200"
-                    :class="{ 'opacity-50': isUpgradeCompleted(station.name, level.level) }">
-                    <input type="checkbox" :checked="level.level === 1">
-                    <div class="collapse-title font-medium flex items-center justify-between pr-8">
-                      <span>
-                        Level <span x-text="level.level"></span>
-                        <span x-show="isUpgradeCompleted(station.name, level.level)" class="text-success ml-1">✓</span>
-                      </span>
-                      <label class="swap swap-flip relative z-10 cursor-pointer" @click.stop>
-                        <input type="checkbox"
-                          :checked="isUpgradeCompleted(station.name, level.level)"
-                          @change="toggleUpgradeCompleted(station.name, level.level)">
-                        <span class="swap-on text-xs text-success">Done</span>
-                        <span class="swap-off text-xs text-base-content/50">Mark done</span>
-                      </label>
-                    </div>
-                    <div class="collapse-content">
-                      <!-- Requirements -->
-                      <div x-show="level.requirements.length > 0" class="mb-3">
-                        <p class="text-xs font-semibold mb-1">Requirements:</p>
-                        <div class="flex flex-wrap gap-1">
-                          <template x-for="req in level.requirements" :key="req.name">
-                            <span class="badge badge-sm badge-outline">
-                              <span x-text="req.qty + 'x'"></span>
-                              <span x-text="req.name" class="ml-1"></span>
-                            </span>
-                          </template>
-                        </div>
-                        <button class="btn btn-xs btn-outline mt-2"
-                          @click="addWorkshopReqsToShoppingList(level.requirements)">
-                          <i data-lucide="shopping-cart" class="w-3 h-3"></i>
-                          Add to list
-                        </button>
-                      </div>
-                      <div x-show="level.requirements.length === 0" class="text-xs text-base-content/60 mb-3">
-                        Free / Starting level
-                      </div>
-
-                      <!-- Unlocks -->
-                      <div x-show="level.crafts.length > 0">
-                        <p class="text-xs font-semibold mb-1">Unlocks:</p>
-                        <div class="flex flex-wrap gap-1">
-                          <template x-for="craft in level.crafts" :key="craft">
-                            <span class="badge badge-sm badge-primary cursor-pointer"
-                              @click="currentTab = 'craft'; selectedRecipe = craft; calculateCraft()"
-                              x-text="craft"></span>
-                          </template>
-                        </div>
-                      </div>
-                      <div x-show="level.crafts.length === 0" class="text-xs text-base-content/60">
-                        No exclusive crafts
-                      </div>
-                    </div>
+      <!-- Comparison Table -->
+      <div x-show="compareItems.length > 0" class="section overflow-x-auto">
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="w-40">Stat</th>
+              <template x-for="item in compareItems" :key="item.id">
+                <th>
+                  <div class="flex items-center justify-center mb-2">
+                    <img :src="getItemImage(item)" :alt="item.name" class="h-16 object-contain" />
                   </div>
+                  <div class="font-medium text-sm mb-1" x-text="item.name"></div>
+                  <span class="badge badge-sm" :class="'badge-rarity-' + (item.rarity?.toLowerCase() || 'common')" x-text="item.rarity"></span>
+                </th>
+              </template>
+            </tr>
+          </thead>
+          <tbody>
+            <template x-if="compareItems.some(i => i.item_type === 'Weapon')">
+              <tr>
+                <td class="font-medium">DPS</td>
+                <template x-for="item in compareItems" :key="item.id">
+                  <td class="font-mono" x-text="getDPS(item) || '-'"></td>
                 </template>
-              </div>
-            </div>
-          </div>
-        </template>
-      </div>
-
-      <!-- Empty State -->
-      <div x-show="workshopStations.length === 0" class="text-center py-12">
-        <i data-lucide="factory" class="w-16 h-16 mx-auto mb-4 text-base-content/30"></i>
-        <p class="text-lg">Workshop data loading...</p>
-      </div>
-    </div>
-
-    <!-- Inventory Tab -->
-    <div x-show="currentTab === 'inventory'" x-cloak>
-
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-
-        <!-- Current Inventory -->
-        <div class="bg-base-100 rounded-box p-4 shadow">
-          <div class="flex justify-between items-center mb-3">
-            <h3 class="font-semibold flex items-center gap-2">
-              <i data-lucide="backpack" class="w-4 h-4"></i>
-              My Inventory
-            </h3>
-            <button class="btn btn-xs btn-ghost" @click="clearInventory()" x-show="Object.keys(inventory).length > 0">
-              Clear all
-            </button>
-          </div>
-
-          <div x-show="Object.keys(inventory).length === 0" class="text-center py-8 text-base-content/60">
-            <p>No items tracked yet</p>
-            <p class="text-sm">Click + on items to add them</p>
-          </div>
-
-          <div class="space-y-2">
-            <template x-for="[name, qty] in Object.entries(inventory).sort()" :key="name">
-              <div class="flex items-center gap-2 bg-base-200 rounded-lg p-2">
-                <span class="flex-1" x-text="name"></span>
-                <button class="btn btn-xs btn-ghost" @click="updateInventory(name, -1)">-</button>
-                <input type="number" class="input input-bordered input-xs w-16 text-center" :value="qty"
-                  @change="setInventory(name, parseInt($event.target.value))">
-                <button class="btn btn-xs btn-ghost" @click="updateInventory(name, 1)">+</button>
-                <button class="btn btn-xs btn-ghost text-error" @click="removeFromInventory(name)">
-                  <i data-lucide="trash-2" class="w-3 h-3"></i>
-                </button>
-              </div>
+              </tr>
             </template>
-          </div>
-        </div>
 
-        <!-- Shopping List -->
-        <div class="bg-base-100 rounded-box p-4 shadow">
-          <div class="flex justify-between items-center mb-3">
-            <h3 class="font-semibold flex items-center gap-2">
-              <i data-lucide="shopping-cart" class="w-4 h-4"></i>
-              Shopping List
-            </h3>
-            <button class="btn btn-xs btn-ghost" @click="clearShoppingList()"
-              x-show="Object.keys(shoppingList).length > 0">
-              Clear all
-            </button>
-          </div>
-
-          <div x-show="Object.keys(shoppingList).length === 0" class="text-center py-8 text-base-content/60">
-            <p>Shopping list empty</p>
-            <p class="text-sm">Add items you need to find</p>
-          </div>
-
-          <div class="space-y-2">
-            <template x-for="[name, qty] in Object.entries(shoppingList).sort()" :key="name">
-              <div class="flex items-center gap-2 bg-base-200 rounded-lg p-2">
-                <span class="flex-1" x-text="name"></span>
-                <div class="flex items-center gap-1">
-                  <span class="text-xs text-base-content/60">Have:</span>
-                  <span class="badge badge-sm"
-                    :class="getInventoryQuantity(name) >= qty ? 'badge-success' : 'badge-warning'"
-                    x-text="getInventoryQuantity(name) + '/' + qty"></span>
-                </div>
-                <button class="btn btn-xs btn-ghost" @click="updateShoppingList(name, -1)">-</button>
-                <button class="btn btn-xs btn-ghost" @click="updateShoppingList(name, 1)">+</button>
-                <button class="btn btn-xs btn-ghost text-error" @click="removeFromShoppingList(name)">
-                  <i data-lucide="trash-2" class="w-3 h-3"></i>
-                </button>
-              </div>
+            <template x-for="stat in getComparisonStats()" :key="stat">
+              <tr>
+                <td class="font-medium" x-text="stat"></td>
+                <template x-for="item in compareItems" :key="item.id">
+                  <td class="font-mono" x-text="formatStat(stat, getStatValue(item, stat))"></td>
+                </template>
+              </tr>
             </template>
-          </div>
-        </div>
+          </tbody>
+        </table>
       </div>
 
-      <!-- Quick Add -->
-      <div class="bg-base-100 rounded-box p-4 shadow mt-4">
-        <h3 class="font-semibold mb-3">Quick Add Item</h3>
-        <div class="flex gap-2">
-          <select class="select select-bordered flex-1" x-model="quickAddItem">
-            <option value="">-- Select item --</option>
-            <template x-for="item in items" :key="item.name">
-              <option :value="item.name" x-text="item.name"></option>
-            </template>
-          </select>
-          <input type="number" class="input input-bordered w-20" x-model.number="quickAddQty" min="1" value="1">
-          <button class="btn btn-primary" @click="quickAdd('inventory')" :disabled="!quickAddItem">
-            <i data-lucide="backpack" class="w-4 h-4"></i>
-          </button>
-          <button class="btn btn-secondary" @click="quickAdd('shopping')" :disabled="!quickAddItem">
-            <i data-lucide="shopping-cart" class="w-4 h-4"></i>
-          </button>
-        </div>
-      </div>
-
-      <!-- Import/Export -->
-      <div class="bg-base-100 rounded-box p-4 shadow mt-4">
-        <h3 class="font-semibold mb-3">Import / Export Data</h3>
-        <div class="flex gap-2">
-          <button class="btn btn-outline btn-sm" @click="exportUserData()">
-            <i data-lucide="download" class="w-4 h-4"></i>
-            Export
-          </button>
-          <button class="btn btn-outline btn-sm" @click="$refs.importFile.click()">
-            <i data-lucide="upload" class="w-4 h-4"></i>
-            Import
-          </button>
-          <input type="file" class="hidden" x-ref="importFile" accept=".json" @change="importUserData($event)">
-        </div>
+      <div x-show="compareItems.length === 0" class="empty-state">
+        <i data-lucide="git-compare" class="w-16 h-16"></i>
+        <p class="text-lg mb-1">No items to compare</p>
+        <p class="text-sm">Add weapons, shields, or augments from Browse tab</p>
       </div>
     </div>
 
   </main>
 
   <!-- Footer -->
-  <footer class="footer footer-center p-4 bg-base-100 text-base-content mt-8">
-    <div>
-      <p>Data from <a href="https://arcraiders.wiki" target="_blank" class="link">ARC Raiders Wiki</a> via MediaWiki API
-      </p>
+  <footer class="border-t border-gray-800 mt-12 py-6">
+    <div class="max-w-7xl mx-auto px-4 text-center text-sm text-muted">
+      Data from <a href="https://metaforge.app/arc-raiders" target="_blank" class="text-blue-500 hover:text-blue-400">Metaforge</a>
     </div>
   </footer>
 
-  <!-- Settings Modal -->
-  <dialog class="modal" :class="{ 'modal-open': showSettings }">
-    <div class="modal-box">
-      <h3 class="font-bold text-lg">Settings</h3>
-      <div class="py-4 space-y-4">
-        <div class="form-control">
-          <label class="label cursor-pointer">
-            <span class="label-text">Dark Theme</span>
-            <input type="checkbox" class="toggle" checked disabled>
-          </label>
-        </div>
-        <div class="form-control">
-          <label class="label">
-            <span class="label-text">Storage Used</span>
-            <span class="label-text-alt" x-text="storageInfo"></span>
-          </label>
-        </div>
-      </div>
-      <div class="modal-action">
-        <button class="btn btn-error btn-outline" @click="clearAllData()">Clear All Data</button>
-        <button class="btn" @click="showSettings = false">Close</button>
-      </div>
-    </div>
-    <form method="dialog" class="modal-backdrop">
-      <button @click="showSettings = false">close</button>
-    </form>
-  </dialog>
-
-  <!-- Toast Container -->
-  <div class="toast toast-end toast-bottom z-50">
-    <template x-for="toast in toasts" :key="toast.id">
-      <div class="alert" :class="{
-        'alert-success': toast.type === 'success',
-        'alert-info': toast.type === 'info',
-        'alert-warning': toast.type === 'warning',
-        'alert-error': toast.type === 'error'
-      }">
-        <span x-text="toast.message"></span>
-      </div>
-    </template>
-  </div>
-
-  <!-- Keyboard Shortcuts Help -->
-  <div class="fixed bottom-4 left-4 text-xs text-base-content/40 hidden lg:block">
-    <span class="kbd kbd-xs">1-4</span> tabs
-    <span class="kbd kbd-xs ml-2">Ctrl+K</span> search
-    <span class="kbd kbd-xs ml-2">R</span> refresh
-  </div>
-
 </body>
-
 </html>
