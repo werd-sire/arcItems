@@ -116,7 +116,7 @@
       "name": "Recorder",
       "value": 1000,
       "rarity": "Uncommon",
-      "item_type": "Trinket",
+      "item_type": "Quick Use",
       "description": "A playable recorder used to attract ARC's attention and impress other Raiders.",
       "trader_price": 3000
     },
@@ -234,7 +234,7 @@
     },
     {
       "id": "duct-tape-recipe",
-      "icon": "https://cdn.metaforge.app/arc-raiders/icons/duct-tape-recipe.webp",
+      "icon": "https://cdn.metaforge.app/arc-raiders/icons/duct-tape.webp",
       "name": "Duct Tape",
       "value": 300,
       "rarity": "Uncommon",
@@ -444,7 +444,7 @@
     },
     {
       "id": "wires-recipe",
-      "icon": "https://cdn.metaforge.app/arc-raiders/icons/wires-recipe.webp",
+      "icon": "https://cdn.metaforge.app/arc-raiders/icons/wires.webp",
       "name": "Wires",
       "value": 200,
       "rarity": "Uncommon",
@@ -491,7 +491,7 @@
       "value": 2000,
       "rarity": "Rare",
       "item_type": "Augment",
-      "description": "A Combat augment more focused on manoeuvrability than absorbing damage. ",
+      "description": "A Combat augment is more focused on maneuverability than absorbing damage.",
       "trader_price": 6000
     },
     {
@@ -692,7 +692,7 @@
       "id": "energy-ammo",
       "icon": "https://cdn.metaforge.app/arc-raiders/icons/energy-ammo.webp",
       "name": "Energy Clip",
-      "value": 5,
+      "value": 1000,
       "rarity": "Rare",
       "item_type": "Ammunition",
       "description": "Ammo used for energy weapons. One clip will fully charge a single weapon.",
@@ -837,6 +837,16 @@
       "item_type": "Modification",
       "description": "Slightly reduces both vertical recoil & horizontal recoil.",
       "trader_price": 1920
+    },
+    {
+      "id": "padded-stock",
+      "icon": "https://cdn.metaforge.app/arc-raiders/icons/padded-stock.webp",
+      "name": "Padded Stock",
+      "value": 0,
+      "rarity": "Epic",
+      "item_type": "Modification",
+      "description": "Significantly improves stability.",
+      "trader_price": 15000
     },
     {
       "id": "renegade-i",

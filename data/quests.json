@@ -41,7 +41,7 @@
         "id": "57322882-bda3-4779-a8f5-180b59499529",
         "item": {
           "id": "duct-tape-recipe",
-          "icon": "https://cdn.metaforge.app/arc-raiders/icons/duct-tape-recipe.webp",
+          "icon": "https://cdn.metaforge.app/arc-raiders/icons/duct-tape.webp",
           "name": "Duct Tape",
           "rarity": "Uncommon",
           "item_type": "Topside Material"
@@ -518,7 +518,7 @@
         "id": "2fd6249b-b91f-4757-baa4-af37575b044d",
         "item": {
           "id": "duct-tape-recipe",
-          "icon": "https://cdn.metaforge.app/arc-raiders/icons/duct-tape-recipe.webp",
+          "icon": "https://cdn.metaforge.app/arc-raiders/icons/duct-tape.webp",
           "name": "Duct Tape",
           "rarity": "Uncommon",
           "item_type": "Topside Material"
@@ -537,6 +537,73 @@
         },
         "item_id": "aviator-outfit",
         "quantity": "1"
+      }
+    ]
+  },
+  {
+    "id": "a-toxic-trail",
+    "name": "A Toxic Trail",
+    "objectives": [
+      "Return to the Water Intake below the Water Treatment Control building",
+      "Search the swamp for traces of the barrel's origins",
+      "Take a photo of the barrel truck",
+      "Search the truck for clues about the saboteur's identity"
+    ],
+    "xp": 0,
+    "granted_items": [],
+    "created_at": "2025-12-16T10:12:43.399509+00:00",
+    "updated_at": "2025-12-16T10:12:43.399509+00:00",
+    "locations": [],
+    "marker_category": null,
+    "required_items": [],
+    "rewards": [
+      {
+        "id": "61b2f1a9-9f74-4286-b06a-c9723be418cd",
+        "item": {
+          "id": "tactical-mk-2",
+          "icon": "https://cdn.metaforge.app/arc-raiders/icons/tactical-mk-2.webp",
+          "name": "Tactical Mk. 2",
+          "rarity": "Rare",
+          "item_type": "Augment"
+        },
+        "item_id": "tactical-mk-2",
+        "quantity": "1"
+      },
+      {
+        "id": "ab742057-13f5-4fdc-8abb-0fcb3ba6af3d",
+        "item": {
+          "id": "zipline",
+          "icon": "https://cdn.metaforge.app/arc-raiders/icons/zipline.webp",
+          "name": "Zipline",
+          "rarity": "Rare",
+          "item_type": "Quick Use"
+        },
+        "item_id": "zipline",
+        "quantity": "3"
+      },
+      {
+        "id": "f63933d8-08ff-4879-969c-c7f558f0bb47",
+        "item": {
+          "id": "pulse-mine",
+          "icon": "https://cdn.metaforge.app/arc-raiders/icons/pulse-mine.webp",
+          "name": "Pulse Mine",
+          "rarity": "Uncommon",
+          "item_type": "Quick Use"
+        },
+        "item_id": "pulse-mine",
+        "quantity": "3"
+      },
+      {
+        "id": "715ebf47-0673-4705-bda0-9e9fb55366c7",
+        "item": {
+          "id": "gas-mine",
+          "icon": "https://cdn.metaforge.app/arc-raiders/icons/gas-mine.webp",
+          "name": "Gas Mine",
+          "rarity": "Common",
+          "item_type": "Quick Use"
+        },
+        "item_id": "gas-mine",
+        "quantity": "3"
       }
     ]
   },
@@ -1055,6 +1122,48 @@
     ]
   },
   {
+    "id": "deciphering-the-data",
+    "name": "Deciphering The Data",
+    "objectives": [
+      "Use the Magnetic Decryptor in the Fuel Control Building",
+      "Reach the Arrival Building in Spaceport",
+      "Use the Magnetic Decryptor on the top floor of the Arrival Building"
+    ],
+    "xp": 0,
+    "granted_items": [],
+    "created_at": "2025-12-16T10:54:43.159006+00:00",
+    "updated_at": "2025-12-16T10:54:43.159006+00:00",
+    "locations": [],
+    "marker_category": null,
+    "required_items": [],
+    "rewards": [
+      {
+        "id": "195fdbd4-be39-480d-b3fa-337a1124e8df",
+        "item": {
+          "id": "defibrillator",
+          "icon": "https://cdn.metaforge.app/arc-raiders/icons/defibrillator.webp",
+          "name": "Defibrillator",
+          "rarity": "Rare",
+          "item_type": "Quick Use"
+        },
+        "item_id": "defibrillator",
+        "quantity": "3"
+      },
+      {
+        "id": "f55f9b5b-3c0e-430e-b287-41b06783e1c0",
+        "item": {
+          "id": "trailblazer-grenade",
+          "icon": "https://cdn.metaforge.app/arc-raiders/icons/trailblazer-grenade.webp",
+          "name": "Trailblazer Grenade",
+          "rarity": "Rare",
+          "item_type": "Quick Use"
+        },
+        "item_id": "trailblazer-grenade",
+        "quantity": "3"
+      }
+    ]
+  },
+  {
     "id": "digging-up-dirt",
     "name": "Digging Up Dirt",
     "objectives": [
@@ -1526,7 +1635,7 @@
         "id": "2b15031f-4e82-48ec-9c49-edebf91855c6",
         "item": {
           "id": "wires-recipe",
-          "icon": "https://cdn.metaforge.app/arc-raiders/icons/wires-recipe.webp",
+          "icon": "https://cdn.metaforge.app/arc-raiders/icons/wires.webp",
           "name": "Wires",
           "rarity": "Uncommon",
           "item_type": "Topside Material"
@@ -1607,7 +1716,7 @@
         "id": "082c70c3-0fc7-40f1-8c08-73a65e239c40",
         "item": {
           "id": "lure-grenade-recipe",
-          "icon": "https://cdn.metaforge.app/arc-raiders/icons/lure-grenade-recipe.webp",
+          "icon": "https://cdn.metaforge.app/arc-raiders/icons/lure-grenade.webp",
           "name": "Lure Grenade Blueprint",
           "rarity": "Legendary",
           "item_type": "Blueprint"
@@ -1638,6 +1747,62 @@
         },
         "item_id": "electrical-components",
         "quantity": "3"
+      }
+    ]
+  },
+  {
+    "id": "groundbreaking",
+    "name": "Groundbreaking",
+    "objectives": [
+      "Enter the locked room at Pilgrim's Peak",
+      "Search the room for any construction research",
+      "Find the building pictured on the whiteboard",
+      "Photograph the abandoned housing project"
+    ],
+    "xp": 0,
+    "granted_items": [
+      {
+        "id": "12490842-d32b-49e7-9207-9e2c81b70a45",
+        "item": {
+          "id": "blue-gate-communication-tower-key",
+          "icon": "https://cdn.metaforge.app/arc-raiders/icons/blue-gate-communication-tower-key.webp",
+          "name": "Blue Gate Communication Tower Key",
+          "rarity": "Rare",
+          "item_type": "Key"
+        },
+        "item_id": "blue-gate-communication-tower-key",
+        "quantity": 1
+      }
+    ],
+    "created_at": "2025-12-16T11:53:14.310127+00:00",
+    "updated_at": "2025-12-16T11:53:14.310127+00:00",
+    "locations": [],
+    "marker_category": null,
+    "required_items": [],
+    "rewards": [
+      {
+        "id": "db954ca8-5c6f-489c-8196-9bb113abca6c",
+        "item": {
+          "id": "power-rod",
+          "icon": "https://cdn.metaforge.app/arc-raiders/icons/power-rod.webp",
+          "name": "Power Rod",
+          "rarity": "Epic",
+          "item_type": "Advanced Material"
+        },
+        "item_id": "power-rod",
+        "quantity": "1"
+      },
+      {
+        "id": "5ff4372d-6889-4bd7-b0a9-7e7382aa05aa",
+        "item": {
+          "id": "tangerine-warden-color",
+          "icon": "",
+          "name": "Tangerine (Warden Color)",
+          "rarity": "Common",
+          "item_type": "Misc"
+        },
+        "item_id": "tangerine-warden-color",
+        "quantity": "1"
       }
     ]
   },
@@ -1914,7 +2079,7 @@
         "id": "2fbf4be0-9418-45bd-87f7-acd82c6e827b",
         "item": {
           "id": "duct-tape-recipe",
-          "icon": "https://cdn.metaforge.app/arc-raiders/icons/duct-tape-recipe.webp",
+          "icon": "https://cdn.metaforge.app/arc-raiders/icons/duct-tape.webp",
           "name": "Duct Tape",
           "rarity": "Uncommon",
           "item_type": "Topside Material"
@@ -2074,204 +2239,6 @@
           "item_type": "Modification"
         },
         "item_id": "angled-grip-ii",
-        "quantity": "1"
-      }
-    ]
-  },
-  {
-    "id": "market-correction",
-    "name": "Market Correction",
-    "objectives": [
-      "In One Round -",
-      "Locate the cache near Marano Station.",
-      "Sabotage the cache"
-    ],
-    "xp": 0,
-    "granted_items": [],
-    "created_at": "2025-11-01T11:54:20.108068+00:00",
-    "updated_at": "2025-11-01T11:54:20.108068+00:00",
-    "locations": [
-      {
-        "id": "dd620de831ce245c648f5a8fbcec809d",
-        "map": "buried-city"
-      }
-    ],
-    "marker_category": null,
-    "required_items": [],
-    "rewards": [
-      {
-        "id": "17343ff9-605d-4c41-a0a9-d7a09bcd1d13",
-        "item": {
-          "id": "silencer-ii",
-          "icon": "https://cdn.metaforge.app/arc-raiders/icons/silencer-ii.webp",
-          "name": "Silencer II",
-          "rarity": "Rare",
-          "item_type": "Modification"
-        },
-        "item_id": "silencer-ii",
-        "quantity": "1"
-      },
-      {
-        "id": "97e88bc9-cfca-4657-83b6-fdc726329d30",
-        "item": {
-          "id": "extended-light-mag-i",
-          "icon": "https://cdn.metaforge.app/arc-raiders/icons/extended-light-mag-i.webp",
-          "name": "Extended Light Mag I",
-          "rarity": "Common",
-          "item_type": "Modification"
-        },
-        "item_id": "extended-light-mag-i",
-        "quantity": "1"
-      },
-      {
-        "id": "0b524831-2558-4e7f-a547-7bed8d088fe0",
-        "item": {
-          "id": "compensator-i",
-          "icon": "https://cdn.metaforge.app/arc-raiders/icons/compensator-i.webp",
-          "name": "Compensator I",
-          "rarity": "Common",
-          "item_type": "Modification"
-        },
-        "item_id": "compensator-i",
-        "quantity": "1"
-      }
-    ]
-  },
-  {
-    "id": "medical-merchandise",
-    "name": "Medical Merchandise",
-    "objectives": [
-      "On Spaceport, search 2 containers in the Departure Building's exam rooms",
-      "Search 3 contrainers in the Hospital in Buried City",
-      "On Dam Battlegrounds, search 2 containers in the Research & Administration building's medical room"
-    ],
-    "xp": 0,
-    "granted_items": [],
-    "created_at": "2025-11-01T14:13:24.014946+00:00",
-    "updated_at": "2025-11-01T14:13:24.014946+00:00",
-    "locations": [
-      {
-        "x": 4149.080710359533,
-        "y": 3048.5324393094756,
-        "map": "dam"
-      }
-    ],
-    "marker_category": null,
-    "required_items": [],
-    "rewards": [
-      {
-        "id": "7acd297a-be51-4745-8eeb-f43b7410bdee",
-        "item": {
-          "id": "banana-backpack-charm",
-          "icon": "https://cdn.metaforge.app/arc-raiders/icons/banana-backpack-charm.webp",
-          "name": "Banana (Backpack Charm)",
-          "rarity": "",
-          "item_type": "Misc"
-        },
-        "item_id": "banana-backpack-charm",
-        "quantity": "1"
-      },
-      {
-        "id": "50167fd6-9a42-43a2-9691-da7ab5ee7257",
-        "item": {
-          "id": "defibrillator",
-          "icon": "https://cdn.metaforge.app/arc-raiders/icons/defibrillator.webp",
-          "name": "Defibrillator",
-          "rarity": "Rare",
-          "item_type": "Quick Use"
-        },
-        "item_id": "defibrillator",
-        "quantity": "3"
-      },
-      {
-        "id": "0276883e-2fbb-48a2-aa21-6d7d26226fe3",
-        "item": {
-          "id": "vita-shot",
-          "icon": "https://cdn.metaforge.app/arc-raiders/icons/vita-shot.webp",
-          "name": "Vita Shot",
-          "rarity": "Rare",
-          "item_type": "Quick Use"
-        },
-        "item_id": "vita-shot",
-        "quantity": "2"
-      }
-    ]
-  },
-  {
-    "id": "mixed-signals",
-    "name": "Mixed Signals",
-    "objectives": [
-      "Destroy an ARC Surveyor",
-      "Obtain 1 Surveyor Vault"
-    ],
-    "xp": 0,
-    "granted_items": [
-      {
-        "id": "4e749404-a93e-47c3-ad4e-fb840ad7295a",
-        "item": {
-          "id": "jolt-mine",
-          "icon": "https://cdn.metaforge.app/arc-raiders/icons/jolt-mine.webp",
-          "name": "Jolt Mine",
-          "rarity": "Rare",
-          "item_type": "Quick Use"
-        },
-        "item_id": "jolt-mine",
-        "quantity": 3
-      },
-      {
-        "id": "43c34c8a-46ae-4898-800e-93eb6d44f91a",
-        "item": {
-          "id": "showstopper",
-          "icon": "https://cdn.metaforge.app/arc-raiders/icons/showstopper.webp",
-          "name": "Showstopper",
-          "rarity": "Rare",
-          "item_type": "Throwable"
-        },
-        "item_id": "showstopper",
-        "quantity": 2
-      }
-    ],
-    "created_at": "2025-10-07T14:15:08.114262+00:00",
-    "updated_at": "2025-10-07T14:15:08.114262+00:00",
-    "locations": [],
-    "marker_category": null,
-    "required_items": [
-      {
-        "id": "6fba1cd5-9ed7-469b-ae7f-abd677205d95",
-        "item": {
-          "id": "surveyor-vault",
-          "icon": "https://cdn.metaforge.app/arc-raiders/icons/surveyor-vault.webp",
-          "name": "Surveyor Vault",
-          "rarity": "Rare",
-          "item_type": "Recyclable"
-        },
-        "item_id": "surveyor-vault",
-        "quantity": 1
-      }
-    ],
-    "rewards": [
-      {
-        "id": "633f1434-ab13-4721-8a55-68c70942f273",
-        "item": {
-          "id": "photoelectric-cloak",
-          "icon": "https://cdn.metaforge.app/arc-raiders/icons/photoelectric-cloak.webp",
-          "name": "Photoelectric Cloak",
-          "rarity": "Epic",
-          "item_type": "Quick Use"
-        },
-        "item_id": "photoelectric-cloak",
-        "quantity": "1"
-      },
-      {
-        "id": "e70b4051-3337-4995-a00a-00deec396860",
-        "item": {
-          "id": "raider-hatch-key",
-          "icon": "https://cdn.metaforge.app/arc-raiders/icons/raider-hatch-key.webp",
-          "name": "Raider Hatch Key",
-          "rarity": "Rare",
-          "item_type": "Key"
-        },
-        "item_id": "raider-hatch-key",
         "quantity": "1"
       }
     ]

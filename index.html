@@ -45,6 +45,18 @@
             <span>Compare</span>
             <span class="badge badge-warning badge-sm" x-show="compareItems.length > 0" x-text="compareItems.length"></span>
           </button>
+          <button class="nav-tab" :class="{ 'active': currentTab === 'profit' }" @click="currentTab = 'profit'">
+            <i data-lucide="trending-up" class="w-4 h-4"></i>
+            <span>Profit</span>
+          </button>
+          <button class="nav-tab" :class="{ 'active': currentTab === 'loadout' }" @click="currentTab = 'loadout'">
+            <i data-lucide="backpack" class="w-4 h-4"></i>
+            <span>Loadout</span>
+          </button>
+          <button class="nav-tab" :class="{ 'active': currentTab === 'events' }" @click="currentTab = 'events'">
+            <i data-lucide="clock" class="w-4 h-4"></i>
+            <span>Events</span>
+          </button>
         </div>
 
         <!-- Data Date -->
@@ -578,6 +590,326 @@
         <i data-lucide="git-compare" class="w-16 h-16"></i>
         <p class="text-lg mb-1">No weapons to compare</p>
         <p class="text-sm">Add weapons from the dropdown or Browse tab</p>
+      </div>
+    </div>
+
+    <!-- PROFIT TAB -->
+    <div x-show="currentTab === 'profit' && !isLoading" x-cloak>
+
+      <!-- Header & Filters -->
+      <div class="section mb-6">
+        <div class="flex items-center justify-between mb-4">
+          <div>
+            <h2 class="text-xl font-semibold">Crafting Profit Analyzer</h2>
+            <p class="text-sm text-muted">Find the most profitable items to craft and sell</p>
+          </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <select class="input" x-model="profitFilterType">
+            <option value="all">All Item Types</option>
+            <template x-for="type in profitItemTypes" :key="type">
+              <option :value="type" x-text="type"></option>
+            </template>
+          </select>
+          <select class="input" x-model="profitFilterWorkbench">
+            <option value="all">All Workbenches</option>
+            <template x-for="wb in profitWorkbenches" :key="wb">
+              <option :value="wb" x-text="wb"></option>
+            </template>
+          </select>
+        </div>
+
+        <div class="text-sm text-secondary mt-4">
+          Showing <span class="text-primary font-medium" x-text="filteredProfitData.length"></span> of <span x-text="profitData.length"></span> craftable items
+        </div>
+      </div>
+
+      <!-- Profit Table -->
+      <div class="section overflow-x-auto" x-show="filteredProfitData.length > 0">
+        <table class="table w-full">
+          <thead>
+            <tr>
+              <th class="cursor-pointer hover:bg-base-300" @click="sortProfitBy('name')">
+                Item <span x-text="getSortIndicator('name')"></span>
+              </th>
+              <th class="cursor-pointer hover:bg-base-300 text-center" @click="sortProfitBy('item_type')">
+                Type <span x-text="getSortIndicator('item_type')"></span>
+              </th>
+              <th class="cursor-pointer hover:bg-base-300 text-center" @click="sortProfitBy('rarity')">
+                Rarity <span x-text="getSortIndicator('rarity')"></span>
+              </th>
+              <th class="cursor-pointer hover:bg-base-300 text-right" @click="sortProfitBy('material_cost')">
+                Material Cost <span x-text="getSortIndicator('material_cost')"></span>
+              </th>
+              <th class="cursor-pointer hover:bg-base-300 text-right" @click="sortProfitBy('item_value')">
+                Sell Value <span x-text="getSortIndicator('item_value')"></span>
+              </th>
+              <th class="cursor-pointer hover:bg-base-300 text-right" @click="sortProfitBy('profit')">
+                Profit <span x-text="getSortIndicator('profit')"></span>
+              </th>
+              <th class="cursor-pointer hover:bg-base-300 text-right" @click="sortProfitBy('profit_percent')">
+                ROI % <span x-text="getSortIndicator('profit_percent')"></span>
+              </th>
+              <th class="text-center">Workbench</th>
+              <th class="text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <template x-for="item in filteredProfitData" :key="item.id">
+              <tr class="hover:bg-base-300">
+                <td>
+                  <div class="flex items-center gap-2">
+                    <img :src="getProfitItemIcon(item)" :alt="item.name" class="w-8 h-8 object-contain" />
+                    <span class="font-medium" x-text="item.name"></span>
+                  </div>
+                </td>
+                <td class="text-center">
+                  <span class="badge badge-outline badge-sm" x-text="item.item_type"></span>
+                </td>
+                <td class="text-center">
+                  <span class="badge badge-sm" :class="'badge-rarity-' + (item.rarity?.toLowerCase() || 'common')" x-text="item.rarity"></span>
+                </td>
+                <td class="text-right font-mono text-secondary" x-text="formatCurrency(item.material_cost)"></td>
+                <td class="text-right font-mono" x-text="formatCurrency(item.item_value)"></td>
+                <td class="text-right font-mono font-semibold text-success" x-text="formatCurrency(item.profit)"></td>
+                <td class="text-right font-mono" :class="item.profit_percent > 200 ? 'text-success' : item.profit_percent > 100 ? 'text-warning' : 'text-secondary'" x-text="formatPercent(item.profit_percent)"></td>
+                <td class="text-center">
+                  <span class="badge badge-ghost badge-sm" x-text="item.workbench || '-'"></span>
+                </td>
+                <td class="text-center">
+                  <button class="btn btn-primary btn-sm" @click="addProfitItemToList(item)" title="Add materials to shopping list">
+                    <i data-lucide="shopping-cart" class="w-3 h-3"></i>
+                    Craft
+                  </button>
+                </td>
+              </tr>
+            </template>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Materials Breakdown (expandable rows could go here in future) -->
+
+      <!-- Empty State -->
+      <div x-show="filteredProfitData.length === 0" class="empty-state">
+        <i data-lucide="trending-up" class="w-16 h-16"></i>
+        <p class="text-lg mb-1">No profit data available</p>
+        <p class="text-sm">Try adjusting your filters</p>
+      </div>
+    </div>
+
+    <!-- LOADOUT TAB -->
+    <div x-show="currentTab === 'loadout' && !isLoading" x-cloak>
+
+      <!-- Header & Sub-tabs -->
+      <div class="section mb-6">
+        <div class="flex items-center justify-between mb-4">
+          <div>
+            <h2 class="text-xl font-semibold">Loadout Comparison</h2>
+            <p class="text-sm text-muted">Compare augments and shields to find the best loadout</p>
+          </div>
+        </div>
+
+        <!-- Sub-tabs -->
+        <div class="flex gap-2">
+          <button class="btn" :class="loadoutSubTab === 'augments' ? 'btn-primary' : 'btn-ghost'" @click="loadoutSubTab = 'augments'">
+            <i data-lucide="box" class="w-4 h-4 mr-1"></i>
+            Augments (<span x-text="augments.length"></span>)
+          </button>
+          <button class="btn" :class="loadoutSubTab === 'shields' ? 'btn-primary' : 'btn-ghost'" @click="loadoutSubTab = 'shields'">
+            <i data-lucide="shield" class="w-4 h-4 mr-1"></i>
+            Shields (<span x-text="shields.length"></span>)
+          </button>
+        </div>
+      </div>
+
+      <!-- Augments Comparison -->
+      <div x-show="loadoutSubTab === 'augments'" class="section overflow-x-auto">
+        <table class="table w-full">
+          <thead>
+            <tr>
+              <th>Augment</th>
+              <th class="text-center">Rarity</th>
+              <th class="text-center">Weight Limit</th>
+              <th class="text-center">Backpack Slots</th>
+              <th class="text-center">Quick Use Slots</th>
+              <th class="text-center">Safe Pocket Slots</th>
+              <th class="text-center">Shield Compatibility</th>
+              <th class="text-center">Workbench</th>
+            </tr>
+          </thead>
+          <tbody>
+            <template x-for="aug in augments" :key="aug.id">
+              <tr class="hover:bg-base-300">
+                <td>
+                  <div class="flex items-center gap-2">
+                    <img :src="aug.icon || '/img/placeholder.png'" :alt="aug.name" class="w-10 h-10 object-contain" />
+                    <span class="font-medium" x-text="aug.name"></span>
+                  </div>
+                </td>
+                <td class="text-center">
+                  <span class="badge badge-sm" :class="'badge-rarity-' + (aug.rarity?.toLowerCase() || 'common')" x-text="aug.rarity"></span>
+                </td>
+                <td class="text-center font-mono" :class="isBestValue(getAugmentStats(aug).weightLimit, augments, a => getAugmentStats(a).weightLimit, true) ? 'text-success font-bold' : ''">
+                  <span x-text="getAugmentStats(aug).weightLimit"></span> kg
+                </td>
+                <td class="text-center font-mono" :class="isBestValue(getAugmentStats(aug).backpackSlots, augments, a => getAugmentStats(a).backpackSlots, true) ? 'text-success font-bold' : ''">
+                  <span x-text="getAugmentStats(aug).backpackSlots"></span>
+                </td>
+                <td class="text-center font-mono" :class="isBestValue(getAugmentStats(aug).quickUseSlots, augments, a => getAugmentStats(a).quickUseSlots, true) ? 'text-success font-bold' : ''">
+                  <span x-text="getAugmentStats(aug).quickUseSlots"></span>
+                </td>
+                <td class="text-center font-mono" :class="isBestValue(getAugmentStats(aug).safePocketSlots, augments, a => getAugmentStats(a).safePocketSlots, true) ? 'text-success font-bold' : ''">
+                  <span x-text="getAugmentStats(aug).safePocketSlots"></span>
+                </td>
+                <td class="text-center">
+                  <span class="badge badge-outline badge-sm" x-text="formatShieldCompat(getAugmentStats(aug).shieldCompatibility)"></span>
+                </td>
+                <td class="text-center">
+                  <span class="badge badge-ghost badge-sm" x-text="aug.workbench || '-'"></span>
+                </td>
+              </tr>
+            </template>
+          </tbody>
+        </table>
+
+        <!-- Empty State -->
+        <div x-show="augments.length === 0" class="empty-state">
+          <i data-lucide="box" class="w-16 h-16"></i>
+          <p class="text-lg mb-1">No augments found</p>
+        </div>
+      </div>
+
+      <!-- Shields Comparison -->
+      <div x-show="loadoutSubTab === 'shields'" class="section overflow-x-auto">
+        <table class="table w-full">
+          <thead>
+            <tr>
+              <th>Shield</th>
+              <th class="text-center">Rarity</th>
+              <th class="text-center">Shield Charge</th>
+              <th class="text-center">Damage Mitigation</th>
+              <th class="text-center">Movement Penalty</th>
+              <th class="text-center">Weight</th>
+              <th class="text-center">Source</th>
+            </tr>
+          </thead>
+          <tbody>
+            <template x-for="shield in shields" :key="shield.id">
+              <tr class="hover:bg-base-300">
+                <td>
+                  <div class="flex items-center gap-2">
+                    <img :src="shield.icon || '/img/placeholder.png'" :alt="shield.name" class="w-10 h-10 object-contain" />
+                    <div>
+                      <span class="font-medium" x-text="shield.name"></span>
+                      <div class="text-xs text-muted" x-text="shield.shield_type ? shield.shield_type.charAt(0).toUpperCase() + shield.shield_type.slice(1) + ' Shield' : ''"></div>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-center">
+                  <span class="badge badge-sm" :class="'badge-rarity-' + (shield.rarity?.toLowerCase() || 'common')" x-text="shield.rarity"></span>
+                </td>
+                <td class="text-center font-mono" :class="isBestValue(getShieldStats(shield).shieldCharge, shields, s => getShieldStats(s).shieldCharge, true) ? 'text-success font-bold' : ''">
+                  <span x-text="getShieldStats(shield).shieldCharge"></span>
+                </td>
+                <td class="text-center font-mono" :class="isBestValue(getShieldStats(shield).damageMitigation, shields, s => getShieldStats(s).damageMitigation, true) ? 'text-success font-bold' : ''">
+                  <span x-text="getShieldStats(shield).damageMitigation"></span>%
+                </td>
+                <td class="text-center font-mono" :class="isBestValue(getShieldStats(shield).movementPenalty, shields, s => getShieldStats(s).movementPenalty, false) ? 'text-success font-bold' : ''">
+                  <span x-text="getShieldStats(shield).movementPenalty"></span>%
+                </td>
+                <td class="text-center font-mono" :class="isBestValue(getShieldStats(shield).weight, shields, s => getShieldStats(s).weight, false) ? 'text-success font-bold' : ''">
+                  <span x-text="getShieldStats(shield).weight"></span> kg
+                </td>
+                <td class="text-center">
+                  <template x-if="shield.sold_by && shield.sold_by.length > 0">
+                    <span class="badge badge-outline badge-sm" x-text="'Buy: $' + shield.sold_by[0].price?.toLocaleString()"></span>
+                  </template>
+                  <template x-if="shield.workbench">
+                    <span class="badge badge-ghost badge-sm" x-text="shield.workbench"></span>
+                  </template>
+                </td>
+              </tr>
+            </template>
+          </tbody>
+        </table>
+
+        <!-- Empty State -->
+        <div x-show="shields.length === 0" class="empty-state">
+          <i data-lucide="shield" class="w-16 h-16"></i>
+          <p class="text-lg mb-1">No shields found</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- EVENTS TAB -->
+    <div x-show="currentTab === 'events' && !isLoading" x-cloak>
+
+      <!-- Header & Filters -->
+      <div class="section mb-6">
+        <div class="flex items-center justify-between mb-4">
+          <div>
+            <h2 class="text-xl font-semibold">Event Timers</h2>
+            <p class="text-sm text-muted">In-game events and their schedules (times in UTC)</p>
+          </div>
+        </div>
+
+        <!-- Filter -->
+        <div class="max-w-xs">
+          <select class="input" x-model="eventsFilterMap">
+            <option value="all">All Maps</option>
+            <template x-for="map in eventMaps" :key="map">
+              <option :value="map" x-text="map"></option>
+            </template>
+          </select>
+        </div>
+
+        <div class="text-sm text-secondary mt-4">
+          Showing <span class="text-primary font-medium" x-text="filteredEvents.length"></span> of <span x-text="events.length"></span> events
+        </div>
+      </div>
+
+      <!-- Events Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" x-show="filteredEvents.length > 0">
+        <template x-for="event in filteredEvents" :key="event.name + event.map">
+          <div class="section p-4" :class="isEventActive(event) ? 'ring-2 ring-success' : ''">
+            <div class="flex items-start gap-3">
+              <img :src="event.icon" :alt="event.name" class="w-12 h-12 object-contain rounded" x-show="event.icon" />
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2 mb-1">
+                  <h3 class="font-semibold truncate" x-text="event.name"></h3>
+                  <span class="badge badge-success badge-sm" x-show="isEventActive(event)">LIVE</span>
+                </div>
+                <div class="text-sm text-muted mb-2">
+                  <span class="badge badge-outline badge-sm" x-text="event.map"></span>
+                </div>
+                <div class="text-xs text-secondary" x-show="event.description" x-text="event.description"></div>
+              </div>
+            </div>
+
+            <div class="mt-3 pt-3 border-t border-gray-700">
+              <div class="text-xs text-muted mb-1">Schedule (UTC)</div>
+              <div class="flex flex-wrap gap-1">
+                <template x-for="time in event.times" :key="time.start">
+                  <span class="badge badge-ghost badge-sm" x-text="time.start + ' - ' + time.end"></span>
+                </template>
+              </div>
+              <div class="text-xs text-secondary mt-2" x-show="!isEventActive(event) && getNextEventTime(event)">
+                Next: <span class="text-primary" x-text="getNextEventTime(event)"></span>
+              </div>
+            </div>
+          </div>
+        </template>
+      </div>
+
+      <!-- Empty State -->
+      <div x-show="filteredEvents.length === 0" class="empty-state">
+        <i data-lucide="clock" class="w-16 h-16"></i>
+        <p class="text-lg mb-1">No events found</p>
+        <p class="text-sm">Try selecting a different map</p>
       </div>
     </div>
 

@@ -1,8 +1,9 @@
 {
-  "fetchedAt": "2025-11-22T04:14:38.820497Z",
-  "itemCount": 515,
+  "fetchedAt": "2025-12-18T16:56:01.507884Z",
+  "itemCount": 528,
   "questCount": 40,
   "arcCount": 16,
   "traderCount": 5,
+  "eventCount": 36,
   "source": "https://metaforge.app/api/arc-raiders"
 }

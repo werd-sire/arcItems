@@ -22,9 +22,9 @@
     "name": "Fireball",
     "description": "A small armored rolling ARC that spits flame. Will open up it's front panel when near Raiders to burn them alive. While the front is open its soft unarmored core is exposed.",
     "icon": "https://unhbvkszwhczbjxgetgk.supabase.co/storage/v1/object/public/images/arc-raiders/icons/fireball.webp",
-    "image": "https://unhbvkszwhczbjxgetgk.supabase.co/storage/v1/object/public/images/arc-raiders/images/fireball.webp",
+    "image": "https://cdn.metaforge.app/arc-raiders/images/fireball.webp",
     "created_at": "2025-10-08T12:06:35.605684+00:00",
-    "updated_at": "2025-11-04T15:57:05.629124+00:00"
+    "updated_at": "2025-12-09T19:56:31.920703+00:00"
   },
   {
     "id": "hornet",
@@ -47,20 +47,20 @@
   {
     "id": "matriarch",
     "name": "Matriarch",
-    "description": "One of the latest Arcs to visit us Topside. This ARC shoots rockets, gas and a big shield which you need to be inside of to shoot it.",
+    "description": "The head of the Family. This ARC shoots rockets, gas and has big shield. She will also spawn her Leapers, Bastions, Fireballs, Hornets and Wasps.",
     "icon": "https://cdn.metaforge.app/arc-raiders/icons/matriarch.webp",
     "image": "https://cdn.metaforge.app/arc-raiders/images/matriarch.webp",
     "created_at": "2025-11-12T19:34:45.361835+00:00",
-    "updated_at": "2025-11-16T17:24:36.641897+00:00"
+    "updated_at": "2025-12-09T15:31:04.305795+00:00"
   },
   {
     "id": "pop",
     "name": "Pop",
-    "description": "This little menace is a Fireball ARC—a small, unarmored rolling unit that hides its true potential. It operates by rapidly closing the distance, looking like nothing more than a simple, harmless sphere until it's right on top of you. Once a Raider is nearby, it snaps open its side panels to reveal twin flamethrowers, quickly bathing the area in fire and burning targets to a crisp. It's a close-range ambush specialist designed to punish anyone caught off-guard.",
-    "icon": "https://unhbvkszwhczbjxgetgk.supabase.co/storage/v1/object/public/images/arc-raiders/icons/pop.webp",
-    "image": "https://unhbvkszwhczbjxgetgk.supabase.co/storage/v1/object/public/images/arc-raiders/images/pop.webp",
+    "description": "The Pop is a small, unarmored rolling machine. It's a quick, impulsive enemy that often roams in swarms. Often found indoors, the Pop's purpose is thought to be clearing out rubble and blockages that may inhibit ARC's operations. The Pop seems to have little regard for its own safety; carrying an explosive charge that \"pops\" upon impact, scorching any Raider that lets it get too close.",
+    "icon": "https://cdn.metaforge.app/arc-raiders/icons/pop.webp",
+    "image": "https://cdn.metaforge.app/arc-raiders/images/pop.webp",
     "created_at": "2025-10-08T12:05:37.972313+00:00",
-    "updated_at": "2025-11-04T16:00:06.006743+00:00"
+    "updated_at": "2025-12-09T19:55:04.079569+00:00"
   },
   {
     "id": "queen",
@@ -69,7 +69,7 @@
     "icon": "https://unhbvkszwhczbjxgetgk.supabase.co/storage/v1/object/public/images/arc-raiders/icons/queen.webp",
     "image": "https://unhbvkszwhczbjxgetgk.supabase.co/storage/v1/object/public/images/arc-raiders/images/queen_image.jpg",
     "created_at": "2025-10-08T07:57:53.043251+00:00",
-    "updated_at": "2025-11-04T16:33:18.782712+00:00"
+    "updated_at": "2025-12-09T15:34:31.669525+00:00"
   },
   {
     "id": "rocketeer",
@@ -83,11 +83,11 @@
   {
     "id": "sentinel",
     "name": "Sentinel",
-    "description": "A large unarmored turret that sits atop buildings and ledges. Always found outside and usually very high up. Contains a small vulnerable capsule attached to it's swiveling arm.\n\nTraces movement and will fire off a single Heavy round every 5 seconds while having line-of-sight on a Raider.",
+    "description": "A large unarmored turret that sits atop buildings and ledges. Often found outside and usually very high up. Contains a small vulnerable capsule attached to its swiveling arm.\n\nTraces movement and will fire off a single Heavy round every 5 seconds while having line-of-sight on a Raider.",
     "icon": "https://unhbvkszwhczbjxgetgk.supabase.co/storage/v1/object/public/images/arc-raiders/icons/sentinel.webp",
     "image": "https://unhbvkszwhczbjxgetgk.supabase.co/storage/v1/object/public/images/arc-raiders/images/sentinel.webp",
     "created_at": "2025-10-08T11:30:48.243119+00:00",
-    "updated_at": "2025-11-04T16:35:08.669972+00:00"
+    "updated_at": "2025-11-29T23:42:35.031249+00:00"
   },
   {
     "id": "shredder",
@@ -114,7 +114,7 @@
     "icon": "https://unhbvkszwhczbjxgetgk.supabase.co/storage/v1/object/public/images/arc-raiders/icons/rollbot.webp",
     "image": "https://unhbvkszwhczbjxgetgk.supabase.co/storage/v1/object/public/images/arc-raiders/images/rollbot.webp",
     "created_at": "2025-10-08T11:32:47.592365+00:00",
-    "updated_at": "2025-11-04T16:36:30.601096+00:00"
+    "updated_at": "2025-12-09T15:28:04.010172+00:00"
   },
   {
     "id": "tick",
