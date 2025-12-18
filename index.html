@@ -855,6 +855,21 @@
             <h2 class="text-xl font-semibold">Event Timers</h2>
             <p class="text-sm text-muted">In-game events and their schedules (times in UTC)</p>
           </div>
+          <div class="flex items-center gap-3">
+            <span class="text-xs text-muted" x-show="eventsLastUpdated">
+              Updated <span x-text="formatEventsLastUpdated()"></span>
+            </span>
+            <button class="btn btn-primary btn-sm" @click="refreshEvents()" :disabled="eventsLoading" x-init="refreshEvents()">
+              <i data-lucide="refresh-cw" class="w-4 h-4" :class="eventsLoading ? 'animate-spin' : ''"></i>
+              <span x-text="eventsLoading ? 'Loading...' : 'Refresh'"></span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Error message -->
+        <div class="alert alert-warning mb-4" x-show="eventsError" x-cloak>
+          <i data-lucide="alert-triangle" class="w-4 h-4"></i>
+          <span x-text="eventsError"></span>
         </div>
 
         <!-- Filter -->

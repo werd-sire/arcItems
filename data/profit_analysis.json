@@ -1,227 +1,5 @@
 [
   {
-    "name": "Hullcracker IV ",
-    "id": "hullcracker-iv",
-    "item_type": "Weapon",
-    "rarity": "Epic",
-    "workbench": "Gunsmith III",
-    "item_value": 22000,
-    "material_cost": 6000,
-    "profit": 16000,
-    "profit_percent": 266.66666666666663,
-    "materials": [
-      {
-        "name": "Metal Parts",
-        "quantity": 28,
-        "unit_value": 75,
-        "total_value": 2100
-      },
-      {
-        "name": "Heavy Gun Parts",
-        "quantity": 3,
-        "unit_value": 700,
-        "total_value": 2100
-      },
-      {
-        "name": "Steel Spring",
-        "quantity": 4,
-        "unit_value": 300,
-        "total_value": 1200
-      },
-      {
-        "name": "Rubber Parts",
-        "quantity": 12,
-        "unit_value": 50,
-        "total_value": 600
-      }
-    ]
-  },
-  {
-    "name": "Bettina IV",
-    "id": "bettina-iv",
-    "item_type": "Weapon",
-    "rarity": "Epic",
-    "workbench": "Weapon Bench",
-    "item_value": 18000,
-    "material_cost": 5300,
-    "profit": 12700,
-    "profit_percent": 239.62264150943398,
-    "materials": [
-      {
-        "name": "Metal Parts",
-        "quantity": 28,
-        "unit_value": 75,
-        "total_value": 2100
-      },
-      {
-        "name": "Heavy Gun Parts",
-        "quantity": 2,
-        "unit_value": 700,
-        "total_value": 1400
-      },
-      {
-        "name": "Steel Spring",
-        "quantity": 4,
-        "unit_value": 300,
-        "total_value": 1200
-      },
-      {
-        "name": "Rubber Parts",
-        "quantity": 12,
-        "unit_value": 50,
-        "total_value": 600
-      }
-    ]
-  },
-  {
-    "name": "Hullcracker III",
-    "id": "hullcracker-iii",
-    "item_type": "Weapon",
-    "rarity": "Epic",
-    "workbench": "Gunsmith III",
-    "item_value": 17000,
-    "material_cost": 4600,
-    "profit": 12400,
-    "profit_percent": 269.5652173913044,
-    "materials": [
-      {
-        "name": "Metal Parts",
-        "quantity": 28,
-        "unit_value": 75,
-        "total_value": 2100
-      },
-      {
-        "name": "Steel Spring",
-        "quantity": 4,
-        "unit_value": 300,
-        "total_value": 1200
-      },
-      {
-        "name": "Heavy Gun Parts",
-        "quantity": 1,
-        "unit_value": 700,
-        "total_value": 700
-      },
-      {
-        "name": "Rubber Parts",
-        "quantity": 12,
-        "unit_value": 50,
-        "total_value": 600
-      }
-    ]
-  },
-  {
-    "name": "Bettina III",
-    "id": "bettina-iii",
-    "item_type": "Weapon",
-    "rarity": "Epic",
-    "workbench": "Weapon Bench",
-    "item_value": 14000,
-    "material_cost": 3350,
-    "profit": 10650,
-    "profit_percent": 317.91044776119406,
-    "materials": [
-      {
-        "name": "Heavy Gun Parts",
-        "quantity": 2,
-        "unit_value": 700,
-        "total_value": 1400
-      },
-      {
-        "name": "Metal Parts",
-        "quantity": 14,
-        "unit_value": 75,
-        "total_value": 1050
-      },
-      {
-        "name": "Steel Spring",
-        "quantity": 2,
-        "unit_value": 300,
-        "total_value": 600
-      },
-      {
-        "name": "Rubber Parts",
-        "quantity": 6,
-        "unit_value": 50,
-        "total_value": 300
-      }
-    ]
-  },
-  {
-    "name": "Hullcracker II",
-    "id": "hullcracker-ii",
-    "item_type": "Weapon",
-    "rarity": "Epic",
-    "workbench": "Gunsmith III",
-    "item_value": 13000,
-    "material_cost": 3350,
-    "profit": 9650,
-    "profit_percent": 288.05970149253733,
-    "materials": [
-      {
-        "name": "Heavy Gun Parts",
-        "quantity": 2,
-        "unit_value": 700,
-        "total_value": 1400
-      },
-      {
-        "name": "Metal Parts",
-        "quantity": 14,
-        "unit_value": 75,
-        "total_value": 1050
-      },
-      {
-        "name": "Steel Spring",
-        "quantity": 2,
-        "unit_value": 300,
-        "total_value": 600
-      },
-      {
-        "name": "Rubber Parts",
-        "quantity": 6,
-        "unit_value": 50,
-        "total_value": 300
-      }
-    ]
-  },
-  {
-    "name": "Bettina II",
-    "id": "bettina-ii",
-    "item_type": "Weapon",
-    "rarity": "Epic",
-    "workbench": "Weapon Bench",
-    "item_value": 11000,
-    "material_cost": 3350,
-    "profit": 7650,
-    "profit_percent": 228.3582089552239,
-    "materials": [
-      {
-        "name": "Heavy Gun Parts",
-        "quantity": 2,
-        "unit_value": 700,
-        "total_value": 1400
-      },
-      {
-        "name": "Metal Parts",
-        "quantity": 14,
-        "unit_value": 75,
-        "total_value": 1050
-      },
-      {
-        "name": "Steel Spring",
-        "quantity": 2,
-        "unit_value": 300,
-        "total_value": 600
-      },
-      {
-        "name": "Rubber Parts",
-        "quantity": 6,
-        "unit_value": 50,
-        "total_value": 300
-      }
-    ]
-  },
-  {
     "name": "Torrente I",
     "id": "torrente-i",
     "item_type": "Weapon",
@@ -333,6 +111,198 @@
     ]
   },
   {
+    "name": "Arpeggio IV",
+    "id": "arpeggio-iv",
+    "item_type": "Weapon",
+    "rarity": "Uncommon",
+    "workbench": null,
+    "item_value": 15000,
+    "material_cost": 12215,
+    "profit": 2785,
+    "profit_percent": 22.799836266884977,
+    "materials": [
+      {
+        "name": "Metal Parts",
+        "quantity": 73,
+        "unit_value": 75,
+        "total_value": 5475
+      },
+      {
+        "name": "Simple Gun Parts",
+        "quantity": 13,
+        "unit_value": 330,
+        "total_value": 4290
+      },
+      {
+        "name": "Medium Gun Parts",
+        "quantity": 2,
+        "unit_value": 700,
+        "total_value": 1400
+      },
+      {
+        "name": "Rubber Parts",
+        "quantity": 21,
+        "unit_value": 50,
+        "total_value": 1050
+      }
+    ]
+  },
+  {
+    "name": "Extended Shotgun Mag III",
+    "id": "extended-shotgun-mag-iii",
+    "item_type": "Modification",
+    "rarity": "Rare",
+    "workbench": null,
+    "item_value": 5000,
+    "material_cost": 2550,
+    "profit": 2450,
+    "profit_percent": 96.07843137254902,
+    "materials": [
+      {
+        "name": "Steel Spring",
+        "quantity": 4,
+        "unit_value": 300,
+        "total_value": 1200
+      },
+      {
+        "name": "Metal Parts",
+        "quantity": 14,
+        "unit_value": 75,
+        "total_value": 1050
+      },
+      {
+        "name": "Rubber Parts",
+        "quantity": 6,
+        "unit_value": 50,
+        "total_value": 300
+      }
+    ]
+  },
+  {
+    "name": "Horizontal Grip",
+    "id": "horizontal-grip",
+    "item_type": "Modification",
+    "rarity": "Epic",
+    "workbench": null,
+    "item_value": 7000,
+    "material_cost": 5400,
+    "profit": 1600,
+    "profit_percent": 29.629629629629626,
+    "materials": [
+      {
+        "name": "Metal Parts",
+        "quantity": 28,
+        "unit_value": 75,
+        "total_value": 2100
+      },
+      {
+        "name": "Duct Tape",
+        "quantity": 5,
+        "unit_value": 300,
+        "total_value": 1500
+      },
+      {
+        "name": "Steel Spring",
+        "quantity": 4,
+        "unit_value": 300,
+        "total_value": 1200
+      },
+      {
+        "name": "Rubber Parts",
+        "quantity": 12,
+        "unit_value": 50,
+        "total_value": 600
+      }
+    ]
+  },
+  {
+    "name": "Arpeggio III",
+    "id": "arpeggio-iii",
+    "item_type": "Weapon",
+    "rarity": "Uncommon",
+    "workbench": null,
+    "item_value": 11500,
+    "material_cost": 10140,
+    "profit": 1360,
+    "profit_percent": 13.41222879684418,
+    "materials": [
+      {
+        "name": "Metal Parts",
+        "quantity": 66,
+        "unit_value": 75,
+        "total_value": 4950
+      },
+      {
+        "name": "Simple Gun Parts",
+        "quantity": 13,
+        "unit_value": 330,
+        "total_value": 4290
+      },
+      {
+        "name": "Rubber Parts",
+        "quantity": 18,
+        "unit_value": 50,
+        "total_value": 900
+      }
+    ]
+  },
+  {
+    "name": "Shotgun Silencer",
+    "id": "shotgun-silencer",
+    "item_type": "Mods",
+    "rarity": "Epic",
+    "workbench": null,
+    "item_value": 5000,
+    "material_cost": 3750,
+    "profit": 1250,
+    "profit_percent": 33.33333333333333,
+    "materials": [
+      {
+        "name": "Wires",
+        "quantity": 9,
+        "unit_value": 200,
+        "total_value": 1800
+      },
+      {
+        "name": "Metal Parts",
+        "quantity": 14,
+        "unit_value": 75,
+        "total_value": 1050
+      },
+      {
+        "name": "Steel Spring",
+        "quantity": 2,
+        "unit_value": 300,
+        "total_value": 600
+      },
+      {
+        "name": "Rubber Parts",
+        "quantity": 6,
+        "unit_value": 50,
+        "total_value": 300
+      }
+    ]
+  },
+  {
+    "name": "Unusable Weapon",
+    "id": "unusable-weapon",
+    "item_type": "Recyclable",
+    "rarity": "Rare",
+    "workbench": null,
+    "item_value": 2000,
+    "material_cost": 1650,
+    "profit": 350,
+    "profit_percent": 21.21212121212121,
+    "materials": [
+      {
+        "name": "Simple Gun Parts",
+        "quantity": 5,
+        "unit_value": 330,
+        "total_value": 1650
+      }
+    ]
+  },
+  {
     "name": "Defibrillator",
     "id": "defibrillator",
     "item_type": "Quick Use",
@@ -354,6 +324,25 @@
         "quantity": 3,
         "unit_value": 60,
         "total_value": 180
+      }
+    ]
+  },
+  {
+    "name": "Shotgun Parts",
+    "id": "shotgun-gun-parts",
+    "item_type": "Material",
+    "rarity": "Rare",
+    "workbench": null,
+    "item_value": 700,
+    "material_cost": 660,
+    "profit": 40,
+    "profit_percent": 6.0606060606060606,
+    "materials": [
+      {
+        "name": "Simple Gun Parts",
+        "quantity": 2,
+        "unit_value": 330,
+        "total_value": 660
       }
     ]
   },
@@ -908,6 +897,31 @@
     ]
   },
   {
+    "name": "Looting Mk. 1",
+    "id": "looting-mk-1",
+    "item_type": "Augment",
+    "rarity": "Uncommon",
+    "workbench": null,
+    "item_value": 640,
+    "material_cost": 660,
+    "profit": -20,
+    "profit_percent": -3.0303030303030303,
+    "materials": [
+      {
+        "name": "Plastic Parts",
+        "quantity": 6,
+        "unit_value": 60,
+        "total_value": 360
+      },
+      {
+        "name": "Rubber Parts",
+        "quantity": 6,
+        "unit_value": 50,
+        "total_value": 300
+      }
+    ]
+  },
+  {
     "name": "Tactical Mk. 1",
     "id": "tactical-mk-1",
     "item_type": "Augment",
@@ -1451,6 +1465,31 @@
     ]
   },
   {
+    "name": "Trigger Nade",
+    "id": "trigger-nade",
+    "item_type": "Quick Use",
+    "rarity": "Rare",
+    "workbench": null,
+    "item_value": 1000,
+    "material_cost": 1100,
+    "profit": -100,
+    "profit_percent": -9.090909090909092,
+    "materials": [
+      {
+        "name": "Chemicals",
+        "quantity": 12,
+        "unit_value": 50,
+        "total_value": 600
+      },
+      {
+        "name": "Processor",
+        "quantity": 1,
+        "unit_value": 500,
+        "total_value": 500
+      }
+    ]
+  },
+  {
     "name": "Door Blocker",
     "id": "door-blocker",
     "item_type": "Quick Use",
@@ -1563,11 +1602,135 @@
     ]
   },
   {
+    "name": "Kettle III",
+    "id": "kettle-iii",
+    "item_type": "Weapon",
+    "rarity": "Common",
+    "workbench": null,
+    "item_value": 3000,
+    "material_cost": 3130,
+    "profit": -130,
+    "profit_percent": -4.15335463258786,
+    "materials": [
+      {
+        "name": "Metal Parts",
+        "quantity": 24,
+        "unit_value": 75,
+        "total_value": 1800
+      },
+      {
+        "name": "Plastic Parts",
+        "quantity": 10,
+        "unit_value": 60,
+        "total_value": 600
+      },
+      {
+        "name": "Rubber Parts",
+        "quantity": 8,
+        "unit_value": 50,
+        "total_value": 400
+      },
+      {
+        "name": "Simple Gun Parts",
+        "quantity": 1,
+        "unit_value": 330,
+        "total_value": 330
+      }
+    ]
+  },
+  {
+    "name": "Energy Clip",
+    "id": "energy-ammo",
+    "item_type": "Ammunition",
+    "rarity": "Rare",
+    "workbench": "",
+    "item_value": 1000,
+    "material_cost": 1140,
+    "profit": -140,
+    "profit_percent": -12.280701754385964,
+    "materials": [
+      {
+        "name": "Advanced ARC Powercell",
+        "quantity": 1,
+        "unit_value": 640,
+        "total_value": 640
+      },
+      {
+        "name": "Battery",
+        "quantity": 2,
+        "unit_value": 250,
+        "total_value": 500
+      }
+    ]
+  },
+  {
     "name": "Compensator II",
     "id": "compensator-ii",
     "item_type": "Modification",
     "rarity": "Uncommon",
     "workbench": "Gunsmith II",
+    "item_value": 2000,
+    "material_cost": 2150,
+    "profit": -150,
+    "profit_percent": -6.976744186046512,
+    "materials": [
+      {
+        "name": "Metal Parts",
+        "quantity": 14,
+        "unit_value": 75,
+        "total_value": 1050
+      },
+      {
+        "name": "Wires",
+        "quantity": 4,
+        "unit_value": 200,
+        "total_value": 800
+      },
+      {
+        "name": "Rubber Parts",
+        "quantity": 6,
+        "unit_value": 50,
+        "total_value": 300
+      }
+    ]
+  },
+  {
+    "name": "Muzzle Brake II",
+    "id": "muzzle-brake-ii",
+    "item_type": "Modification",
+    "rarity": "Uncommon",
+    "workbench": null,
+    "item_value": 2000,
+    "material_cost": 2150,
+    "profit": -150,
+    "profit_percent": -6.976744186046512,
+    "materials": [
+      {
+        "name": "Metal Parts",
+        "quantity": 14,
+        "unit_value": 75,
+        "total_value": 1050
+      },
+      {
+        "name": "Wires",
+        "quantity": 4,
+        "unit_value": 200,
+        "total_value": 800
+      },
+      {
+        "name": "Rubber Parts",
+        "quantity": 6,
+        "unit_value": 50,
+        "total_value": 300
+      }
+    ]
+  },
+  {
+    "name": "Shotgun Choke II",
+    "id": "shotgun-choke-ii",
+    "item_type": "Modification",
+    "rarity": "Uncommon",
+    "workbench": null,
     "item_value": 2000,
     "material_cost": 2150,
     "profit": -150,
@@ -1867,11 +2030,73 @@
     ]
   },
   {
+    "name": "Angled Grip II",
+    "id": "angled-grip-ii",
+    "item_type": "Modification",
+    "rarity": "Uncommon",
+    "workbench": null,
+    "item_value": 2000,
+    "material_cost": 2250,
+    "profit": -250,
+    "profit_percent": -11.11111111111111,
+    "materials": [
+      {
+        "name": "Metal Parts",
+        "quantity": 14,
+        "unit_value": 75,
+        "total_value": 1050
+      },
+      {
+        "name": "Duct Tape",
+        "quantity": 3,
+        "unit_value": 300,
+        "total_value": 900
+      },
+      {
+        "name": "Rubber Parts",
+        "quantity": 6,
+        "unit_value": 50,
+        "total_value": 300
+      }
+    ]
+  },
+  {
     "name": "Extended Light Mag II",
     "id": "extended-light-mag-ii",
     "item_type": "Modification",
     "rarity": "Uncommon",
     "workbench": "Weapon Bench II",
+    "item_value": 2000,
+    "material_cost": 2250,
+    "profit": -250,
+    "profit_percent": -11.11111111111111,
+    "materials": [
+      {
+        "name": "Metal Parts",
+        "quantity": 14,
+        "unit_value": 75,
+        "total_value": 1050
+      },
+      {
+        "name": "Steel Spring",
+        "quantity": 3,
+        "unit_value": 300,
+        "total_value": 900
+      },
+      {
+        "name": "Rubber Parts",
+        "quantity": 6,
+        "unit_value": 50,
+        "total_value": 300
+      }
+    ]
+  },
+  {
+    "name": "Extended Medium Mag II",
+    "id": "extended-medium-mag-ii",
+    "item_type": "Modification",
+    "rarity": "Uncommon",
+    "workbench": null,
     "item_value": 2000,
     "material_cost": 2250,
     "profit": -250,
@@ -1916,6 +2141,68 @@
       },
       {
         "name": "Steel Spring",
+        "quantity": 3,
+        "unit_value": 300,
+        "total_value": 900
+      },
+      {
+        "name": "Rubber Parts",
+        "quantity": 6,
+        "unit_value": 50,
+        "total_value": 300
+      }
+    ]
+  },
+  {
+    "name": "Stable Stock II",
+    "id": "stable-stock-ii",
+    "item_type": "Modification",
+    "rarity": "Uncommon",
+    "workbench": null,
+    "item_value": 2000,
+    "material_cost": 2250,
+    "profit": -250,
+    "profit_percent": -11.11111111111111,
+    "materials": [
+      {
+        "name": "Metal Parts",
+        "quantity": 14,
+        "unit_value": 75,
+        "total_value": 1050
+      },
+      {
+        "name": "Duct Tape",
+        "quantity": 3,
+        "unit_value": 300,
+        "total_value": 900
+      },
+      {
+        "name": "Rubber Parts",
+        "quantity": 6,
+        "unit_value": 50,
+        "total_value": 300
+      }
+    ]
+  },
+  {
+    "name": "Vertical Grip II",
+    "id": "vertical-grip-ii",
+    "item_type": "Modification",
+    "rarity": "Uncommon",
+    "workbench": null,
+    "item_value": 2000,
+    "material_cost": 2250,
+    "profit": -250,
+    "profit_percent": -11.11111111111111,
+    "materials": [
+      {
+        "name": "Metal Parts",
+        "quantity": 14,
+        "unit_value": 75,
+        "total_value": 1050
+      },
+      {
+        "name": "Duct Tape",
         "quantity": 3,
         "unit_value": 300,
         "total_value": 900
@@ -2159,39 +2446,27 @@
     ]
   },
   {
-    "name": "Kettle IV",
-    "id": "kettle-iv",
-    "item_type": "Weapon",
-    "rarity": "Common",
-    "workbench": "Gunsmith I",
-    "item_value": 5000,
-    "material_cost": 5355,
-    "profit": -355,
-    "profit_percent": -6.629318394024277,
+    "name": "Heavy Gun Parts",
+    "id": "heavy-gun-parts",
+    "item_type": "Topside Material",
+    "rarity": "Rare",
+    "workbench": null,
+    "item_value": 700,
+    "material_cost": 1060,
+    "profit": -360,
+    "profit_percent": -33.9622641509434,
     "materials": [
       {
-        "name": "Kettle III",
-        "quantity": 1,
-        "unit_value": 3000,
-        "total_value": 3000
-      },
-      {
-        "name": "Metal Parts",
-        "quantity": 21,
-        "unit_value": 75,
-        "total_value": 1575
+        "name": "Simple Gun Parts",
+        "quantity": 2,
+        "unit_value": 330,
+        "total_value": 660
       },
       {
         "name": "Rubber Parts",
-        "quantity": 9,
+        "quantity": 8,
         "unit_value": 50,
-        "total_value": 450
-      },
-      {
-        "name": "Simple Gun Parts",
-        "quantity": 1,
-        "unit_value": 330,
-        "total_value": 330
+        "total_value": 400
       }
     ]
   },
@@ -2221,22 +2496,41 @@
     ]
   },
   {
-    "name": "Il Toro III",
-    "id": "il-toro-iiii",
-    "item_type": "Weapon",
-    "rarity": "Uncommon",
-    "workbench": "Weapon Bench",
-    "item_value": 10000,
-    "material_cost": 10400,
-    "profit": -400,
-    "profit_percent": -3.8461538461538463,
+    "name": "Light Gun Parts",
+    "id": "light-gun-parts",
+    "item_type": "Topside Material",
+    "rarity": "Rare",
+    "workbench": null,
+    "item_value": 700,
+    "material_cost": 1060,
+    "profit": -360,
+    "profit_percent": -33.9622641509434,
     "materials": [
       {
-        "name": "Il Toro II",
-        "quantity": 1,
-        "unit_value": 7000,
-        "total_value": 7000
+        "name": "Simple Gun Parts",
+        "quantity": 2,
+        "unit_value": 330,
+        "total_value": 660
       },
+      {
+        "name": "Rubber Parts",
+        "quantity": 8,
+        "unit_value": 50,
+        "total_value": 400
+      }
+    ]
+  },
+  {
+    "name": "Angled Grip III",
+    "id": "angled-grip-iii",
+    "item_type": "Modification",
+    "rarity": "Rare",
+    "workbench": null,
+    "item_value": 5000,
+    "material_cost": 5400,
+    "profit": -400,
+    "profit_percent": -7.4074074074074066,
+    "materials": [
       {
         "name": "Metal Parts",
         "quantity": 28,
@@ -2244,10 +2538,53 @@
         "total_value": 2100
       },
       {
-        "name": "Heavy Gun Parts",
-        "quantity": 1,
-        "unit_value": 700,
-        "total_value": 700
+        "name": "Duct Tape",
+        "quantity": 5,
+        "unit_value": 300,
+        "total_value": 1500
+      },
+      {
+        "name": "Steel Spring",
+        "quantity": 4,
+        "unit_value": 300,
+        "total_value": 1200
+      },
+      {
+        "name": "Rubber Parts",
+        "quantity": 12,
+        "unit_value": 50,
+        "total_value": 600
+      }
+    ]
+  },
+  {
+    "name": "Lightweight Stock",
+    "id": "lightweight-stock",
+    "item_type": "Modification",
+    "rarity": "Epic",
+    "workbench": null,
+    "item_value": 5000,
+    "material_cost": 5400,
+    "profit": -400,
+    "profit_percent": -7.4074074074074066,
+    "materials": [
+      {
+        "name": "Metal Parts",
+        "quantity": 28,
+        "unit_value": 75,
+        "total_value": 2100
+      },
+      {
+        "name": "Duct Tape",
+        "quantity": 5,
+        "unit_value": 300,
+        "total_value": 1500
+      },
+      {
+        "name": "Steel Spring",
+        "quantity": 4,
+        "unit_value": 300,
+        "total_value": 1200
       },
       {
         "name": "Rubber Parts",
@@ -2285,6 +2622,43 @@
         "quantity": 7,
         "unit_value": 200,
         "total_value": 1400
+      },
+      {
+        "name": "Steel Spring",
+        "quantity": 4,
+        "unit_value": 300,
+        "total_value": 1200
+      },
+      {
+        "name": "Rubber Parts",
+        "quantity": 12,
+        "unit_value": 50,
+        "total_value": 600
+      }
+    ]
+  },
+  {
+    "name": "Stable Stock III",
+    "id": "stable-stock-iii",
+    "item_type": "Modification",
+    "rarity": "Rare",
+    "workbench": null,
+    "item_value": 5000,
+    "material_cost": 5400,
+    "profit": -400,
+    "profit_percent": -7.4074074074074066,
+    "materials": [
+      {
+        "name": "Metal Parts",
+        "quantity": 28,
+        "unit_value": 75,
+        "total_value": 2100
+      },
+      {
+        "name": "Duct Tape",
+        "quantity": 5,
+        "unit_value": 300,
+        "total_value": 1500
       },
       {
         "name": "Steel Spring",
@@ -2443,6 +2817,43 @@
     ]
   },
   {
+    "name": "Looting MK. 3 (Survivor)",
+    "id": "looting-mk-3-survivor",
+    "item_type": "Augment",
+    "rarity": "Epic",
+    "workbench": null,
+    "item_value": 5000,
+    "material_cost": 5420,
+    "profit": -420,
+    "profit_percent": -7.7490774907749085,
+    "materials": [
+      {
+        "name": "Plastic Parts",
+        "quantity": 32,
+        "unit_value": 60,
+        "total_value": 1920
+      },
+      {
+        "name": "Processor",
+        "quantity": 3,
+        "unit_value": 500,
+        "total_value": 1500
+      },
+      {
+        "name": "Wires",
+        "quantity": 6,
+        "unit_value": 200,
+        "total_value": 1200
+      },
+      {
+        "name": "Rubber Parts",
+        "quantity": 16,
+        "unit_value": 50,
+        "total_value": 800
+      }
+    ]
+  },
+  {
     "name": "Tactical Mk.3 (Defensive)",
     "id": "tactical-mk3-defensive",
     "item_type": "Augment",
@@ -2548,11 +2959,122 @@
     ]
   },
   {
+    "name": "Kettle IV",
+    "id": "kettle-iv",
+    "item_type": "Weapon",
+    "rarity": "Common",
+    "workbench": "Gunsmith I",
+    "item_value": 5000,
+    "material_cost": 5485,
+    "profit": -485,
+    "profit_percent": -8.842297174111211,
+    "materials": [
+      {
+        "name": "Metal Parts",
+        "quantity": 45,
+        "unit_value": 75,
+        "total_value": 3375
+      },
+      {
+        "name": "Rubber Parts",
+        "quantity": 17,
+        "unit_value": 50,
+        "total_value": 850
+      },
+      {
+        "name": "Simple Gun Parts",
+        "quantity": 2,
+        "unit_value": 330,
+        "total_value": 660
+      },
+      {
+        "name": "Plastic Parts",
+        "quantity": 10,
+        "unit_value": 60,
+        "total_value": 600
+      }
+    ]
+  },
+  {
     "name": "Compensator III",
     "id": "compensator-iii",
     "item_type": "Modification",
     "rarity": "Rare",
     "workbench": "Gunsmith III",
+    "item_value": 5000,
+    "material_cost": 5500,
+    "profit": -500,
+    "profit_percent": -9.090909090909092,
+    "materials": [
+      {
+        "name": "Metal Parts",
+        "quantity": 28,
+        "unit_value": 75,
+        "total_value": 2100
+      },
+      {
+        "name": "Wires",
+        "quantity": 8,
+        "unit_value": 200,
+        "total_value": 1600
+      },
+      {
+        "name": "Steel Spring",
+        "quantity": 4,
+        "unit_value": 300,
+        "total_value": 1200
+      },
+      {
+        "name": "Rubber Parts",
+        "quantity": 12,
+        "unit_value": 50,
+        "total_value": 600
+      }
+    ]
+  },
+  {
+    "name": "Extended Barrel",
+    "id": "extended-barrel",
+    "item_type": "Modification",
+    "rarity": "Epic",
+    "workbench": null,
+    "item_value": 5000,
+    "material_cost": 5500,
+    "profit": -500,
+    "profit_percent": -9.090909090909092,
+    "materials": [
+      {
+        "name": "Metal Parts",
+        "quantity": 28,
+        "unit_value": 75,
+        "total_value": 2100
+      },
+      {
+        "name": "Wires",
+        "quantity": 8,
+        "unit_value": 200,
+        "total_value": 1600
+      },
+      {
+        "name": "Steel Spring",
+        "quantity": 4,
+        "unit_value": 300,
+        "total_value": 1200
+      },
+      {
+        "name": "Rubber Parts",
+        "quantity": 12,
+        "unit_value": 50,
+        "total_value": 600
+      }
+    ]
+  },
+  {
+    "name": "Muzzle Brake III",
+    "id": "muzzle-brake-iii",
+    "item_type": "Modification",
+    "rarity": "Rare",
+    "workbench": null,
     "item_value": 5000,
     "material_cost": 5500,
     "profit": -500,
@@ -2612,6 +3134,80 @@
         "quantity": 5,
         "unit_value": 300,
         "total_value": 1500
+      },
+      {
+        "name": "Steel Spring",
+        "quantity": 4,
+        "unit_value": 300,
+        "total_value": 1200
+      },
+      {
+        "name": "Rubber Parts",
+        "quantity": 12,
+        "unit_value": 50,
+        "total_value": 600
+      }
+    ]
+  },
+  {
+    "name": "Shotgun Choke III",
+    "id": "shotgun-choke-iii",
+    "item_type": "Modification",
+    "rarity": "Rare",
+    "workbench": null,
+    "item_value": 5000,
+    "material_cost": 5500,
+    "profit": -500,
+    "profit_percent": -9.090909090909092,
+    "materials": [
+      {
+        "name": "Metal Parts",
+        "quantity": 28,
+        "unit_value": 75,
+        "total_value": 2100
+      },
+      {
+        "name": "Wires",
+        "quantity": 8,
+        "unit_value": 200,
+        "total_value": 1600
+      },
+      {
+        "name": "Steel Spring",
+        "quantity": 4,
+        "unit_value": 300,
+        "total_value": 1200
+      },
+      {
+        "name": "Rubber Parts",
+        "quantity": 12,
+        "unit_value": 50,
+        "total_value": 600
+      }
+    ]
+  },
+  {
+    "name": "Silencer II",
+    "id": "silencer-ii",
+    "item_type": "Modification",
+    "rarity": "Rare",
+    "workbench": null,
+    "item_value": 5000,
+    "material_cost": 5500,
+    "profit": -500,
+    "profit_percent": -9.090909090909092,
+    "materials": [
+      {
+        "name": "Metal Parts",
+        "quantity": 28,
+        "unit_value": 75,
+        "total_value": 2100
+      },
+      {
+        "name": "Wires",
+        "quantity": 8,
+        "unit_value": 200,
+        "total_value": 1600
       },
       {
         "name": "Steel Spring",
@@ -2889,6 +3485,37 @@
     ]
   },
   {
+    "name": "Il Toro II",
+    "id": "il-toro-ii",
+    "item_type": "Weapon",
+    "rarity": "Uncommon",
+    "workbench": null,
+    "item_value": 7000,
+    "material_cost": 7710,
+    "profit": -710,
+    "profit_percent": -9.208819714656292,
+    "materials": [
+      {
+        "name": "Metal Parts",
+        "quantity": 56,
+        "unit_value": 75,
+        "total_value": 4200
+      },
+      {
+        "name": "Simple Gun Parts",
+        "quantity": 7,
+        "unit_value": 330,
+        "total_value": 2310
+      },
+      {
+        "name": "Rubber Parts",
+        "quantity": 24,
+        "unit_value": 50,
+        "total_value": 1200
+      }
+    ]
+  },
+  {
     "name": "Osprey II",
     "id": "osprey-ii",
     "item_type": "Weapon",
@@ -2959,86 +3586,6 @@
         "quantity": 2,
         "unit_value": 330,
         "total_value": 660
-      }
-    ]
-  },
-  {
-    "name": "Il Toro IV",
-    "id": "il-toro-iv",
-    "item_type": "Weapon",
-    "rarity": "Uncommon",
-    "workbench": "Weapon Bench",
-    "item_value": 13000,
-    "material_cost": 13800,
-    "profit": -800,
-    "profit_percent": -5.797101449275362,
-    "materials": [
-      {
-        "name": "Il Toro II",
-        "quantity": 1,
-        "unit_value": 7000,
-        "total_value": 7000
-      },
-      {
-        "name": "Metal Parts",
-        "quantity": 56,
-        "unit_value": 75,
-        "total_value": 4200
-      },
-      {
-        "name": "Heavy Gun Parts",
-        "quantity": 2,
-        "unit_value": 700,
-        "total_value": 1400
-      },
-      {
-        "name": "Rubber Parts",
-        "quantity": 24,
-        "unit_value": 50,
-        "total_value": 1200
-      }
-    ]
-  },
-  {
-    "name": "Bettina I",
-    "id": "bettina-i",
-    "item_type": "Weapon",
-    "rarity": "Epic",
-    "workbench": "Gunsmith III",
-    "item_value": 8000,
-    "material_cost": 8850,
-    "profit": -850,
-    "profit_percent": -9.6045197740113,
-    "materials": [
-      {
-        "name": "Metal Parts",
-        "quantity": 42,
-        "unit_value": 75,
-        "total_value": 3150
-      },
-      {
-        "name": "Heavy Gun Parts",
-        "quantity": 3,
-        "unit_value": 700,
-        "total_value": 2100
-      },
-      {
-        "name": "Steel Spring",
-        "quantity": 6,
-        "unit_value": 300,
-        "total_value": 1800
-      },
-      {
-        "name": "Rubber Parts",
-        "quantity": 18,
-        "unit_value": 50,
-        "total_value": 900
-      },
-      {
-        "name": "Canister",
-        "quantity": 3,
-        "unit_value": 300,
-        "total_value": 900
       }
     ]
   },
@@ -3166,33 +3713,33 @@
     ]
   },
   {
-    "name": "Complex Gun Parts",
-    "id": "complex-gun-parts",
-    "item_type": "Topside Material",
-    "rarity": "Epic",
-    "workbench": "Refiner",
-    "item_value": 3000,
-    "material_cost": 4200,
-    "profit": -1200,
-    "profit_percent": -28.57142857142857,
+    "name": "Fireworks Box",
+    "id": "fireworks-box",
+    "item_type": "Quick Use",
+    "rarity": "Rare",
+    "workbench": null,
+    "item_value": 2000,
+    "material_cost": 3120,
+    "profit": -1120,
+    "profit_percent": -35.8974358974359,
     "materials": [
       {
-        "name": "Light Gun Parts",
-        "quantity": 2,
-        "unit_value": 700,
-        "total_value": 1400
+        "name": "Pop Trigger",
+        "quantity": 3,
+        "unit_value": 640,
+        "total_value": 1920
       },
       {
-        "name": "Medium Gun Parts",
-        "quantity": 2,
-        "unit_value": 700,
-        "total_value": 1400
+        "name": "Chemicals",
+        "quantity": 12,
+        "unit_value": 50,
+        "total_value": 600
       },
       {
-        "name": "Heavy Gun Parts",
+        "name": "Oil",
         "quantity": 2,
-        "unit_value": 700,
-        "total_value": 1400
+        "unit_value": 300,
+        "total_value": 600
       }
     ]
   },
@@ -3236,6 +3783,74 @@
         "quantity": 24,
         "unit_value": 50,
         "total_value": 1200
+      }
+    ]
+  },
+  {
+    "name": "Raider Hatch Key",
+    "id": "raider-hatch-key",
+    "item_type": "Key",
+    "rarity": "Rare",
+    "workbench": null,
+    "item_value": 2000,
+    "material_cost": 3460,
+    "profit": -1460,
+    "profit_percent": -42.19653179190752,
+    "materials": [
+      {
+        "name": "Sensors",
+        "quantity": 3,
+        "unit_value": 500,
+        "total_value": 1500
+      },
+      {
+        "name": "Plastic Parts",
+        "quantity": 16,
+        "unit_value": 60,
+        "total_value": 960
+      },
+      {
+        "name": "Wires",
+        "quantity": 3,
+        "unit_value": 200,
+        "total_value": 600
+      },
+      {
+        "name": "Rubber Parts",
+        "quantity": 8,
+        "unit_value": 50,
+        "total_value": 400
+      }
+    ]
+  },
+  {
+    "name": "Il Toro III",
+    "id": "il-toro-iiii",
+    "item_type": "Weapon",
+    "rarity": "Uncommon",
+    "workbench": "Weapon Bench",
+    "item_value": 10000,
+    "material_cost": 11470,
+    "profit": -1470,
+    "profit_percent": -12.816041848299914,
+    "materials": [
+      {
+        "name": "Metal Parts",
+        "quantity": 84,
+        "unit_value": 75,
+        "total_value": 6300
+      },
+      {
+        "name": "Simple Gun Parts",
+        "quantity": 9,
+        "unit_value": 330,
+        "total_value": 2970
+      },
+      {
+        "name": "Rubber Parts",
+        "quantity": 44,
+        "unit_value": 50,
+        "total_value": 2200
       }
     ]
   },
@@ -3425,51 +4040,70 @@
     ]
   },
   {
-    "name": "Hullcracker I",
-    "id": "hullcracker-i",
-    "item_type": "Weapon",
-    "rarity": "Epic",
-    "workbench": "Weapon Bench",
-    "item_value": 10000,
-    "material_cost": 11950,
-    "profit": -1950,
-    "profit_percent": -16.317991631799163,
+    "name": "Agave Juice",
+    "id": "agave-juice",
+    "item_type": "Consumable",
+    "rarity": "Common",
+    "workbench": null,
+    "item_value": 123,
+    "material_cost": 2000,
+    "profit": -1877,
+    "profit_percent": -93.85,
     "materials": [
       {
-        "name": "ARC Alloy",
-        "quantity": 16,
-        "unit_value": 200,
-        "total_value": 3200
+        "name": "Agave",
+        "quantity": 1,
+        "unit_value": 1000,
+        "total_value": 1000
       },
       {
-        "name": "Exodus Modules",
+        "name": "Empty Wine Bottle",
         "quantity": 1,
-        "unit_value": 2750,
-        "total_value": 2750
-      },
+        "unit_value": 1000,
+        "total_value": 1000
+      }
+    ]
+  },
+  {
+    "name": "Bettina I",
+    "id": "bettina-i",
+    "item_type": "Weapon",
+    "rarity": "Epic",
+    "workbench": "Gunsmith III",
+    "item_value": 8000,
+    "material_cost": 9930,
+    "profit": -1930,
+    "profit_percent": -19.436052366565963,
+    "materials": [
       {
         "name": "Metal Parts",
-        "quantity": 28,
+        "quantity": 42,
         "unit_value": 75,
-        "total_value": 2100
-      },
-      {
-        "name": "Heavy Gun Parts",
-        "quantity": 3,
-        "unit_value": 700,
-        "total_value": 2100
-      },
-      {
-        "name": "Steel Spring",
-        "quantity": 4,
-        "unit_value": 300,
-        "total_value": 1200
+        "total_value": 3150
       },
       {
         "name": "Rubber Parts",
-        "quantity": 12,
+        "quantity": 42,
         "unit_value": 50,
-        "total_value": 600
+        "total_value": 2100
+      },
+      {
+        "name": "Simple Gun Parts",
+        "quantity": 6,
+        "unit_value": 330,
+        "total_value": 1980
+      },
+      {
+        "name": "Steel Spring",
+        "quantity": 6,
+        "unit_value": 300,
+        "total_value": 1800
+      },
+      {
+        "name": "Canister",
+        "quantity": 3,
+        "unit_value": 300,
+        "total_value": 900
       }
     ]
   },
@@ -3499,51 +4133,58 @@
     ]
   },
   {
-    "name": "Vulcano I",
-    "id": "vulcano-i",
-    "item_type": "Weapon",
-    "rarity": "Epic",
-    "workbench": "Weapon Bench 3",
-    "item_value": 10000,
-    "material_cost": 11950,
-    "profit": -1950,
-    "profit_percent": -16.317991631799163,
+    "name": "Flame Spray",
+    "id": "flame-spray",
+    "item_type": "Quick use",
+    "rarity": "Uncommon",
+    "workbench": null,
+    "item_value": 640,
+    "material_cost": 2640,
+    "profit": -2000,
+    "profit_percent": -75.75757575757575,
     "materials": [
       {
-        "name": "ARC Alloy",
-        "quantity": 16,
-        "unit_value": 200,
-        "total_value": 3200
+        "name": "Air Freshener",
+        "quantity": 1,
+        "unit_value": 2000,
+        "total_value": 2000
       },
       {
-        "name": "Exodus Modules",
+        "name": "Fireball Burner",
         "quantity": 1,
-        "unit_value": 2750,
-        "total_value": 2750
-      },
+        "unit_value": 640,
+        "total_value": 640
+      }
+    ]
+  },
+  {
+    "name": "Il Toro IV",
+    "id": "il-toro-iv",
+    "item_type": "Weapon",
+    "rarity": "Uncommon",
+    "workbench": "Weapon Bench",
+    "item_value": 13000,
+    "material_cost": 15230,
+    "profit": -2230,
+    "profit_percent": -14.64215364412344,
+    "materials": [
       {
         "name": "Metal Parts",
-        "quantity": 28,
+        "quantity": 112,
         "unit_value": 75,
-        "total_value": 2100
+        "total_value": 8400
       },
       {
-        "name": "Heavy Gun Parts",
-        "quantity": 3,
-        "unit_value": 700,
-        "total_value": 2100
-      },
-      {
-        "name": "Steel Spring",
-        "quantity": 4,
-        "unit_value": 300,
-        "total_value": 1200
+        "name": "Simple Gun Parts",
+        "quantity": 11,
+        "unit_value": 330,
+        "total_value": 3630
       },
       {
         "name": "Rubber Parts",
-        "quantity": 12,
+        "quantity": 64,
         "unit_value": 50,
-        "total_value": 600
+        "total_value": 3200
       }
     ]
   },
@@ -3593,55 +4234,6 @@
         "quantity": 24,
         "unit_value": 50,
         "total_value": 1200
-      }
-    ]
-  },
-  {
-    "name": "Vulcano II",
-    "id": "vulcano-ii",
-    "item_type": "Weapon",
-    "rarity": "Epic",
-    "workbench": "Gunsmith III",
-    "item_value": 13000,
-    "material_cost": 15300,
-    "profit": -2300,
-    "profit_percent": -15.032679738562091,
-    "materials": [
-      {
-        "name": "Heavy Gun Parts",
-        "quantity": 5,
-        "unit_value": 700,
-        "total_value": 3500
-      },
-      {
-        "name": "ARC Alloy",
-        "quantity": 16,
-        "unit_value": 200,
-        "total_value": 3200
-      },
-      {
-        "name": "Metal Parts",
-        "quantity": 42,
-        "unit_value": 75,
-        "total_value": 3150
-      },
-      {
-        "name": "Exodus Modules",
-        "quantity": 1,
-        "unit_value": 2750,
-        "total_value": 2750
-      },
-      {
-        "name": "Steel Spring",
-        "quantity": 6,
-        "unit_value": 300,
-        "total_value": 1800
-      },
-      {
-        "name": "Rubber Parts",
-        "quantity": 18,
-        "unit_value": 50,
-        "total_value": 900
       }
     ]
   },
@@ -3775,51 +4367,76 @@
     ]
   },
   {
-    "name": "Vulcano III",
-    "id": "vulcano-iii",
+    "name": "Complex Gun Parts",
+    "id": "complex-gun-parts",
+    "item_type": "Topside Material",
+    "rarity": "Epic",
+    "workbench": "Refiner",
+    "item_value": 3000,
+    "material_cost": 5640,
+    "profit": -2640,
+    "profit_percent": -46.808510638297875,
+    "materials": [
+      {
+        "name": "Simple Gun Parts",
+        "quantity": 8,
+        "unit_value": 330,
+        "total_value": 2640
+      },
+      {
+        "name": "Rubber Parts",
+        "quantity": 32,
+        "unit_value": 50,
+        "total_value": 1600
+      },
+      {
+        "name": "Medium Gun Parts",
+        "quantity": 2,
+        "unit_value": 700,
+        "total_value": 1400
+      }
+    ]
+  },
+  {
+    "name": "Bettina II",
+    "id": "bettina-ii",
     "item_type": "Weapon",
     "rarity": "Epic",
     "workbench": "Weapon Bench",
-    "item_value": 17000,
-    "material_cost": 19900,
-    "profit": -2900,
-    "profit_percent": -14.572864321608039,
+    "item_value": 11000,
+    "material_cost": 14000,
+    "profit": -3000,
+    "profit_percent": -21.428571428571427,
     "materials": [
       {
         "name": "Metal Parts",
-        "quantity": 70,
+        "quantity": 56,
         "unit_value": 75,
-        "total_value": 5250
-      },
-      {
-        "name": "Heavy Gun Parts",
-        "quantity": 6,
-        "unit_value": 700,
         "total_value": 4200
       },
       {
-        "name": "ARC Alloy",
-        "quantity": 16,
-        "unit_value": 200,
+        "name": "Simple Gun Parts",
+        "quantity": 10,
+        "unit_value": 330,
+        "total_value": 3300
+      },
+      {
+        "name": "Rubber Parts",
+        "quantity": 64,
+        "unit_value": 50,
         "total_value": 3200
       },
       {
         "name": "Steel Spring",
-        "quantity": 10,
+        "quantity": 8,
         "unit_value": 300,
-        "total_value": 3000
+        "total_value": 2400
       },
       {
-        "name": "Exodus Modules",
-        "quantity": 1,
-        "unit_value": 2750,
-        "total_value": 2750
-      },
-      {
-        "name": "Rubber Parts",
-        "quantity": 30,
-        "unit_value": 50,
-        "total_value": 1500
+        "name": "Canister",
+        "quantity": 3,
+        "unit_value": 300,
+        "total_value": 900
       }
     ]
   },
@@ -3857,6 +4474,104 @@
         "quantity": 36,
         "unit_value": 50,
         "total_value": 1800
+      }
+    ]
+  },
+  {
+    "name": "Hullcracker I",
+    "id": "hullcracker-i",
+    "item_type": "Weapon",
+    "rarity": "Epic",
+    "workbench": "Weapon Bench",
+    "item_value": 10000,
+    "material_cost": 13030,
+    "profit": -3030,
+    "profit_percent": -23.254029163468918,
+    "materials": [
+      {
+        "name": "ARC Alloy",
+        "quantity": 16,
+        "unit_value": 200,
+        "total_value": 3200
+      },
+      {
+        "name": "Exodus Modules",
+        "quantity": 1,
+        "unit_value": 2750,
+        "total_value": 2750
+      },
+      {
+        "name": "Metal Parts",
+        "quantity": 28,
+        "unit_value": 75,
+        "total_value": 2100
+      },
+      {
+        "name": "Simple Gun Parts",
+        "quantity": 6,
+        "unit_value": 330,
+        "total_value": 1980
+      },
+      {
+        "name": "Rubber Parts",
+        "quantity": 36,
+        "unit_value": 50,
+        "total_value": 1800
+      },
+      {
+        "name": "Steel Spring",
+        "quantity": 4,
+        "unit_value": 300,
+        "total_value": 1200
+      }
+    ]
+  },
+  {
+    "name": "Vulcano I",
+    "id": "vulcano-i",
+    "item_type": "Weapon",
+    "rarity": "Epic",
+    "workbench": "Weapon Bench 3",
+    "item_value": 10000,
+    "material_cost": 13030,
+    "profit": -3030,
+    "profit_percent": -23.254029163468918,
+    "materials": [
+      {
+        "name": "ARC Alloy",
+        "quantity": 16,
+        "unit_value": 200,
+        "total_value": 3200
+      },
+      {
+        "name": "Exodus Modules",
+        "quantity": 1,
+        "unit_value": 2750,
+        "total_value": 2750
+      },
+      {
+        "name": "Metal Parts",
+        "quantity": 28,
+        "unit_value": 75,
+        "total_value": 2100
+      },
+      {
+        "name": "Simple Gun Parts",
+        "quantity": 6,
+        "unit_value": 330,
+        "total_value": 1980
+      },
+      {
+        "name": "Rubber Parts",
+        "quantity": 36,
+        "unit_value": 50,
+        "total_value": 1800
+      },
+      {
+        "name": "Steel Spring",
+        "quantity": 4,
+        "unit_value": 300,
+        "total_value": 1200
       }
     ]
   },
@@ -3910,33 +4625,64 @@
     ]
   },
   {
-    "name": "Vulcano IV",
-    "id": "vulcano-iv",
+    "name": "Bettina III",
+    "id": "bettina-iii",
     "item_type": "Weapon",
     "rarity": "Epic",
-    "workbench": "Gunsmith III",
-    "item_value": 22000,
-    "material_cost": 25900,
-    "profit": -3900,
-    "profit_percent": -15.057915057915059,
+    "workbench": "Weapon Bench",
+    "item_value": 14000,
+    "material_cost": 18070,
+    "profit": -4070,
+    "profit_percent": -22.523519645821803,
     "materials": [
       {
         "name": "Metal Parts",
-        "quantity": 98,
+        "quantity": 70,
         "unit_value": 75,
-        "total_value": 7350
+        "total_value": 5250
       },
       {
-        "name": "Heavy Gun Parts",
-        "quantity": 9,
-        "unit_value": 700,
-        "total_value": 6300
+        "name": "Simple Gun Parts",
+        "quantity": 14,
+        "unit_value": 330,
+        "total_value": 4620
+      },
+      {
+        "name": "Rubber Parts",
+        "quantity": 86,
+        "unit_value": 50,
+        "total_value": 4300
       },
       {
         "name": "Steel Spring",
-        "quantity": 14,
+        "quantity": 10,
         "unit_value": 300,
-        "total_value": 4200
+        "total_value": 3000
+      },
+      {
+        "name": "Canister",
+        "quantity": 3,
+        "unit_value": 300,
+        "total_value": 900
+      }
+    ]
+  },
+  {
+    "name": "Hullcracker II",
+    "id": "hullcracker-ii",
+    "item_type": "Weapon",
+    "rarity": "Epic",
+    "workbench": "Gunsmith III",
+    "item_value": 13000,
+    "material_cost": 17100,
+    "profit": -4100,
+    "profit_percent": -23.976608187134502,
+    "materials": [
+      {
+        "name": "Simple Gun Parts",
+        "quantity": 10,
+        "unit_value": 330,
+        "total_value": 3300
       },
       {
         "name": "ARC Alloy",
@@ -3945,16 +4691,77 @@
         "total_value": 3200
       },
       {
+        "name": "Metal Parts",
+        "quantity": 42,
+        "unit_value": 75,
+        "total_value": 3150
+      },
+      {
+        "name": "Rubber Parts",
+        "quantity": 58,
+        "unit_value": 50,
+        "total_value": 2900
+      },
+      {
         "name": "Exodus Modules",
         "quantity": 1,
         "unit_value": 2750,
         "total_value": 2750
       },
       {
-        "name": "Rubber Parts",
+        "name": "Steel Spring",
+        "quantity": 6,
+        "unit_value": 300,
+        "total_value": 1800
+      }
+    ]
+  },
+  {
+    "name": "Vulcano II",
+    "id": "vulcano-ii",
+    "item_type": "Weapon",
+    "rarity": "Epic",
+    "workbench": "Gunsmith III",
+    "item_value": 13000,
+    "material_cost": 17100,
+    "profit": -4100,
+    "profit_percent": -23.976608187134502,
+    "materials": [
+      {
+        "name": "Simple Gun Parts",
+        "quantity": 10,
+        "unit_value": 330,
+        "total_value": 3300
+      },
+      {
+        "name": "ARC Alloy",
+        "quantity": 16,
+        "unit_value": 200,
+        "total_value": 3200
+      },
+      {
+        "name": "Metal Parts",
         "quantity": 42,
+        "unit_value": 75,
+        "total_value": 3150
+      },
+      {
+        "name": "Rubber Parts",
+        "quantity": 58,
         "unit_value": 50,
-        "total_value": 2100
+        "total_value": 2900
+      },
+      {
+        "name": "Exodus Modules",
+        "quantity": 1,
+        "unit_value": 2750,
+        "total_value": 2750
+      },
+      {
+        "name": "Steel Spring",
+        "quantity": 6,
+        "unit_value": 300,
+        "total_value": 1800
       }
     ]
   },
@@ -4004,6 +4811,104 @@
         "quantity": 3,
         "unit_value": 500,
         "total_value": 1500
+      }
+    ]
+  },
+  {
+    "name": "Hullcracker III",
+    "id": "hullcracker-iii",
+    "item_type": "Weapon",
+    "rarity": "Epic",
+    "workbench": "Gunsmith III",
+    "item_value": 17000,
+    "material_cost": 22060,
+    "profit": -5060,
+    "profit_percent": -22.937443336355397,
+    "materials": [
+      {
+        "name": "Metal Parts",
+        "quantity": 70,
+        "unit_value": 75,
+        "total_value": 5250
+      },
+      {
+        "name": "Simple Gun Parts",
+        "quantity": 12,
+        "unit_value": 330,
+        "total_value": 3960
+      },
+      {
+        "name": "Rubber Parts",
+        "quantity": 78,
+        "unit_value": 50,
+        "total_value": 3900
+      },
+      {
+        "name": "ARC Alloy",
+        "quantity": 16,
+        "unit_value": 200,
+        "total_value": 3200
+      },
+      {
+        "name": "Steel Spring",
+        "quantity": 10,
+        "unit_value": 300,
+        "total_value": 3000
+      },
+      {
+        "name": "Exodus Modules",
+        "quantity": 1,
+        "unit_value": 2750,
+        "total_value": 2750
+      }
+    ]
+  },
+  {
+    "name": "Vulcano III",
+    "id": "vulcano-iii",
+    "item_type": "Weapon",
+    "rarity": "Epic",
+    "workbench": "Weapon Bench",
+    "item_value": 17000,
+    "material_cost": 22060,
+    "profit": -5060,
+    "profit_percent": -22.937443336355397,
+    "materials": [
+      {
+        "name": "Metal Parts",
+        "quantity": 70,
+        "unit_value": 75,
+        "total_value": 5250
+      },
+      {
+        "name": "Simple Gun Parts",
+        "quantity": 12,
+        "unit_value": 330,
+        "total_value": 3960
+      },
+      {
+        "name": "Rubber Parts",
+        "quantity": 78,
+        "unit_value": 50,
+        "total_value": 3900
+      },
+      {
+        "name": "ARC Alloy",
+        "quantity": 16,
+        "unit_value": 200,
+        "total_value": 3200
+      },
+      {
+        "name": "Steel Spring",
+        "quantity": 10,
+        "unit_value": 300,
+        "total_value": 3000
+      },
+      {
+        "name": "Exodus Modules",
+        "quantity": 1,
+        "unit_value": 2750,
+        "total_value": 2750
       }
     ]
   },
@@ -4193,15 +5098,58 @@
     ]
   },
   {
+    "name": "Bettina IV",
+    "id": "bettina-iv",
+    "item_type": "Weapon",
+    "rarity": "Epic",
+    "workbench": "Weapon Bench",
+    "item_value": 18000,
+    "material_cost": 24090,
+    "profit": -6090,
+    "profit_percent": -25.280199252801992,
+    "materials": [
+      {
+        "name": "Metal Parts",
+        "quantity": 98,
+        "unit_value": 75,
+        "total_value": 7350
+      },
+      {
+        "name": "Simple Gun Parts",
+        "quantity": 18,
+        "unit_value": 330,
+        "total_value": 5940
+      },
+      {
+        "name": "Rubber Parts",
+        "quantity": 114,
+        "unit_value": 50,
+        "total_value": 5700
+      },
+      {
+        "name": "Steel Spring",
+        "quantity": 14,
+        "unit_value": 300,
+        "total_value": 4200
+      },
+      {
+        "name": "Canister",
+        "quantity": 3,
+        "unit_value": 300,
+        "total_value": 900
+      }
+    ]
+  },
+  {
     "name": "Anvil III",
     "id": "anvil-iii",
     "item_type": "Weapon",
     "rarity": "Uncommon",
     "workbench": "Weapon Bench",
     "item_value": 10000,
-    "material_cost": 16110,
-    "profit": -6110,
-    "profit_percent": -37.92675356921167,
+    "material_cost": 16470,
+    "profit": -6470,
+    "profit_percent": -39.28354584092289,
     "materials": [
       {
         "name": "Metal Parts",
@@ -4217,21 +5165,15 @@
       },
       {
         "name": "Simple Gun Parts",
-        "quantity": 7,
+        "quantity": 9,
         "unit_value": 330,
-        "total_value": 2310
+        "total_value": 2970
       },
       {
         "name": "Rubber Parts",
-        "quantity": 36,
+        "quantity": 44,
         "unit_value": 50,
-        "total_value": 1800
-      },
-      {
-        "name": "Heavy Gun Parts",
-        "quantity": 1,
-        "unit_value": 700,
-        "total_value": 700
+        "total_value": 2200
       }
     ]
   },
@@ -4242,9 +5184,9 @@
     "rarity": "Uncommon",
     "workbench": "Weapon Bench I",
     "item_value": 10000,
-    "material_cost": 16125,
-    "profit": -6125,
-    "profit_percent": -37.98449612403101,
+    "material_cost": 16485,
+    "profit": -6485,
+    "profit_percent": -39.33879284197756,
     "materials": [
       {
         "name": "Metal Parts",
@@ -4260,76 +5202,15 @@
       },
       {
         "name": "Rubber Parts",
-        "quantity": 39,
+        "quantity": 47,
         "unit_value": 50,
-        "total_value": 1950
+        "total_value": 2350
       },
       {
         "name": "Simple Gun Parts",
-        "quantity": 5,
+        "quantity": 7,
         "unit_value": 330,
-        "total_value": 1650
-      },
-      {
-        "name": "Light Gun Parts",
-        "quantity": 1,
-        "unit_value": 700,
-        "total_value": 700
-      }
-    ]
-  },
-  {
-    "name": "Bobcat I",
-    "id": "bobcat-i",
-    "item_type": "Weapon",
-    "rarity": "Epic",
-    "workbench": "Weapon Bench 3",
-    "item_value": 13000,
-    "material_cost": 19700,
-    "profit": -6700,
-    "profit_percent": -34.01015228426396,
-    "materials": [
-      {
-        "name": "Exodus Modules",
-        "quantity": 2,
-        "unit_value": 2750,
-        "total_value": 5500
-      },
-      {
-        "name": "Bobcat Blueprint",
-        "quantity": 1,
-        "unit_value": 5000,
-        "total_value": 5000
-      },
-      {
-        "name": "ARC Alloy",
-        "quantity": 16,
-        "unit_value": 200,
-        "total_value": 3200
-      },
-      {
-        "name": "Metal Parts",
-        "quantity": 28,
-        "unit_value": 75,
-        "total_value": 2100
-      },
-      {
-        "name": "Light Gun Parts",
-        "quantity": 3,
-        "unit_value": 700,
-        "total_value": 2100
-      },
-      {
-        "name": "Steel Spring",
-        "quantity": 4,
-        "unit_value": 300,
-        "total_value": 1200
-      },
-      {
-        "name": "Rubber Parts",
-        "quantity": 12,
-        "unit_value": 50,
-        "total_value": 600
+        "total_value": 2310
       }
     ]
   },
@@ -4377,15 +5258,205 @@
     ]
   },
   {
+    "name": "Hullcracker IV ",
+    "id": "hullcracker-iv",
+    "item_type": "Weapon",
+    "rarity": "Epic",
+    "workbench": "Gunsmith III",
+    "item_value": 22000,
+    "material_cost": 29140,
+    "profit": -7140,
+    "profit_percent": -24.502402196293755,
+    "materials": [
+      {
+        "name": "Metal Parts",
+        "quantity": 98,
+        "unit_value": 75,
+        "total_value": 7350
+      },
+      {
+        "name": "Simple Gun Parts",
+        "quantity": 18,
+        "unit_value": 330,
+        "total_value": 5940
+      },
+      {
+        "name": "Rubber Parts",
+        "quantity": 114,
+        "unit_value": 50,
+        "total_value": 5700
+      },
+      {
+        "name": "Steel Spring",
+        "quantity": 14,
+        "unit_value": 300,
+        "total_value": 4200
+      },
+      {
+        "name": "ARC Alloy",
+        "quantity": 16,
+        "unit_value": 200,
+        "total_value": 3200
+      },
+      {
+        "name": "Exodus Modules",
+        "quantity": 1,
+        "unit_value": 2750,
+        "total_value": 2750
+      }
+    ]
+  },
+  {
+    "name": "Vulcano IV",
+    "id": "vulcano-iv",
+    "item_type": "Weapon",
+    "rarity": "Epic",
+    "workbench": "Gunsmith III",
+    "item_value": 22000,
+    "material_cost": 29140,
+    "profit": -7140,
+    "profit_percent": -24.502402196293755,
+    "materials": [
+      {
+        "name": "Metal Parts",
+        "quantity": 98,
+        "unit_value": 75,
+        "total_value": 7350
+      },
+      {
+        "name": "Simple Gun Parts",
+        "quantity": 18,
+        "unit_value": 330,
+        "total_value": 5940
+      },
+      {
+        "name": "Rubber Parts",
+        "quantity": 114,
+        "unit_value": 50,
+        "total_value": 5700
+      },
+      {
+        "name": "Steel Spring",
+        "quantity": 14,
+        "unit_value": 300,
+        "total_value": 4200
+      },
+      {
+        "name": "ARC Alloy",
+        "quantity": 16,
+        "unit_value": 200,
+        "total_value": 3200
+      },
+      {
+        "name": "Exodus Modules",
+        "quantity": 1,
+        "unit_value": 2750,
+        "total_value": 2750
+      }
+    ]
+  },
+  {
+    "name": "Anvil IV",
+    "id": "anvil-iv",
+    "item_type": "Weapon",
+    "rarity": "Uncommon",
+    "workbench": null,
+    "item_value": 13000,
+    "material_cost": 20230,
+    "profit": -7230,
+    "profit_percent": -35.73900148294612,
+    "materials": [
+      {
+        "name": "Metal Parts",
+        "quantity": 112,
+        "unit_value": 75,
+        "total_value": 8400
+      },
+      {
+        "name": "Anvil Blueprint",
+        "quantity": 1,
+        "unit_value": 5000,
+        "total_value": 5000
+      },
+      {
+        "name": "Simple Gun Parts",
+        "quantity": 11,
+        "unit_value": 330,
+        "total_value": 3630
+      },
+      {
+        "name": "Rubber Parts",
+        "quantity": 64,
+        "unit_value": 50,
+        "total_value": 3200
+      }
+    ]
+  },
+  {
+    "name": "Bobcat I",
+    "id": "bobcat-i",
+    "item_type": "Weapon",
+    "rarity": "Epic",
+    "workbench": "Weapon Bench 3",
+    "item_value": 13000,
+    "material_cost": 20780,
+    "profit": -7780,
+    "profit_percent": -37.43984600577478,
+    "materials": [
+      {
+        "name": "Exodus Modules",
+        "quantity": 2,
+        "unit_value": 2750,
+        "total_value": 5500
+      },
+      {
+        "name": "Bobcat Blueprint",
+        "quantity": 1,
+        "unit_value": 5000,
+        "total_value": 5000
+      },
+      {
+        "name": "ARC Alloy",
+        "quantity": 16,
+        "unit_value": 200,
+        "total_value": 3200
+      },
+      {
+        "name": "Metal Parts",
+        "quantity": 28,
+        "unit_value": 75,
+        "total_value": 2100
+      },
+      {
+        "name": "Simple Gun Parts",
+        "quantity": 6,
+        "unit_value": 330,
+        "total_value": 1980
+      },
+      {
+        "name": "Rubber Parts",
+        "quantity": 36,
+        "unit_value": 50,
+        "total_value": 1800
+      },
+      {
+        "name": "Steel Spring",
+        "quantity": 4,
+        "unit_value": 300,
+        "total_value": 1200
+      }
+    ]
+  },
+  {
     "name": "Bobcat II",
     "id": "bobcat-ii",
     "item_type": "Weapon",
     "rarity": "Epic",
     "workbench": "Weapon Bench",
     "item_value": 17000,
-    "material_cost": 24300,
-    "profit": -7300,
-    "profit_percent": -30.04115226337449,
+    "material_cost": 25740,
+    "profit": -8740,
+    "profit_percent": -33.95493395493395,
     "materials": [
       {
         "name": "Exodus Modules",
@@ -4412,22 +5483,132 @@
         "total_value": 3200
       },
       {
-        "name": "Light Gun Parts",
-        "quantity": 4,
-        "unit_value": 700,
+        "name": "Rubber Parts",
+        "quantity": 56,
+        "unit_value": 50,
         "total_value": 2800
+      },
+      {
+        "name": "Simple Gun Parts",
+        "quantity": 8,
+        "unit_value": 330,
+        "total_value": 2640
       },
       {
         "name": "Steel Spring",
         "quantity": 8,
         "unit_value": 300,
         "total_value": 2400
+      }
+    ]
+  },
+  {
+    "name": "Bobcat III",
+    "id": "bobcat-iii",
+    "item_type": "Weapon",
+    "rarity": "Epic",
+    "workbench": null,
+    "item_value": 22000,
+    "material_cost": 32820,
+    "profit": -10820,
+    "profit_percent": -32.96770262035344,
+    "materials": [
+      {
+        "name": "Metal Parts",
+        "quantity": 84,
+        "unit_value": 75,
+        "total_value": 6300
+      },
+      {
+        "name": "Exodus Modules",
+        "quantity": 2,
+        "unit_value": 2750,
+        "total_value": 5500
+      },
+      {
+        "name": "Bobcat Blueprint",
+        "quantity": 1,
+        "unit_value": 5000,
+        "total_value": 5000
+      },
+      {
+        "name": "Simple Gun Parts",
+        "quantity": 14,
+        "unit_value": 330,
+        "total_value": 4620
       },
       {
         "name": "Rubber Parts",
-        "quantity": 24,
+        "quantity": 92,
         "unit_value": 50,
-        "total_value": 1200
+        "total_value": 4600
+      },
+      {
+        "name": "Steel Spring",
+        "quantity": 12,
+        "unit_value": 300,
+        "total_value": 3600
+      },
+      {
+        "name": "ARC Alloy",
+        "quantity": 16,
+        "unit_value": 200,
+        "total_value": 3200
+      }
+    ]
+  },
+  {
+    "name": "Bobcat IV",
+    "id": "bobcat-iv",
+    "item_type": "Weapon",
+    "rarity": "Epic",
+    "workbench": null,
+    "item_value": 27000,
+    "material_cost": 39900,
+    "profit": -12900,
+    "profit_percent": -32.33082706766917,
+    "materials": [
+      {
+        "name": "Metal Parts",
+        "quantity": 112,
+        "unit_value": 75,
+        "total_value": 8400
+      },
+      {
+        "name": "Simple Gun Parts",
+        "quantity": 20,
+        "unit_value": 330,
+        "total_value": 6600
+      },
+      {
+        "name": "Rubber Parts",
+        "quantity": 128,
+        "unit_value": 50,
+        "total_value": 6400
+      },
+      {
+        "name": "Exodus Modules",
+        "quantity": 2,
+        "unit_value": 2750,
+        "total_value": 5500
+      },
+      {
+        "name": "Bobcat Blueprint",
+        "quantity": 1,
+        "unit_value": 5000,
+        "total_value": 5000
+      },
+      {
+        "name": "Steel Spring",
+        "quantity": 16,
+        "unit_value": 300,
+        "total_value": 4800
+      },
+      {
+        "name": "ARC Alloy",
+        "quantity": 16,
+        "unit_value": 200,
+        "total_value": 3200
       }
     ]
   },
@@ -4438,9 +5619,9 @@
     "rarity": "Legendary",
     "workbench": "Weapon Bench 3",
     "item_value": 34000,
-    "material_cost": 46900,
-    "profit": -12900,
-    "profit_percent": -27.505330490405118,
+    "material_cost": 51220,
+    "profit": -17220,
+    "profit_percent": -33.61967981257321,
     "materials": [
       {
         "name": "Queen Reactor",
@@ -4455,25 +5636,25 @@
         "total_value": 9600
       },
       {
+        "name": "Simple Gun Parts",
+        "quantity": 24,
+        "unit_value": 330,
+        "total_value": 7920
+      },
+      {
+        "name": "Rubber Parts",
+        "quantity": 132,
+        "unit_value": 50,
+        "total_value": 6600
+      },
+      {
         "name": "Metal Parts",
         "quantity": 84,
         "unit_value": 75,
         "total_value": 6300
       },
       {
-        "name": "Light Gun Parts",
-        "quantity": 6,
-        "unit_value": 700,
-        "total_value": 4200
-      },
-      {
         "name": "Medium Gun Parts",
-        "quantity": 6,
-        "unit_value": 700,
-        "total_value": 4200
-      },
-      {
-        "name": "Heavy Gun Parts",
         "quantity": 6,
         "unit_value": 700,
         "total_value": 4200
@@ -4483,12 +5664,6 @@
         "quantity": 12,
         "unit_value": 300,
         "total_value": 3600
-      },
-      {
-        "name": "Rubber Parts",
-        "quantity": 36,
-        "unit_value": 50,
-        "total_value": 1800
       }
     ]
   },
@@ -4499,9 +5674,9 @@
     "rarity": "Legendary",
     "workbench": "Weapon Bench 3",
     "item_value": 34000,
-    "material_cost": 46900,
-    "profit": -12900,
-    "profit_percent": -27.505330490405118,
+    "material_cost": 51220,
+    "profit": -17220,
+    "profit_percent": -33.61967981257321,
     "materials": [
       {
         "name": "Queen Reactor",
@@ -4516,25 +5691,25 @@
         "total_value": 9600
       },
       {
+        "name": "Simple Gun Parts",
+        "quantity": 24,
+        "unit_value": 330,
+        "total_value": 7920
+      },
+      {
+        "name": "Rubber Parts",
+        "quantity": 132,
+        "unit_value": 50,
+        "total_value": 6600
+      },
+      {
         "name": "Metal Parts",
         "quantity": 84,
         "unit_value": 75,
         "total_value": 6300
       },
       {
-        "name": "Light Gun Parts",
-        "quantity": 6,
-        "unit_value": 700,
-        "total_value": 4200
-      },
-      {
         "name": "Medium Gun Parts",
-        "quantity": 6,
-        "unit_value": 700,
-        "total_value": 4200
-      },
-      {
-        "name": "Heavy Gun Parts",
         "quantity": 6,
         "unit_value": 700,
         "total_value": 4200
@@ -4544,12 +5719,61 @@
         "quantity": 12,
         "unit_value": 300,
         "total_value": 3600
+      }
+    ]
+  },
+  {
+    "name": "Aphelion Rifle",
+    "id": "aphelion-rifle",
+    "item_type": "Weapon",
+    "rarity": "Legendary",
+    "workbench": null,
+    "item_value": 27500,
+    "material_cost": 51220,
+    "profit": -23720,
+    "profit_percent": -46.31003514252245,
+    "materials": [
+      {
+        "name": "Matriarch Reactor",
+        "quantity": 1,
+        "unit_value": 13000,
+        "total_value": 13000
+      },
+      {
+        "name": "ARC Alloy",
+        "quantity": 48,
+        "unit_value": 200,
+        "total_value": 9600
+      },
+      {
+        "name": "Simple Gun Parts",
+        "quantity": 24,
+        "unit_value": 330,
+        "total_value": 7920
       },
       {
         "name": "Rubber Parts",
-        "quantity": 36,
+        "quantity": 132,
         "unit_value": 50,
-        "total_value": 1800
+        "total_value": 6600
+      },
+      {
+        "name": "Metal Parts",
+        "quantity": 84,
+        "unit_value": 75,
+        "total_value": 6300
+      },
+      {
+        "name": "Medium Gun Parts",
+        "quantity": 6,
+        "unit_value": 700,
+        "total_value": 4200
+      },
+      {
+        "name": "Steel Spring",
+        "quantity": 12,
+        "unit_value": 300,
+        "total_value": 3600
       }
     ]
   }
