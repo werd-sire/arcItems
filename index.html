@@ -859,10 +859,13 @@
             <span class="text-xs text-muted" x-show="eventsLastUpdated">
               Updated <span x-text="formatEventsLastUpdated()"></span>
             </span>
-            <button class="btn btn-primary btn-sm" @click="refreshEvents()" :disabled="eventsLoading" x-init="refreshEvents()">
-              <i data-lucide="refresh-cw" class="w-4 h-4" :class="eventsLoading ? 'animate-spin' : ''"></i>
-              <span x-text="eventsLoading ? 'Loading...' : 'Refresh'"></span>
-            </button>
+            <template x-if="isLocalDev">
+              <button class="btn btn-primary btn-sm" @click="refreshEvents()" :disabled="eventsLoading">
+                <i data-lucide="refresh-cw" class="w-4 h-4" :class="eventsLoading ? 'animate-spin' : ''"></i>
+                <span x-text="eventsLoading ? 'Loading...' : 'Refresh'"></span>
+              </button>
+            </template>
+            <span class="text-xs opacity-60" x-show="!isLocalDev">Updated at fetch time</span>
           </div>
         </div>
 
