@@ -156,7 +156,7 @@
       "name": "Smoke Grenade",
       "value": 1000,
       "rarity": "Rare",
-      "item_type": "Quick Use",
+      "item_type": "Recyclable",
       "description": "A grenade that creates a lingering smoke cloud on impact, blocking visibility from other Raiders.",
       "trader_price": 3000
     },

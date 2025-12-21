@@ -1,0 +1,66 @@
+{
+  "name": "Expedition",
+  "description": "A major progression project where Raiders depart the Rust Belt. Prepare over a 60-day period, then depart during a 7-day window. Workshop resets but blueprints, maps, and cosmetics carry over.",
+  "rewards": [
+    "+12 stash space",
+    "Up to 5 skill points (based on stash value)",
+    "Patchwork Raider outfit",
+    "Scrappy Janitor Cap",
+    "10% repair buff (stacks 3x)",
+    "5% XP boost (stacks 3x)",
+    "6% increased materials from Scrappy (stacks 3x)"
+  ],
+  "stages": [
+    {
+      "stage": 1,
+      "name": "Foundation",
+      "description": "Building the base structure and frame of the caravan",
+      "requirements": [
+        { "name": "Metal Parts", "quantity": 150 },
+        { "name": "Rubber Parts", "quantity": 200 },
+        { "name": "ARC Alloy", "quantity": 80 },
+        { "name": "Steel Spring", "quantity": 15 }
+      ]
+    },
+    {
+      "stage": 2,
+      "name": "Core Systems",
+      "description": "Connecting wiring, ventilation, and essential power systems",
+      "requirements": [
+        { "name": "Durable Cloth", "quantity": 35 },
+        { "name": "Wires", "quantity": 25 },
+        { "name": "Electrical Components", "quantity": 20 },
+        { "name": "Cooling Coil", "quantity": 4 }
+      ]
+    },
+    {
+      "stage": 3,
+      "name": "Framework",
+      "description": "Building walls and roof, installing core systems, and defining the interior layout",
+      "requirements": [
+        { "name": "Light Bulb", "quantity": 4 },
+        { "name": "Battery", "quantity": 30 },
+        { "name": "Shredder Gyro", "quantity": 10 },
+        { "name": "Exodus Modules", "quantity": 1 }
+      ]
+    },
+    {
+      "stage": 4,
+      "name": "Outfitting",
+      "description": "Adding storage, workbenches, utilities, and personal touches",
+      "requirements": [
+        { "name": "Frequency Modulation Box", "quantity": 5 },
+        { "name": "Advanced Electrical Components", "quantity": 5 },
+        { "name": "Ion Sputter", "quantity": 3 },
+        { "name": "Leaper Pulse Unit", "quantity": 3 }
+      ]
+    },
+    {
+      "stage": 5,
+      "name": "Load Stage",
+      "description": "Preparing supplies for departure. Contribute items to earn skill points based on total value (1 point per 1,000,000 value, max 5 points).",
+      "requirements": [],
+      "note": "Contribute any items - skill points earned based on total value contributed"
+    }
+  ]
+}

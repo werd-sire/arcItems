@@ -11,6 +11,8 @@
     "updated_at": "2025-10-07T14:15:00.671965+00:00",
     "locations": [],
     "marker_category": null,
+    "image": null,
+    "guide_links": [],
     "required_items": [],
     "rewards": [
       {
@@ -66,6 +68,8 @@
     "updated_at": "2025-10-07T14:15:03.573089+00:00",
     "locations": [],
     "marker_category": null,
+    "image": null,
+    "guide_links": [],
     "required_items": [],
     "rewards": [
       {
@@ -119,6 +123,8 @@
     "updated_at": "2025-10-07T14:15:07.978258+00:00",
     "locations": [],
     "marker_category": null,
+    "image": null,
+    "guide_links": [],
     "required_items": [],
     "rewards": [
       {
@@ -174,6 +180,8 @@
     "updated_at": "2025-10-30T23:48:33.289763+00:00",
     "locations": [],
     "marker_category": null,
+    "image": null,
+    "guide_links": [],
     "required_items": [],
     "rewards": [
       {
@@ -240,6 +248,8 @@
     "updated_at": "2025-10-07T14:15:04.803743+00:00",
     "locations": [],
     "marker_category": null,
+    "image": null,
+    "guide_links": [],
     "required_items": [],
     "rewards": [
       {
@@ -307,6 +317,8 @@
       }
     ],
     "marker_category": null,
+    "image": null,
+    "guide_links": [],
     "required_items": [],
     "rewards": [
       {
@@ -340,7 +352,7 @@
           "icon": "https://cdn.metaforge.app/arc-raiders/icons/smoke-grenade.webp",
           "name": "Smoke Grenade",
           "rarity": "Rare",
-          "item_type": "Quick Use"
+          "item_type": "Recyclable"
         },
         "item_id": "smoke-grenade",
         "quantity": "2"
@@ -361,6 +373,8 @@
     "updated_at": "2025-11-03T11:03:52.670165+00:00",
     "locations": [],
     "marker_category": null,
+    "image": null,
+    "guide_links": [],
     "required_items": [],
     "rewards": [
       {
@@ -402,6 +416,8 @@
     "updated_at": "2025-10-07T14:15:08.826246+00:00",
     "locations": [],
     "marker_category": null,
+    "image": null,
+    "guide_links": [],
     "required_items": [],
     "rewards": [
       {
@@ -445,6 +461,8 @@
     "updated_at": "2025-11-03T11:39:47.205369+00:00",
     "locations": [],
     "marker_category": null,
+    "image": null,
+    "guide_links": [],
     "required_items": [],
     "rewards": [
       {
@@ -454,7 +472,7 @@
           "icon": "https://cdn.metaforge.app/arc-raiders/icons/smoke-grenade.webp",
           "name": "Smoke Grenade",
           "rarity": "Rare",
-          "item_type": "Quick Use"
+          "item_type": "Recyclable"
         },
         "item_id": "smoke-grenade",
         "quantity": "3"
@@ -500,6 +518,8 @@
     "updated_at": "2025-11-01T23:14:45.099773+00:00",
     "locations": [],
     "marker_category": null,
+    "image": null,
+    "guide_links": [],
     "required_items": [],
     "rewards": [
       {
@@ -555,6 +575,8 @@
     "updated_at": "2025-12-16T10:12:43.399509+00:00",
     "locations": [],
     "marker_category": null,
+    "image": null,
+    "guide_links": [],
     "required_items": [],
     "rewards": [
       {
@@ -622,6 +644,8 @@
     "updated_at": "2025-11-02T21:35:56.032349+00:00",
     "locations": [],
     "marker_category": null,
+    "image": null,
+    "guide_links": [],
     "required_items": [],
     "rewards": [
       {
@@ -689,6 +713,8 @@
     "updated_at": "2025-11-02T12:15:05.183826+00:00",
     "locations": [],
     "marker_category": null,
+    "image": null,
+    "guide_links": [],
     "required_items": [],
     "rewards": [
       {
@@ -756,6 +782,8 @@
     "updated_at": "2025-11-02T22:55:07.278115+00:00",
     "locations": [],
     "marker_category": null,
+    "image": null,
+    "guide_links": [],
     "required_items": [],
     "rewards": [
       {
@@ -808,6 +836,8 @@
       }
     ],
     "marker_category": null,
+    "image": null,
+    "guide_links": [],
     "required_items": [],
     "rewards": [
       {
@@ -864,6 +894,8 @@
     "updated_at": "2025-10-07T14:15:04.67224+00:00",
     "locations": [],
     "marker_category": null,
+    "image": null,
+    "guide_links": [],
     "required_items": [],
     "rewards": [
       {
@@ -918,6 +950,8 @@
     "updated_at": "2025-11-02T02:06:26.569034+00:00",
     "locations": [],
     "marker_category": null,
+    "image": null,
+    "guide_links": [],
     "required_items": [],
     "rewards": [
       {
@@ -971,6 +1005,8 @@
     "updated_at": "2025-10-17T12:53:06.499633+00:00",
     "locations": [],
     "marker_category": null,
+    "image": null,
+    "guide_links": [],
     "required_items": [
       {
         "id": "8037fcea-c0ae-469d-b96a-17a29b72b158",
@@ -1037,6 +1073,8 @@
     "updated_at": "2025-11-14T11:43:45.943896+00:00",
     "locations": [],
     "marker_category": null,
+    "image": null,
+    "guide_links": [],
     "required_items": [],
     "rewards": [
       {
@@ -1081,6 +1119,8 @@
     "updated_at": "2025-10-07T14:15:05.244382+00:00",
     "locations": [],
     "marker_category": null,
+    "image": null,
+    "guide_links": [],
     "required_items": [],
     "rewards": [
       {
@@ -1135,6 +1175,8 @@
     "updated_at": "2025-12-16T10:54:43.159006+00:00",
     "locations": [],
     "marker_category": null,
+    "image": null,
+    "guide_links": [],
     "required_items": [],
     "rewards": [
       {
@@ -1176,6 +1218,8 @@
     "updated_at": "2025-10-07T14:15:04.25619+00:00",
     "locations": [],
     "marker_category": null,
+    "image": null,
+    "guide_links": [],
     "required_items": [],
     "rewards": [
       {
@@ -1219,6 +1263,8 @@
     "updated_at": "2025-10-30T23:49:23.273502+00:00",
     "locations": [],
     "marker_category": null,
+    "image": null,
+    "guide_links": [],
     "required_items": [
       {
         "id": "a0e499f5-3ebc-4558-b7fb-d944b4b3ce2b",
@@ -1320,6 +1366,8 @@
     "updated_at": "2025-10-07T14:15:03.166636+00:00",
     "locations": [],
     "marker_category": null,
+    "image": null,
+    "guide_links": [],
     "required_items": [],
     "rewards": [
       {
@@ -1376,6 +1424,8 @@
     "updated_at": "2025-10-17T17:02:41.468667+00:00",
     "locations": [],
     "marker_category": null,
+    "image": null,
+    "guide_links": [],
     "required_items": [],
     "rewards": [
       {
@@ -1424,6 +1474,8 @@
       }
     ],
     "marker_category": null,
+    "image": null,
+    "guide_links": [],
     "required_items": [],
     "rewards": [
       {
@@ -1478,6 +1530,8 @@
     "updated_at": "2025-10-07T14:15:07.523887+00:00",
     "locations": [],
     "marker_category": null,
+    "image": null,
+    "guide_links": [],
     "required_items": [],
     "rewards": [
       {
@@ -1533,6 +1587,8 @@
     "updated_at": "2025-11-02T08:28:59.676724+00:00",
     "locations": [],
     "marker_category": null,
+    "image": null,
+    "guide_links": [],
     "required_items": [],
     "rewards": [
       {
@@ -1586,6 +1642,8 @@
     "updated_at": "2025-11-01T18:28:52.307212+00:00",
     "locations": [],
     "marker_category": null,
+    "image": null,
+    "guide_links": [],
     "required_items": [],
     "rewards": [
       {
@@ -1630,6 +1688,8 @@
     "updated_at": "2025-10-07T14:15:08.396588+00:00",
     "locations": [],
     "marker_category": null,
+    "image": null,
+    "guide_links": [],
     "required_items": [
       {
         "id": "2b15031f-4e82-48ec-9c49-edebf91855c6",
@@ -1710,6 +1770,8 @@
     "updated_at": "2025-10-30T21:57:57.890654+00:00",
     "locations": [],
     "marker_category": null,
+    "image": null,
+    "guide_links": [],
     "required_items": [],
     "rewards": [
       {
@@ -1778,6 +1840,8 @@
     "updated_at": "2025-12-16T11:53:14.310127+00:00",
     "locations": [],
     "marker_category": null,
+    "image": null,
+    "guide_links": [],
     "required_items": [],
     "rewards": [
       {
@@ -1819,6 +1883,8 @@
     "updated_at": "2025-10-07T14:15:00.367952+00:00",
     "locations": [],
     "marker_category": null,
+    "image": null,
+    "guide_links": [],
     "required_items": [],
     "rewards": [
       {
@@ -1874,6 +1940,8 @@
     "updated_at": "2025-11-01T23:08:25.013466+00:00",
     "locations": [],
     "marker_category": null,
+    "image": null,
+    "guide_links": [],
     "required_items": [
       {
         "id": "28540562-5a7a-4c91-b02b-7bac2a0a95a4",
@@ -1940,6 +2008,8 @@
     "updated_at": "2025-11-14T11:42:22.128425+00:00",
     "locations": [],
     "marker_category": null,
+    "image": null,
+    "guide_links": [],
     "required_items": [],
     "rewards": [
       {
@@ -1981,6 +2051,8 @@
     "updated_at": "2025-11-02T22:59:56.776247+00:00",
     "locations": [],
     "marker_category": null,
+    "image": null,
+    "guide_links": [],
     "required_items": [
       {
         "id": "560a9deb-a8c7-4960-a300-a5a0022c4e7b",
@@ -2061,6 +2133,8 @@
     "updated_at": "2025-11-01T23:12:19.34848+00:00",
     "locations": [],
     "marker_category": null,
+    "image": null,
+    "guide_links": [],
     "required_items": [],
     "rewards": [
       {
@@ -2117,6 +2191,8 @@
     "updated_at": "2025-10-07T14:15:06.420493+00:00",
     "locations": [],
     "marker_category": null,
+    "image": null,
+    "guide_links": [],
     "required_items": [],
     "rewards": [
       {
@@ -2185,6 +2261,8 @@
     "updated_at": "2025-11-02T15:22:41.303581+00:00",
     "locations": [],
     "marker_category": null,
+    "image": null,
+    "guide_links": [],
     "required_items": [],
     "rewards": [
       {
@@ -2215,6 +2293,8 @@
     "updated_at": "2025-11-01T23:02:32.804636+00:00",
     "locations": [],
     "marker_category": null,
+    "image": null,
+    "guide_links": [],
     "required_items": [],
     "rewards": [
       {

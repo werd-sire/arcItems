@@ -1,0 +1,222 @@
+{
+  "stations": [
+    {
+      "id": "workbench",
+      "name": "Workbench",
+      "description": "Basic crafting station for simple weapons and ammunition",
+      "icon": "hammer",
+      "levels": [
+        {
+          "level": 1,
+          "name": "Workbench",
+          "requirements": [],
+          "note": "Free - requires 1 round played"
+        }
+      ]
+    },
+    {
+      "id": "gunsmith",
+      "name": "Gunsmith",
+      "description": "Weapon crafting and modification station for advanced firearms",
+      "icon": "crosshair",
+      "levels": [
+        {
+          "level": 1,
+          "name": "Gunsmith I",
+          "requirements": [
+            { "name": "Metal Parts", "quantity": 20 },
+            { "name": "Rubber Parts", "quantity": 30 }
+          ]
+        },
+        {
+          "level": 2,
+          "name": "Gunsmith II",
+          "requirements": [
+            { "name": "Rusted Tools", "quantity": 3 },
+            { "name": "Mechanical Components", "quantity": 5 },
+            { "name": "Wasp Driver", "quantity": 8 }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "Gunsmith III",
+          "requirements": [
+            { "name": "Rusted Gear", "quantity": 3 },
+            { "name": "Advanced Mechanical Components", "quantity": 5 },
+            { "name": "Sentinel Firing Core", "quantity": 4 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gear-bench",
+      "name": "Gear Bench",
+      "description": "Augment and shield crafting station for protective equipment",
+      "icon": "shield",
+      "levels": [
+        {
+          "level": 1,
+          "name": "Gear Bench I",
+          "requirements": [
+            { "name": "Plastic Parts", "quantity": 25 },
+            { "name": "Fabric", "quantity": 30 }
+          ]
+        },
+        {
+          "level": 2,
+          "name": "Gear Bench II",
+          "requirements": [
+            { "name": "Power Cable", "quantity": 3 },
+            { "name": "Electrical Components", "quantity": 5 },
+            { "name": "Hornet Driver", "quantity": 5 }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "Gear Bench III",
+          "requirements": [
+            { "name": "Industrial Battery", "quantity": 3 },
+            { "name": "Advanced Electrical Components", "quantity": 5 },
+            { "name": "Bastion Cell", "quantity": 6 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "medical-lab",
+      "name": "Medical Lab",
+      "description": "Medical item crafting station for healing and recovery items",
+      "icon": "heart-pulse",
+      "levels": [
+        {
+          "level": 1,
+          "name": "Medical Lab I",
+          "requirements": [
+            { "name": "Fabric", "quantity": 50 },
+            { "name": "ARC Alloy", "quantity": 6 }
+          ]
+        },
+        {
+          "level": 2,
+          "name": "Medical Lab II",
+          "requirements": [
+            { "name": "Cracked Bioscanner", "quantity": 2 },
+            { "name": "Durable Cloth", "quantity": 5 },
+            { "name": "Tick Pod", "quantity": 8 }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "Medical Lab III",
+          "requirements": [
+            { "name": "Rusted Shut Medical Kit", "quantity": 3 },
+            { "name": "Antiseptic", "quantity": 8 },
+            { "name": "Surveyor Vault", "quantity": 5 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "explosives-station",
+      "name": "Explosives Station",
+      "description": "Explosive and mine crafting station for throwables and traps",
+      "icon": "bomb",
+      "levels": [
+        {
+          "level": 1,
+          "name": "Explosives Station I",
+          "requirements": [
+            { "name": "Chemicals", "quantity": 50 },
+            { "name": "ARC Alloy", "quantity": 6 }
+          ]
+        },
+        {
+          "level": 2,
+          "name": "Explosives Station II",
+          "requirements": [
+            { "name": "Synthesized Fuel", "quantity": 3 },
+            { "name": "Crude Explosives", "quantity": 5 },
+            { "name": "Pop Trigger", "quantity": 5 }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "Explosives Station III",
+          "requirements": [
+            { "name": "Laboratory Reagents", "quantity": 3 },
+            { "name": "Explosive Compound", "quantity": 5 },
+            { "name": "Rocketeer Driver", "quantity": 3 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "utility-station",
+      "name": "Utility Station",
+      "description": "Utility item crafting station for gadgets and tactical equipment",
+      "icon": "wrench",
+      "levels": [
+        {
+          "level": 1,
+          "name": "Utility Station I",
+          "requirements": [
+            { "name": "Plastic Parts", "quantity": 50 },
+            { "name": "ARC Alloy", "quantity": 6 }
+          ]
+        },
+        {
+          "level": 2,
+          "name": "Utility Station II",
+          "requirements": [
+            { "name": "Damaged Heat Sink", "quantity": 2 },
+            { "name": "Electrical Components", "quantity": 5 },
+            { "name": "Snitch Scanner", "quantity": 6 }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "Utility Station III",
+          "requirements": [
+            { "name": "Fried Motherboard", "quantity": 3 },
+            { "name": "Advanced Electrical Components", "quantity": 5 },
+            { "name": "Leaper Pulse Unit", "quantity": 4 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "refiner",
+      "name": "Refiner",
+      "description": "Material refinement station for processing advanced components",
+      "icon": "flask-conical",
+      "levels": [
+        {
+          "level": 1,
+          "name": "Refiner I",
+          "requirements": [
+            { "name": "Metal Parts", "quantity": 60 },
+            { "name": "ARC Powercell", "quantity": 5 }
+          ]
+        },
+        {
+          "level": 2,
+          "name": "Refiner II",
+          "requirements": [
+            { "name": "Toaster", "quantity": 3 },
+            { "name": "ARC Motion Core", "quantity": 5 },
+            { "name": "Fireball Burner", "quantity": 8 }
+          ]
+        },
+        {
+          "level": 3,
+          "name": "Refiner III",
+          "requirements": [
+            { "name": "Motor", "quantity": 3 },
+            { "name": "ARC Circuitry", "quantity": 10 },
+            { "name": "Bombardier Cell", "quantity": 6 }
+          ]
+        }
+      ]
+    }
+  ]
+}
